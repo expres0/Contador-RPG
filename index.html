@@ -252,6 +252,9 @@ select{background:#f4f2e9;color:#1e3126;padding:10px 12px;border:1px solid rgba(
 .v3-weapon-form .v3-form-help{grid-column:1/-1;display:flex;align-items:center;gap:10px;color:#b4c8bb;font-size:11px;padding:2px 0 0}
 .v3-weapon-form .v3-form-help .v3-help-body{left:0}
 @media(max-width:650px){.v3-help-body{width:min(265px,calc(100vw - 92px))}}
+
+/* V4 - magias, espaços e descansos */
+.v4-magic-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0}.v4-magic-summary>div{background:rgba(232,249,227,.075);border:1px solid rgba(235,246,231,.13);border-radius:12px;padding:13px;text-align:center}.v4-magic-summary span{display:block;font-size:10px;color:#b7cabb}.v4-magic-summary strong{display:block;font-size:28px;color:#f3d699;margin-top:5px}.v4-setup{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.v4-setup label,.v4-spell-form label{font-size:12px;color:#d3dfd2}.v4-setup select,.v4-setup input,.v4-spell-form input,.v4-spell-form select,.v4-spell-form textarea{width:100%;min-width:0;margin-top:5px;font-size:16px;padding:9px;border-radius:9px;background:#f4f2e9;color:#203227;border:1px solid #71887a}.v4-slots{display:grid;gap:9px;margin:10px 0}.v4-slot{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(222,244,226,.06);padding:11px 12px;border:1px solid rgba(228,242,225,.13);border-radius:11px}.v4-slot strong{font-size:14px}.v4-slot small{display:block;color:#bed0c1;font-size:11px;margin-top:3px}.v4-slot-controls{display:flex;align-items:center;gap:9px}.v4-slot-controls button{min-width:34px;padding:7px 9px;min-height:34px}.v4-slot-count{font-size:18px;font-weight:800;color:#f5d895;min-width:45px;text-align:center}.v4-spell-list{display:grid;gap:9px}.v4-spell-card{border:1px solid rgba(223,241,224,.18);background:rgba(223,244,222,.065);border-radius:13px;padding:13px}.v4-spell-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.v4-spell-top strong{display:block;font-size:16px;color:#f5f5e9}.v4-spell-top small,.v4-spell-meta{color:#b8cfbd;font-size:11px}.v4-spell-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.v4-spell-description{font-size:12px;color:#dbe8d9;white-space:pre-wrap;margin:11px 0 0}.v4-spell-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:12px}.v4-spell-actions select{flex:1;min-width:100px;padding:8px 6px;background:#f4f2e9;color:#203227;border-radius:8px}.v4-spell-actions button{font-size:12px;padding:9px}.v4-spell-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:13px}.v4-spell-form .wide{grid-column:1/-1}.v4-spell-flags{grid-column:1/-1;display:flex;gap:14px;flex-wrap:wrap}.v4-spell-flags label{display:flex;align-items:center;gap:6px}.v4-spell-flags input{width:auto;margin:0}.v4-restbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:14px 0 0}.v4-rest-panel{background:rgba(8,23,16,.23);border:1px solid rgba(235,247,230,.12);border-radius:13px;padding:14px;margin-top:11px}.v4-rest-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}.v4-rest-grid>div{padding:12px;background:rgba(233,248,228,.06);border-radius:10px;text-align:center}.v4-rest-grid strong{display:block;color:#f3d699;font-size:24px}.v4-rest-grid small{display:block;color:#bad0bd;font-size:10px}.v4-rest-buttons{display:flex;flex-wrap:wrap;gap:8px}.v4-rest-buttons button{flex:1;min-width:135px}.v4-pending{font-size:12px;color:#f3dfa9;margin:12px 0;padding:11px;border:1px solid #a18e55;border-radius:10px;background:rgba(159,130,56,.1)}.v4-muted{font-size:11px;color:#adc6b2;margin:8px 0}.v4-note{font-size:12px;color:#cddccc;line-height:1.6}.v4-spell-card .v4-mini{font-size:11px;padding:6px 8px;min-height:28px}.v4-tag{display:inline-block;padding:4px 7px;border-radius:6px;background:rgba(223,201,133,.14);color:#f1d59c;font-size:10px}.v4-all{margin-top:18px}@media(max-width:520px){.v4-setup,.v4-spell-form{grid-template-columns:1fr}.v4-rest-buttons button{min-width:110px}.v4-spell-actions select{min-width:90px}.v4-slot{gap:6px}.v4-slot-count{min-width:36px}}
 </style></head>
 <body><main class="app"><header class="hero"><div><h1>Contador RPG</h1><p>Painel de combate · Pontos de vida e iniciativa</p></div></header>
 <div class="toolbar"><span id="status" class="status offline" aria-live="polite">Modo local — conecte-se à sala para sincronizar.</span><div class="btns"><button class="secondary" id="tv">📺 Modo TV</button><button id="add">+ Personagem</button><button id="addEnemy" class="secondary hidden">+ Inimigo</button><button class="secondary" id="reset">Restaurar PV</button></div></div>
@@ -291,6 +294,42 @@ const passiveValue=sheet=>10+skillBonus(sheet,'Percepção','SAB')+sheet.passive
 function weaponBonus(sheet,w){return bonus(sheet.stats[w.ability])+(w.proficient?proficiency(sheet.level):0)+w.attackAdjustment}
 function weaponDamage(sheet,w){const n=bonus(sheet.stats[w.ability])+w.damageAdjustment;return w.dice+(n===0?'':` ${n>0?'+':'−'} ${Math.abs(n)} (${w.ability})`)}
 
+
+// Slots padrão do Livro do Jogador (5e/2014). Personagens multiclasse podem usar modo manual.
+const FULL_SLOTS=[[],[2],[3],[4,2],[4,3],[4,3,2],[4,3,3],[4,3,3,1],[4,3,3,2],[4,3,3,3,1],[4,3,3,3,2],[4,3,3,3,2,1],[4,3,3,3,2,1],[4,3,3,3,2,1,1],[4,3,3,3,2,1,1],[4,3,3,3,2,1,1,1],[4,3,3,3,2,1,1,1],[4,3,3,3,2,1,1,1,1],[4,3,3,3,3,1,1,1,1],[4,3,3,3,3,2,1,1,1],[4,3,3,3,3,2,2,1,1]];
+const THIRD_SLOTS=[[],[],[],[2],[3],[3],[3],[4,2],[4,2],[4,2],[4,3],[4,3],[4,3],[4,3,2],[4,3,2],[4,3,2],[4,3,3],[4,3,3],[4,3,3],[4,3,3,1],[4,3,3,1]];
+const PACT_PROGRESS=[null,[1,1],[2,1],[2,2],[2,2],[2,3],[2,3],[2,4],[2,4],[2,5],[2,5],[3,5],[3,5],[3,5],[3,5],[3,5],[3,5],[4,5],[4,5],[4,5],[4,5]];
+const MAGIC_CLASSES={none:'Sem conjuração',full:'Conjuração completa (clérigo, mago, druida, bardo, feiticeiro)',half:'Meia conjuração (paladino, patrulheiro)',third:'Conjuração de 1/3 (Cavaleiro Arcano / Trapaceiro Arcano)',pact:'Bruxo — Magia de Pacto',manual:'Personalizado / multiclasse'};
+const MAX_SPELL_LEVEL=9;
+function slotsFor(sheet){let mode=sheet.castingMode,lv=sheet.level,rows=[];
+ if(mode==='manual')rows=sheet.manualSlots.slice();
+ else if(mode==='full')rows=FULL_SLOTS[lv]||[];
+ else if(mode==='half')rows=FULL_SLOTS[Math.floor(lv/2)]||[];
+ else if(mode==='third')rows=THIRD_SLOTS[lv]||[];
+ else if(mode==='pact'){const [qty,sl]=PACT_PROGRESS[lv]||[0,0];rows=Array.from({length:sl},(_,i)=>i===sl-1?qty:0)}
+ return Array.from({length:9},(_,i)=>num(rows[i]||0,0,20));
+}
+function hitDieFor(sheet){return num(sheet.hitDie,4,12)}
+function spellAttack(sheet){return signed(bonus(sheet.stats[sheet.castingAbility])+proficiency(sheet.level)+sheet.magicAttackExtra)}
+function spellDC(sheet){return 8+bonus(sheet.stats[sheet.castingAbility])+proficiency(sheet.level)+sheet.magicDCExtra}
+function restPanel(sheet,c){const die=hitDieFor(sheet),unused=Math.max(0,sheet.level-sheet.hitDiceSpent),pending=sheet.pendingHeal;
+return `<div class="v4-section-heading v3-section-heading"><h4>Descanso e Dados de Vida</h4></div><div class="v4-rest-panel"><div class="v4-rest-grid"><div><strong>${unused} / ${sheet.level}</strong><small>DADOS DE VIDA · d${die}</small></div><div><strong>${c.hp} / ${c.max}</strong><small>PONTOS DE VIDA</small></div></div><div class="v4-rest-buttons"><button type="button" class="secondary" data-sheet-action="rest-short">☕ Descanso curto</button><button type="button" class="secondary" data-sheet-action="rest-long">☾ Descanso longo</button></div>${pending?`<div class="v4-pending">${pending.kind==='long'?'Descanso longo:':'Recuperação solicitada:'} ${pending.kind==='long'?'PV completos':`+${pending.amount} PV`} · Aguardando confirmação do mestre.${(isMaster()||mode==='local')?` <button class="success" data-sheet-action="rest-approve">Confirmar PV</button>`:''} <button class="secondary v4-mini" data-sheet-action="rest-cancel">Cancelar pedido</button></div>`:''}<details class="v3-tweaks"><summary>Configurar Dado de Vida</summary><div class="v4-setup" style="padding:12px"><label>Tipo do dado<select data-sheet-field="hitDie">${[6,8,10,12].map(x=>`<option value="${x}" ${die===x?'selected':''}>d${x}</option>`).join('')}</select></label><label>Dados já gastos<input type="number" data-sheet-field="hitDiceSpent" min="0" max="${sheet.level}" value="${sheet.hitDiceSpent}"></label><button class="success" data-sheet-action="save">Salvar dados</button></div></details></div>`}
+function spellPanel(sheet,c){const totals=slotsFor(sheet),pb=proficiency(sheet.level),isPact=sheet.castingMode==='pact';
+const spells=sheet.spellList.slice().sort((a,b)=>a.level-b.level||Number(b.favorite)-Number(a.favorite)||a.name.localeCompare(b.name));
+const slotOptions=level=>totals.map((qty,i)=>({level:i+1,qty,free:qty-sheet.slotsSpent[i]})).filter(x=>x.qty>0&&x.level>=level);
+return `<div class="sheet-area-head"><div><span class="sheet-eyebrow">CONJURAÇÃO</span><h4>Magias</h4></div></div>
+<div class="v4-magic-summary"><div><span>CD DE MAGIA</span><strong>${spellDC(sheet)}</strong></div><div><span>ATAQUE MÁGICO</span><strong>${spellAttack(sheet)}</strong></div></div>
+<details class="v3-tweaks"><summary>Configuração de conjuração</summary><div class="v4-setup" style="padding:13px"><label>Progressão de espaços<select data-sheet-field="castingMode">${Object.entries(MAGIC_CLASSES).map(([k,v])=>`<option value="${k}" ${sheet.castingMode===k?'selected':''}>${esc(v)}</option>`).join('')}</select></label><label>Atributo da conjuração<select data-sheet-field="castingAbility">${['INT','SAB','CAR'].map(k=>`<option value="${k}" ${sheet.castingAbility===k?'selected':''}>${k}</option>`).join('')}</select></label><label>Ajuste no ataque mágico<input type="number" data-sheet-field="magicAttackExtra" value="${sheet.magicAttackExtra}" min="-20" max="20"></label><label>Ajuste na CD<input type="number" data-sheet-field="magicDCExtra" value="${sheet.magicDCExtra}" min="-20" max="20"></label><button type="button" class="success" data-sheet-action="save">Salvar configuração</button></div><p class="v4-muted" style="padding:0 13px">O nível do personagem é editado em Combate. Para multiclasses e exceções, use Personalizado.</p></details>
+<div class="v3-section-heading"><h4>Espaços de magia</h4><small>${isPact?'Pacto: descanso curto ou longo':'Recuperação em descanso longo'}</small></div>
+<div class="v4-slots">${totals.some(Boolean)?totals.map((total,i)=>total?`<div class="v4-slot"><div><strong>Nível ${i+1}</strong><small>${isPact?'Magia de Pacto':'Espaços disponíveis'}</small></div><div class="v4-slot-controls"><button class="secondary" data-sheet-action="slot-spend" data-slot="${i}" ${sheet.slotsSpent[i]>=total?'disabled':''} aria-label="Gastar um espaço">−</button><span class="v4-slot-count">${Math.max(0,total-sheet.slotsSpent[i])}/${total}</span><button class="secondary" data-sheet-action="slot-restore" data-slot="${i}" ${sheet.slotsSpent[i]===0?'disabled':''} aria-label="Recuperar um espaço">+</button></div></div>`:'').join(''):'<div class="v4-muted">Esta configuração não concede espaços de magia.</div>'}</div>
+${sheet.castingMode==='manual'?`<details class="v3-tweaks"><summary>Ajustar espaços personalizados</summary><div class="v4-setup" style="padding:13px">${Array.from({length:9},(_,i)=>`<label>Nível ${i+1}<input data-manual-slot="${i}" type="number" min="0" max="20" value="${sheet.manualSlots[i]}"></label>`).join('')}<button class="success" data-sheet-action="manual-slots-save">Salvar espaços</button></div></details>`:''}
+<div class="v3-section-heading"><h4>Magias cadastradas</h4><small>${sheet.spellList.length} magias</small></div>
+<div class="v4-spell-list">${spells.length?spells.map(sp=>{const opts=slotOptions(sp.level);return `<div class="v4-spell-card"><div class="v4-spell-top"><div><strong>${esc(sp.name)} ${sp.favorite?'★':''}</strong><small>${sp.level?'Magia de nível '+sp.level:'Truque'}${sp.prepared?' · Preparada':''}</small></div><button class="secondary v4-mini" data-sheet-action="spell-del" data-spell="${esc(sp.id)}" aria-label="Excluir magia">✕</button></div><div class="v4-spell-meta">${sp.castingTime?`<span>${esc(sp.castingTime)}</span>`:''}${sp.range?`<span>${esc(sp.range)}</span>`:''}${sp.duration?`<span>${esc(sp.duration)}</span>`:''}${sp.concentration?'<span class="v4-tag">Concentração</span>':''}${sp.effect?`<span class="v4-tag">${esc(sp.effect)}</span>`:''}</div>${sp.description?`<p class="v4-spell-description">${esc(sp.description)}</p>`:''}<div class="v4-spell-actions">${sp.level?`<select aria-label="Nível do espaço para ${esc(sp.name)}" data-cast-level="${esc(sp.id)}">${opts.map(x=>`<option value="${x.level}" ${x.free<=0?'disabled':''}>Espaço ${x.level} (${Math.max(0,x.free)} disp.)</option>`).join('')}</select><button class="success" data-sheet-action="spell-cast" data-spell="${esc(sp.id)}" ${opts.every(x=>x.free<=0)?'disabled':''}>✦ Conjurar</button>`:`<button class="success" data-sheet-action="spell-cast" data-spell="${esc(sp.id)}">✦ Conjurar truque</button>`}<button class="secondary v4-mini" data-sheet-action="spell-favorite" data-spell="${esc(sp.id)}">${sp.favorite?'★ Favorita':'☆ Favoritar'}</button></div></div>`}).join(''):'<p class="sheet-note">Nenhuma magia cadastrada.</p>'}</div>
+<details class="v3-tweaks"><summary>+ Cadastrar magia</summary><div class="v4-spell-form"><label>Nome<input id="v4-sp-name" maxlength="100" placeholder="Ex.: Curar Ferimentos"></label><label>Nível da magia<select id="v4-sp-level">${Array.from({length:10},(_,i)=>`<option value="${i}">${i===0?'Truque':'Nível '+i}</option>`).join('')}</select></label><label>Tempo de conjuração<input id="v4-sp-time" maxlength="80" placeholder="1 ação"></label><label>Alcance<input id="v4-sp-range" maxlength="80" placeholder="Toque"></label><label>Dano / cura / efeito<input id="v4-sp-effect" maxlength="90" placeholder="1d8 + SAB"></label><label>Duração<input id="v4-sp-duration" maxlength="80" placeholder="Instantânea"></label><label class="wide">Descrição / observações<textarea id="v4-sp-description" maxlength="2500" rows="3"></textarea></label><div class="v4-spell-flags"><label><input type="checkbox" id="v4-sp-concentration"> Concentração</label><label><input type="checkbox" id="v4-sp-prepared" checked> Preparada / conhecida</label><label><input type="checkbox" id="v4-sp-favorite"> Favorita</label></div><button class="success wide" data-sheet-action="spell-add">Adicionar magia</button></div></details>
+${restPanel(sheet,c)}
+<details class="v3-tweaks v4-all"><summary>Anotações anteriores de magia</summary><div class="sheet-fields" style="padding:13px">${sheetField('Anotações de magias','spells',sheet.spells,'textarea',true)}<button class="success" data-sheet-action="save">Salvar anotações</button></div></details>`;
+}
+
 function cleanText(v,limit=1000){return String(v??'').slice(0,limit)}
 function cleanSheet(raw){
   const v=raw&&typeof raw==='object'?raw:{};
@@ -298,6 +337,7 @@ function cleanSheet(raw){
   const rawCoins=v.coins&&typeof v.coins==='object'?v.coins:{};
   const rawSkills=v.skillRanks&&typeof v.skillRanks==='object'?v.skillRanks:{};
   const rawSaves=v.saveProfs&&typeof v.saveProfs==='object'?v.saveProfs:{};
+  const rawMagic=Array.isArray(v.spellList)?v.spellList:[];
   return {
     stats:Object.fromEntries(STAT_CODES.map(k=>[k,num(rawStats[k]??10,1,30)])),
     skillRanks:Object.fromEntries(SKILLS.map(([name])=>[name,num(rawSkills[name]||0,0,2)])),
@@ -310,6 +350,15 @@ function cleanSheet(raw){
     proficiencies:cleanText(v.proficiencies,3000),traits:cleanText(v.traits,4000),
     story:cleanText(v.story,9000),notes:cleanText(v.notes,5000),
     spells:cleanText(v.spells,8000),
+    castingMode:Object.hasOwn(MAGIC_CLASSES,v.castingMode)?v.castingMode:'none',
+    castingAbility:['INT','SAB','CAR'].includes(v.castingAbility)?v.castingAbility:'SAB',
+    magicAttackExtra:num(v.magicAttackExtra||0,-20,20),magicDCExtra:num(v.magicDCExtra||0,-20,20),
+    manualSlots:Array.from({length:9},(_,i)=>num(v.manualSlots?.[i]||0,0,20)),
+    slotsSpent:Array.from({length:9},(_,i)=>num(v.slotsSpent?.[i]||0,0,20)),
+    hitDie:[6,8,10,12].includes(Number(v.hitDie))?Number(v.hitDie):8,
+    hitDiceSpent:num(v.hitDiceSpent||0,0,20),
+    pendingHeal:v.pendingHeal&&['short','long'].includes(v.pendingHeal.kind)?{kind:v.pendingHeal.kind,amount:num(v.pendingHeal.amount||0,0,9999)}:null,
+    spellList:rawMagic.slice(0,150).filter(x=>x&&x.name).map(x=>({id:cleanText(x.id,70),name:cleanText(x.name,100),level:num(x.level||0,0,9),castingTime:cleanText(x.castingTime,80),range:cleanText(x.range,80),effect:cleanText(x.effect,90),duration:cleanText(x.duration,80),description:cleanText(x.description,2500),concentration:!!x.concentration,prepared:!!x.prepared,favorite:!!x.favorite})),
     coins:{po:num(rawCoins.po,0,999999),pp:num(rawCoins.pp,0,999999),pc:num(rawCoins.pc,0,999999),pe:num(rawCoins.pe,0,999999),pl:num(rawCoins.pl,0,999999)},
     items:Array.isArray(v.items)?v.items.slice(0,120).filter(it=>it&&typeof it.name==='string').map(it=>({id:cleanText(it.id,70),name:cleanText(it.name,140),qty:num(it.qty??1,0,9999)})):[]
   };
@@ -342,7 +391,7 @@ function sheetPanel(c){
   const coins=[['pl','Platina','◈'],['po','Ouro','●'],['pe','Electro','◇'],['pp','Prata','●'],['pc','Cobre','●']];
   body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">RECURSOS</span><h4>Carteira</h4></div><span class="sheet-soft-label">Alterações rápidas</span></div><div class="wallet wallet-five">${coins.map(([k,label,ico])=>`<div class="wallet-cell wallet-${k}"><span class="coin-name"><span aria-hidden="true">${ico}</span> ${label}</span><strong>${data.coins[k]}</strong><div class="coin-controls"><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="-1" aria-label="Remover uma moeda de ${label}">−</button><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="1" aria-label="Adicionar uma moeda de ${label}">+</button></div></div>`).join('')}</div><div class="sheet-area-head"><div><span class="sheet-eyebrow">MOCHILA</span><h4>Itens e equipamentos</h4></div><span class="sheet-soft-label">${data.items.length} itens diferentes</span></div><div class="sheet-inventory">${data.items.length?data.items.map(it=>`<div class="sheet-item"><span>${esc(it.name)} <small>× ${it.qty}</small></span><div class="sheet-item-actions"><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="-1" aria-label="Diminuir quantidade">−</button><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="1" aria-label="Aumentar quantidade">+</button><button class="danger" data-sheet-action="item-del" data-item="${esc(it.id)}" aria-label="Excluir item">×</button></div></div>`).join(''):'<p class="sheet-note">Sua mochila está vazia. Adicione um item abaixo.</p>'}</div><div class="sheet-item-add"><label class="sheet-field">Novo item<input id="sheet-item-name" maxlength="140" placeholder="Ex.: Poção de cura"></label><label class="sheet-field">Qtd.<input id="sheet-item-qty" type="number" min="1" max="9999" value="1"></label><button class="success" data-sheet-action="item-add">+ Adicionar</button></div><p class="sheet-drawer-hint">Itens e moedas são salvos ao alterar.</p>`;
  }else if(sheetTab==='magias'){
-  body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">CONJURAÇÃO</span><h4>Magias e habilidades</h4></div></div><div class="sheet-note sheet-intro">Esta aba ainda usa anotações livres para truques, magias e espaços. O detalhamento por nível pode ser adicionado depois.</div><div class="sheet-fields">${sheetField('Anotações de magias','spells',data.spells,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar magias</button></div>`;
+  body=spellPanel(data,c);
  }else{
   body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">INTERPRETAÇÃO</span><h4>História e personalidade</h4></div></div><div class="sheet-fields">${sheetField('Antecedente','background',data.background)}${sheetField('Alinhamento','alignment',data.alignment)}${sheetField('Traços de personalidade','personality',data.personality,'textarea',true)}${sheetField('Ideais','ideals',data.ideals,'textarea',true)}${sheetField('Vínculos','bonds',data.bonds,'textarea',true)}${sheetField('Fraquezas','flaws',data.flaws,'textarea',true)}${sheetField('História e origens','story',data.story,'textarea',true)}${sheetField('Aliados e anotações','notes',data.notes,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar história</button></div>`;
  }
@@ -390,13 +439,25 @@ case 'next':{if(!state.order.length)break;const i=state.order.indexOf(state.turn
 case 'prev':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i-1+state.order.length)%state.order.length;if(i===0&&state.round>1)state.round--;state.turn=state.order[j];}break;
 case 'reset':state.chars.forEach(c=>{if(!c.enemy){c.hp=c.max;c.temp=0}});break;
 case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),enemy=!!d.enemy,data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:enemy?'INIMIGO':String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),enemy,max:enemy?1:max,hp:enemy?1:num(d.hp,0,max),temp:enemy?0:num(d.temp,0,9999),initiative:num(d.initiative,-50,99),accent:accentName(d),defeated:enemy?!!d.defeated:false};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0){data.sheet=state.chars[i].sheet;state.chars[i]=data}else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
-case 'sheet-save':if(c&&!c.enemy){const prev=cleanSheet(c.sheet);const d=a.data||{};for(const k of ['ac','speed','level','background','alignment','proficiencies','traits','story','notes','spells','personality','ideals','bonds','flaws','passive','initiativeAdjustment','passiveAdjustment'])if(Object.hasOwn(d,k))prev[k]=d[k];if(d.stats&&typeof d.stats==='object')Object.assign(prev.stats,d.stats);if(d.skillRanks&&typeof d.skillRanks==='object')Object.assign(prev.skillRanks,d.skillRanks);if(d.saveProfs&&typeof d.saveProfs==='object')Object.assign(prev.saveProfs,d.saveProfs);c.sheet=cleanSheet(prev)}break;
+case 'sheet-save':if(c&&!c.enemy){const prev=cleanSheet(c.sheet);const d=a.data||{};for(const k of ['ac','speed','level','background','alignment','proficiencies','traits','story','notes','spells','personality','ideals','bonds','flaws','passive','initiativeAdjustment','passiveAdjustment','castingMode','castingAbility','magicAttackExtra','magicDCExtra','hitDie','hitDiceSpent'])if(Object.hasOwn(d,k))prev[k]=d[k];if(d.stats&&typeof d.stats==='object')Object.assign(prev.stats,d.stats);if(d.skillRanks&&typeof d.skillRanks==='object')Object.assign(prev.skillRanks,d.skillRanks);if(d.saveProfs&&typeof d.saveProfs==='object')Object.assign(prev.saveProfs,d.saveProfs);c.sheet=cleanSheet(prev)}break;
 case 'sheet-weapon-add':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),w=a.weapon||{};if(w.name&&sheet.weapons.length<35){sheet.weapons.push({id:cleanText(w.id,70),name:cleanText(w.name,80),ability:STAT_CODES.includes(w.ability)?w.ability:'FOR',proficient:!!w.proficient,attackAdjustment:num(w.attackAdjustment,-20,20),dice:cleanText(w.dice||'1d6',25),damageAdjustment:num(w.damageAdjustment,-20,20),damageType:cleanText(w.damageType,55)});c.sheet=sheet}}break;
 case 'sheet-weapon-del':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet);sheet.weapons=sheet.weapons.filter(w=>w.id!==a.weaponId);c.sheet=sheet}break;
 case 'sheet-coin':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),key=String(a.coin||'');if(Object.hasOwn(sheet.coins,key)){sheet.coins[key]=num(sheet.coins[key]+num(a.delta,-9999,9999),0,999999);c.sheet=sheet}}break;
 case 'sheet-item-add':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),name=cleanText(a.name,140).trim(),qty=num(a.qty,1,9999);if(name&&sheet.items.length<120){sheet.items.push({id:cleanText(a.itemId||'i'+Math.random().toString(36).slice(2),70),name,qty});c.sheet=sheet}}break;
 case 'sheet-item-qty':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),it=sheet.items.find(x=>x.id===a.itemId);if(it){it.qty=num(it.qty+num(a.delta,-9999,9999),0,9999);c.sheet=sheet}}break;
 case 'sheet-item-del':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet);sheet.items=sheet.items.filter(x=>x.id!==a.itemId);c.sheet=sheet}break;
+
+case 'sheet-manual-slots':if(c&&!c.enemy){const sh=cleanSheet(c.sheet);sh.manualSlots=Array.from({length:9},(_,i)=>num(a.slots?.[i]||0,0,20));c.sheet=cleanSheet(sh)}break;
+case 'sheet-slot':if(c&&!c.enemy){const sh=cleanSheet(c.sheet),i=num(a.slot,0,8),total=slotsFor(sh)[i];sh.slotsSpent[i]=num(sh.slotsSpent[i]+num(a.delta,-1,1),0,total);c.sheet=sh}break;
+case 'sheet-spell-add':if(c&&!c.enemy){const sh=cleanSheet(c.sheet);if(sh.spellList.length<150&&a.spell?.name){sh.spellList.push(a.spell);c.sheet=cleanSheet(sh)}}break;
+case 'sheet-spell-del':if(c&&!c.enemy){const sh=cleanSheet(c.sheet);sh.spellList=sh.spellList.filter(sp=>sp.id!==a.spellId);c.sheet=sh}break;
+case 'sheet-spell-favorite':if(c&&!c.enemy){const sh=cleanSheet(c.sheet),sp=sh.spellList.find(x=>x.id===a.spellId);if(sp){sp.favorite=!sp.favorite;c.sheet=sh}}break;
+case 'sheet-cast':if(c&&!c.enemy){const sh=cleanSheet(c.sheet),sp=sh.spellList.find(x=>x.id===a.spellId);if(!sp)break;if(sp.level>0){const l=num(a.level,1,9),total=slotsFor(sh)[l-1];if(l<sp.level||!total||sh.slotsSpent[l-1]>=total)break;sh.slotsSpent[l-1]++}c.sheet=sh}break;
+case 'sheet-rest-short':if(c&&!c.enemy){const sh=cleanSheet(c.sheet);if(sh.pendingHeal)break;if(sh.castingMode==='pact')sh.slotsSpent=Array(9).fill(0);const rolls=Array.isArray(a.rolls)?a.rolls:[];if(rolls.length&&rolls.length<=sh.level-sh.hitDiceSpent&&rolls.every(x=>Number.isInteger(x)&&x>=1&&x<=sh.hitDie)){sh.hitDiceSpent+=rolls.length;sh.pendingHeal={kind:'short',amount:rolls.reduce((t,r)=>t+Math.max(0,r+bonus(sh.stats.CON)),0)}}c.sheet=sh}break;
+case 'sheet-rest-hitdie':if(c&&!c.enemy){const sh=cleanSheet(c.sheet),roll=Number(a.roll),con=bonus(sh.stats.CON);if(!Number.isInteger(roll)||roll<1||roll>sh.hitDie||sh.hitDiceSpent>=sh.level||sh.pendingHeal)break;sh.hitDiceSpent++;sh.pendingHeal={kind:'short',amount:Math.max(0,roll+con)};c.sheet=sh}break;
+case 'sheet-rest-long':if(c&&!c.enemy){const sh=cleanSheet(c.sheet);if(sh.pendingHeal)break;sh.slotsSpent=Array(9).fill(0);sh.hitDiceSpent=Math.max(0,sh.hitDiceSpent-Math.max(1,Math.floor(sh.level/2)));sh.pendingHeal={kind:'long',amount:0};c.sheet=sh}break;
+case 'sheet-rest-approve':if(c&&!c.enemy){const sh=cleanSheet(c.sheet);if(sh.pendingHeal){c.hp=sh.pendingHeal.kind==='long'?c.max:Math.min(c.max,c.hp+sh.pendingHeal.amount);sh.pendingHeal=null;c.sheet=sh}}break;
+case 'sheet-rest-cancel':if(c&&!c.enemy){const sh=cleanSheet(c.sheet);sh.pendingHeal=null;c.sheet=sh}break;
 case 'delete':state.chars=state.chars.filter(c=>c.id!==a.id);state.order=state.order.filter(id=>id!==a.id);if(state.turn===a.id)state.turn=null;break;
 }}
 function render(){
@@ -453,6 +514,52 @@ $('cards').addEventListener('click',e=>{
     const saveFields=card.querySelectorAll('[data-sheet-save]');if(saveFields.length){payload.saveProfs={};saveFields.forEach(el=>{payload.saveProfs[el.dataset.sheetSave]=el.checked})}
     dispatch({type:'sheet-save',id,data:payload});return;
   }
+  if(act==='manual-slots-save'){
+    const vals=Array.from({length:9},(_,i)=>num(card.querySelector(`[data-manual-slot="${i}"]`)?.value||0,0,20));
+    dispatch({type:'sheet-manual-slots',id,slots:vals});return;
+  }
+  if(act==='slot-spend'||act==='slot-restore'){dispatch({type:'sheet-slot',id,slot:Number(btn.dataset.slot),delta:act==='slot-spend'?1:-1});return}
+  if(act==='spell-add'){
+    const name=card.querySelector('#v4-sp-name')?.value.trim();if(!name)return alert('Informe o nome da magia.');
+    const bytes=new Uint8Array(8);crypto.getRandomValues(bytes);
+    dispatch({type:'sheet-spell-add',id,spell:{id:'sp'+Array.from(bytes,x=>x.toString(16).padStart(2,'0')).join(''),name,level:Number(card.querySelector('#v4-sp-level').value),castingTime:card.querySelector('#v4-sp-time').value,range:card.querySelector('#v4-sp-range').value,effect:card.querySelector('#v4-sp-effect').value,duration:card.querySelector('#v4-sp-duration').value,description:card.querySelector('#v4-sp-description').value,concentration:card.querySelector('#v4-sp-concentration').checked,prepared:card.querySelector('#v4-sp-prepared').checked,favorite:card.querySelector('#v4-sp-favorite').checked}});return;
+  }
+  if(act==='spell-del'){if(confirm('Excluir esta magia?'))dispatch({type:'sheet-spell-del',id,spellId:btn.dataset.spell});return}
+  if(act==='spell-favorite'){dispatch({type:'sheet-spell-favorite',id,spellId:btn.dataset.spell});return}
+  if(act==='spell-cast'){
+    const sh=cleanSheet(owner.sheet),sp=sh.spellList.find(x=>x.id===btn.dataset.spell);if(!sp)return;
+    const level=sp.level?Number(card.querySelector(`[data-cast-level="${CSS.escape(sp.id)}"]`)?.value):0;
+    if(sp.level&&(!level||!slotsFor(sh)[level-1]||sh.slotsSpent[level-1]>=slotsFor(sh)[level-1]))return alert('Não há espaço disponível desse nível.');
+    if(!confirm(`Conjurar ${sp.name}${sp.level?' com espaço de nível '+level:' (truque)'}?`))return;
+    dispatch({type:'sheet-cast',id,spellId:sp.id,level});return;
+  }
+  if(act==='rest-short'){
+    if(hasUnsavedSheet(card))return alert('Salve primeiro as alterações pendentes na ficha.');
+    const sh=cleanSheet(owner.sheet);if(sh.pendingHeal)return alert('Resolva primeiro a recuperação de PV pendente.');
+    if(!confirm('Concluir descanso curto? Isso também recuperará os espaços de Magia de Pacto, se houver.'))return;
+    const free=sh.level-sh.hitDiceSpent;
+    let rolls=[];
+    if(free>0&&confirm(`Deseja gastar Dados de Vida para recuperar PV? Você possui ${free}d${sh.hitDie} disponíveis.`)){
+      const countText=prompt(`Quantos Dados de Vida deseja gastar? (0 a ${free})`,'1');if(countText===null)return;
+      const count=Number(countText);if(!Number.isInteger(count)||count<0||count>free)return alert('Quantidade de Dados de Vida inválida.');
+      for(let i=0;i<count;i++){
+        const value=prompt(`Resultado do d${sh.hitDie} ${i+1}/${count}:`,'');if(value===null)return;
+        const roll=Number(value);if(!Number.isInteger(roll)||roll<1||roll>sh.hitDie)return alert('Resultado do dado inválido. Nenhum dado foi gasto.');
+        rolls.push(roll);
+      }
+    }
+    dispatch({type:'sheet-rest-short',id,rolls});return;
+  }
+  if(act==='rest-long'){
+    if(hasUnsavedSheet(card))return alert('Salve primeiro as alterações pendentes.');
+    const sh=cleanSheet(owner.sheet);if(sh.pendingHeal)return alert('Resolva a recuperação pendente antes de outro descanso.');
+    if(confirm('Concluir descanso longo? Isso restaura os espaços, recupera parte dos Dados de Vida e solicita ao mestre restaurar todos os PV.'))dispatch({type:'sheet-rest-long',id});return;
+  }
+  if(act==='rest-approve'){
+    if(mode==='cloud'&&!isMaster())return alert('Apenas o mestre pode confirmar esta recuperação.');
+    dispatch({type:'sheet-rest-approve',id});return;
+  }
+  if(act==='rest-cancel'){if(confirm('Cancelar a solicitação de PV? (O gasto de Dado de Vida não será revertido.)'))dispatch({type:'sheet-rest-cancel',id});return}
   if(act==='weapon-add'){
     const name=card.querySelector('#v3-weapon-name')?.value.trim(),dice=card.querySelector('#v3-weapon-dice')?.value.trim();
     if(!name)return alert('Digite o nome da arma.');
