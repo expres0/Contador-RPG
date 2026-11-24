@@ -1,7 +1,1 @@
-Contador RPG — Ficha Digital V3 (Combate + Testes)
-
-Atualize SOMENTE index.html no GitHub, sem alterar as regras Firebase, firebase-config.js ou imagem.
-
-A gaveta possui as abas Combate, Testes, Inventário, Magias e História. Inclui atributos com modificadores em destaque, perícias, salvaguardas, armas e ataques.
-
-Obs.: os controles de PV ainda seguem as permissões anteriores. Esta versão não implementa propriedade individual de fichas nem bloqueio de PV para jogadores. Teste em uma sala de ensaio antes de usar dados reais.
+Atualização visual da V3. Substitua somente index.html no GitHub Pages. Mantém o Firebase e todas as regras. Os textos explicativos foram movidos para ícones de ajuda (?) e os bônus adicionais foram renomeados.
