@@ -1,24 +1,6 @@
-PAINEL DE COMBATE — VAU DO FREIXO
-GitHub Pages + Firebase Realtime Database
+VERSÃO LAYOUT RESPONSIVO — CONTADOR RPG
 
-1. Crie um projeto em https://console.firebase.google.com/
-2. Em Build > Realtime Database, crie um banco. Copie a databaseURL das configurações.
-3. Na aba Regras do Realtime Database, cole o conteúdo de database.rules.json e publique.
-4. Em Build > Authentication > Sign-in method, ative Anonymous (Anônimo).
-5. Em Configurações do projeto (ícone engrenagem) > Seus aplicativos, adicione app Web (</>).
-   Copie firebaseConfig para os campos equivalentes de firebase-config.js (incluindo databaseURL).
-6. Entre em https://github.com/new e crie um repositório público, ex.: vau-do-freixo-painel.
-7. Faça upload de index.html, firebase-config.js e .nojekyll para a raiz do repositório.
-8. Abra Settings > Pages > Build and deployment > Source: Deploy from a branch
-   Branch: main / (root), Save.
-9. Aguarde o link em Pages. Abra https://SEU-USUARIO.github.io/vau-do-freixo-painel/
-10. Clique CRIAR SALA NA NUVEM e compartilhe o link com os amigos.
-
-Atenção: somente pessoas com o link devem ser convidadas, pois quem tiver o código
-pode alterar pontos de vida e iniciativa. Não armazene dados sensíveis.
-O painel requer internet e o projeto Firebase configurado. A configuração pública
-firebase-config.js não concede por si só acesso irrestrito ao banco; as regras são
-fundamentais. Nunca use regra read/write: true para todo o banco.
-
-Para testar: abra o link da sala em dois navegadores/dispositivos, mude um PV em
-um deles e confira se atualiza no outro. Se falhar, veja a mensagem no topo.
+Atualize SOMENTE index.html no seu repositório GitHub.
+A imagem floresta-16bits.png já deve existir; se não existir, envie a imagem também.
+NÃO substitua firebase-config.js: mantenha a chave do Firebase que está funcionando no GitHub.
+Todas as funcionalidades e os IDs JavaScript foram preservados.
