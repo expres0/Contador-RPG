@@ -70,6 +70,30 @@ select{background:#f4f2e9;color:#1e3126;padding:10px 12px;border:1px solid rgba(
 @media(max-width:650px){.card.enemy-public{min-height:265px}.card.enemy-public .char{font-size:clamp(24px,7.2vw,32px)}.card.enemy-public .classline{font-size:13px}.enemy-public-center{min-height:120px}.enemy-public-center .enemy-emblem{width:92px;height:92px;font-size:46px}.enemy-public-center .enemy-rule{width:92px}}
 @media(max-width:650px){.gm-share{padding:12px}.gm-share button{width:100%}#addEnemy{flex:1}}
 
+
+/* Inimigo derrotado: status PUBLICO, sem revelar quantidade de PV. */
+.card.enemy-defeated{border-color:rgba(155,169,157,.30)!important;background:linear-gradient(145deg,rgba(46,53,50,.90),rgba(23,32,29,.95))!important;box-shadow:inset 0 0 0 1px rgba(180,193,180,.06)!important}
+.card.enemy-defeated:not(.current){opacity:.79}
+.card.enemy-defeated.current{border-color:#aab3a9!important;box-shadow:0 0 0 1px #8f9e92,0 0 22px rgba(140,150,143,.16)!important}
+.card.enemy-defeated .char{color:#c4cbc6!important;text-decoration:line-through;text-decoration-color:rgba(193,208,196,.5)}
+.card.enemy-defeated .classline{color:#a3ada5!important}
+.card.enemy-defeated .enemy-dot{background:rgba(162,176,167,.15);color:#d0d9d2}
+.card.enemy-defeated .enemy-public-center{color:#b6c2b8}
+.card.enemy-defeated .enemy-public-center .enemy-emblem{border-color:rgba(185,197,188,.23);background:rgba(185,197,188,.07);filter:grayscale(1)}
+.card.enemy-defeated .enemy-public-center .enemy-rule{background:linear-gradient(90deg,transparent,#9aaca0,transparent)}
+.card.enemy-defeated .enemy-bottom{color:#d0d9d2!important;font-weight:750;letter-spacing:.16em}
+.card.enemy-defeated .fill{background:linear-gradient(90deg,#697970,#95a299)!important}
+.turnitem.defeated-turn{opacity:.74;background:rgba(45,57,49,.44)!important;border-left:3px solid #99a79b!important}
+.turnitem.defeated-turn .who{text-decoration:line-through;text-decoration-color:#a0aea2}
+.turnitem.defeated-turn .sub{color:#b4bdb5}
+.turnitem.defeated-turn.on{opacity:1;border-color:#a0b0a3!important;box-shadow:0 0 0 1px #7d9182,0 0 18px rgba(155,172,159,.12)!important}
+
+
+/* Cor escolhida identifica cada combatente também na fila de iniciativa. */
+.turnitem:not(.defeated-turn){border-left:5px solid var(--turn-glow,#e2c17a);background:linear-gradient(90deg,color-mix(in srgb,var(--turn-glow,#e2c17a) 12%,transparent),transparent 64%),var(--turn-bg,rgba(54,81,62,.45))}
+.turnitem:not(.defeated-turn) .order{color:var(--turn-glow,#e2c17a)}
+.turnitem:not(.defeated-turn) .who{color:color-mix(in srgb,var(--turn-glow,#e2c17a) 40%,#fff 60%)}
+.turnitem.on:not(.defeated-turn){border-left:5px solid var(--turn-glow,#e2c17a);border-color:var(--turn-glow,#e2c17a);background:linear-gradient(90deg,color-mix(in srgb,var(--turn-glow,#e2c17a) 22%,transparent),transparent 75%),var(--turn-bg,rgba(54,81,62,.45));box-shadow:0 0 0 1px var(--turn-glow,#e2c17a),0 0 25px color-mix(in srgb,var(--turn-glow,#e2c17a) 25%,transparent)}
 </style></head>
 <body><main class="app"><header class="hero"><div><h1>Contador RPG</h1><p>Painel de combate · Pontos de vida e iniciativa</p></div></header>
 <div class="toolbar"><span id="status" class="status offline" aria-live="polite">Modo local — conecte-se à sala para sincronizar.</span><div class="btns"><button class="secondary" id="tv">📺 Modo TV</button><button id="add">+ Personagem</button><button id="addEnemy" class="secondary hidden">+ Inimigo</button><button class="secondary" id="reset">Restaurar PV</button></div></div>
@@ -92,10 +116,10 @@ const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g
 const ACCENTS={green:{label:'Verde',cardBorder:'rgba(141,226,179,.24)',cardBg1:'rgba(35,72,52,.88)',cardBg2:'rgba(18,39,30,.94)',fillA:'#51bf87',fillB:'#8ce0af',glow:'#7bdd9f',turnBg:'rgba(49,92,67,.42)',turnBorder:'rgba(118,208,157,.18)',enemyLabel:'#d9c06d',enemySub:'#dbc88f'},blue:{label:'Azul',cardBorder:'rgba(113,175,229,.26)',cardBg1:'rgba(29,54,76,.88)',cardBg2:'rgba(18,31,45,.95)',fillA:'#5ba9f1',fillB:'#93cbff',glow:'#7bb9ff',turnBg:'rgba(39,63,90,.46)',turnBorder:'rgba(113,175,229,.18)',enemyLabel:'#d4e5ff',enemySub:'#b6ccef'},purple:{label:'Roxo',cardBorder:'rgba(183,130,241,.26)',cardBg1:'rgba(57,39,77,.88)',cardBg2:'rgba(31,21,46,.95)',fillA:'#ae73ff',fillB:'#d09fff',glow:'#c08bff',turnBg:'rgba(76,53,101,.46)',turnBorder:'rgba(183,130,241,.18)',enemyLabel:'#ead9ff',enemySub:'#cdb5ef'},red:{label:'Vermelho',cardBorder:'rgba(236,124,124,.26)',cardBg1:'rgba(78,42,44,.89)',cardBg2:'rgba(44,23,24,.95)',fillA:'#e27b7b',fillB:'#ffb0a8',glow:'#ff8d8d',turnBg:'rgba(102,52,52,.46)',turnBorder:'rgba(236,124,124,.2)',enemyLabel:'#ffd0c9',enemySub:'#efb3aa'},gold:{label:'Dourado',cardBorder:'rgba(228,195,127,.33)',cardBg1:'rgba(74,65,41,.87)',cardBg2:'rgba(32,42,32,.96)',fillA:'#c99454',fillB:'#efc779',glow:'#e4c37f',turnBg:'rgba(92,77,46,.42)',turnBorder:'rgba(228,195,127,.2)',enemyLabel:'#f0d28d',enemySub:'#dcc28c'},teal:{label:'Ciano',cardBorder:'rgba(101,217,216,.25)',cardBg1:'rgba(26,70,70,.88)',cardBg2:'rgba(14,39,41,.95)',fillA:'#49c8c2',fillB:'#85f0e5',glow:'#69dfd9',turnBg:'rgba(32,87,86,.42)',turnBorder:'rgba(101,217,216,.2)',enemyLabel:'#c8fbf0',enemySub:'#9fe5db'},orange:{label:'Laranja',cardBorder:'rgba(246,168,98,.27)',cardBg1:'rgba(79,56,32,.88)',cardBg2:'rgba(45,31,17,.95)',fillA:'#e09a45',fillB:'#ffc680',glow:'#f1ad5f',turnBg:'rgba(97,70,39,.45)',turnBorder:'rgba(246,168,98,.2)',enemyLabel:'#ffd3a2',enemySub:'#e7bb85'},gray:{label:'Cinza',cardBorder:'rgba(175,188,196,.24)',cardBg1:'rgba(51,60,66,.88)',cardBg2:'rgba(24,30,35,.95)',fillA:'#9eacb5',fillB:'#d3dde4',glow:'#b3c0c8',turnBg:'rgba(69,79,87,.44)',turnBorder:'rgba(175,188,196,.18)',enemyLabel:'#e6edf1',enemySub:'#c5d0d7'}};
 function accentName(c){const key=(c&&c.accent)|| (c&&c.enemy?'gold':'green');return ACCENTS[key]?key:(c&&c.enemy?'gold':'green')}
 function palette(c){return ACCENTS[accentName(c)]||ACCENTS.green}
-function cardVars(c, publicEnemy=false){const p=palette(c);return `--card-border:${p.cardBorder};--card-bg1:${p.cardBg1};--card-bg2:${p.cardBg2};--fill-a:${p.fillA};--fill-b:${p.fillB};--card-glow:${p.glow};--turn-glow:${p.glow};--enemy-label:${p.enemyLabel};--enemy-sub:${p.enemySub};`}
+function cardVars(c, publicEnemy=false){const p=palette(c);return `--card-border:${p.cardBorder};--card-bg1:${p.cardBg1};--card-bg2:${p.cardBg2};--fill-a:${p.fillA};--fill-b:${p.fillB};--card-glow:${p.glow};--turn-glow:${p.glow};--turn-bg:${p.turnBg};--turn-border:${p.turnBorder};--enemy-label:${p.enemyLabel};--enemy-sub:${p.enemySub};`}
 function initial(){return {chars:structuredClone(defaults),order:defaults.map(x=>x.id),turn:null,round:1,revision:0}}
 function validState(s){return s&&Array.isArray(s.chars)&&Array.isArray(s.order)&&typeof s.round==='number'}
-function normalize(s){if(!validState(s))return initial();s.chars=s.chars.filter(c=>c&&typeof c.id==='string').slice(0,40).map(c=>({id:String(c.id).slice(0,70),name:String(c.name||'Personagem').slice(0,70),player:c.enemy?'INIMIGO':String(c.player||'').slice(0,60),klass:String(c.klass||'').slice(0,80),enemy:!!c.enemy,max:c.enemy?1:num(c.max,1,9999),hp:c.enemy?1:num(c.hp,0,num(c.max,1,9999)),temp:c.enemy?0:num(c.temp,0,9999),initiative:num(c.initiative,-50,99),accent:accentName(c)}));const ids=s.chars.map(c=>c.id);s.order=[...new Set(s.order.filter(id=>ids.includes(id)))];for(const id of ids)if(!s.order.includes(id))s.order.push(id);if(!s.order.includes(s.turn))s.turn=null;s.round=num(s.round,1,999);return s}
+function normalize(s){if(!validState(s))return initial();s.chars=s.chars.filter(c=>c&&typeof c.id==='string').slice(0,40).map(c=>({id:String(c.id).slice(0,70),name:String(c.name||'Personagem').slice(0,70),player:c.enemy?'INIMIGO':String(c.player||'').slice(0,60),klass:String(c.klass||'').slice(0,80),enemy:!!c.enemy,max:c.enemy?1:num(c.max,1,9999),hp:c.enemy?1:num(c.hp,0,num(c.max,1,9999)),temp:c.enemy?0:num(c.temp,0,9999),initiative:num(c.initiative,-50,99),accent:accentName(c),defeated:!!c.enemy&&c.defeated===true}));const ids=s.chars.map(c=>c.id);s.order=[...new Set(s.order.filter(id=>ids.includes(id)))];for(const id of ids)if(!s.order.includes(id))s.order.push(id);if(!s.order.includes(s.turn))s.turn=null;s.round=num(s.round,1,999);return s}
 state=normalize(state);
 function gmCodes(){try{return JSON.parse(localStorage.getItem(GM_KEY))||{}}catch{return {}}}
 function storedSecret(code){return String(gmCodes()[code]||'')}
@@ -129,13 +153,14 @@ case 'damage':if(!c||c.enemy)return;{const amt=num(a.amount,0,9999),abs=Math.min
 case 'heal':if(c&&!c.enemy)c.hp=num(c.hp+num(a.amount,0,9999),0,c.max);break;
 case 'temp':if(c&&!c.enemy)c.temp=Math.max(c.temp,num(a.amount,0,9999));break;
 case 'initiative':if(c)c.initiative=num(a.value,-50,99);break;
+case 'enemyDefeated':if(c&&c.enemy)c.defeated=!!a.defeated;break;
 case 'up':case 'down':{const i=state.order.indexOf(a.id),j=i+(a.type==='up'?-1:1);if(i>=0&&j>=0&&j<state.order.length)[state.order[i],state.order[j]]=[state.order[j],state.order[i]];}break;
 case 'sort':state.order.sort((x,y)=>(state.chars.find(c=>c.id===y)?.initiative||0)-(state.chars.find(c=>c.id===x)?.initiative||0));break;
 case 'turn':if(state.order.includes(a.id))state.turn=a.id;break;
 case 'next':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i+1)%state.order.length;if(i>=0&&j===0)state.round++;state.turn=state.order[j];}break;
 case 'prev':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i-1+state.order.length)%state.order.length;if(i===0&&state.round>1)state.round--;state.turn=state.order[j];}break;
 case 'reset':state.chars.forEach(c=>{if(!c.enemy){c.hp=c.max;c.temp=0}});break;
-case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),enemy=!!d.enemy,data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:enemy?'INIMIGO':String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),enemy,max:enemy?1:max,hp:enemy?1:num(d.hp,0,max),temp:enemy?0:num(d.temp,0,9999),initiative:num(d.initiative,-50,99),accent:accentName(d)};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0)state.chars[i]=data;else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
+case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),enemy=!!d.enemy,data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:enemy?'INIMIGO':String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),enemy,max:enemy?1:max,hp:enemy?1:num(d.hp,0,max),temp:enemy?0:num(d.temp,0,9999),initiative:num(d.initiative,-50,99),accent:accentName(d),defeated:enemy?!!d.defeated:false};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0)state.chars[i]=data;else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
 case 'delete':state.chars=state.chars.filter(c=>c.id!==a.id);state.order=state.order.filter(id=>id!==a.id);if(state.turn===a.id)state.turn=null;break;
 }}
 function render(){
@@ -146,17 +171,17 @@ function render(){
   $('cards').innerHTML=visible.map(c=>{
     // Nunca carregar valores privados para a exibição pública (jogadores ou TV).
     if(c.enemy && (!isMaster() || tvMode)){
-      return `<article class="card enemy enemy-public ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}" style="${cardVars(c,true)}"><div class="toprow"><div><div class="player"><span class="enemy-dot">⚔ INIMIGO</span></div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass||'Criatura')}</div></div></div><div class="enemy-public-center" aria-hidden="true"><div class="enemy-emblem">⚔</div><span class="enemy-rule"></span></div><div class="enemy-bottom">PV OCULTOS · ORDEM DE INICIATIVA</div></article>`;
+      return `<article class="card enemy enemy-public ${c.defeated?'enemy-defeated':''} ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}" style="${cardVars(c,true)}"><div class="toprow"><div><div class="player"><span class="enemy-dot">${c.defeated?'☠ DERROTADO':'⚔ INIMIGO'}</span></div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass||'Criatura')}</div></div></div><div class="enemy-public-center" aria-hidden="true"><div class="enemy-emblem">${c.defeated?'☠':'⚔'}</div><span class="enemy-rule"></span></div><div class="enemy-bottom">${c.defeated?'INIMIGO DERROTADO':'PV OCULTOS · ORDEM DE INICIATIVA'}</div></article>`;
     }
     const e=c.enemy ? privateActor(c.id) : {max:c.max,hp:c.hp,temp:c.temp};
     const hp=e?.hp??0,max=e?.max??1,temp=e?.temp??0,pc=100*hp/max,level=pc<=25?'critical':pc<=50?'mid':'';
-    return `<article class="card ${level} ${c.enemy?'enemy':''} ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}" style="${cardVars(c)}"><div class="toprow"><div><div class="player">${c.enemy?'<span class="enemy-dot">MESTRE · INIMIGO</span>':esc(c.player||'AVENTUREIRO')}</div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass)}</div></div><button class="secondary smallbtn edit" data-act="edit" title="Editar ${c.enemy?'inimigo':'personagem'}">✎</button></div><div class="hp">${e?hp:'—'}<span> / ${e?max:'—'}</span></div><div class="hp-caption">${c.enemy?'PV PRIVADOS DO MESTRE':'PONTOS DE VIDA'}</div><div class="bar"><div class="fill" style="width:${e?pc:0}%"></div></div><div class="foot"><span>${e?(hp===0?'☠️ 0 PV':pc<=25?'⚠ CRÍTICO':pc<=50?'FERIDO':'PRONTO'):'Carregando dados privados…'}</span><span class="temp">🛡 TEMP.: ${e?temp:'—'}</span></div><div class="actions"><button class="danger" data-act="damage" ${e?'':'disabled'}>− DANO</button><button class="success" data-act="heal" ${e?'':'disabled'}>+ CURA</button></div><div class="extras"><label>Ajuste rápido</label><span><button class="secondary" data-act="minus" ${e?'':'disabled'}>−1</button> <button class="secondary" data-act="plus" ${e?'':'disabled'}>+1</button> <button class="secondary" data-act="temp" ${e?'':'disabled'}>🛡 PV temp.</button></span></div></article>`;
+    return `<article class="card ${level} ${c.enemy?'enemy':''} ${c.enemy&&c.defeated?'enemy-defeated':''} ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}" style="${cardVars(c)}"><div class="toprow"><div><div class="player">${c.enemy?'<span class="enemy-dot">MESTRE · INIMIGO</span>':esc(c.player||'AVENTUREIRO')}</div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass)}</div></div><button class="secondary smallbtn edit" data-act="edit" title="Editar ${c.enemy?'inimigo':'personagem'}">✎</button></div><div class="hp">${e?hp:'—'}<span> / ${e?max:'—'}</span></div><div class="hp-caption">${c.enemy?'PV PRIVADOS DO MESTRE':'PONTOS DE VIDA'}</div><div class="bar"><div class="fill" style="width:${e?pc:0}%"></div></div><div class="foot"><span>${e?(hp===0?'☠️ 0 PV':pc<=25?'⚠ CRÍTICO':pc<=50?'FERIDO':'PRONTO'):'Carregando dados privados…'}</span><span class="temp">🛡 TEMP.: ${e?temp:'—'}</span></div><div class="actions"><button class="danger" data-act="damage" ${e?'':'disabled'}>− DANO</button><button class="success" data-act="heal" ${e?'':'disabled'}>+ CURA</button></div><div class="extras"><label>Ajuste rápido</label><span><button class="secondary" data-act="minus" ${e?'':'disabled'}>−1</button> <button class="secondary" data-act="plus" ${e?'':'disabled'}>+1</button> <button class="secondary" data-act="temp" ${e?'':'disabled'}>🛡 PV temp.</button></span></div></article>`;
   }).join('')||'<p class="noentry">Nenhum personagem cadastrado.</p>';
   const current=state.chars.find(c=>c.id===state.turn);
   $('turnInfo').textContent=`Rodada ${state.round} · ${current?'Vez de '+current.name:'Nenhum turno selecionado'}`;
   $('turnlist').innerHTML=state.order.map((id,i)=>{
     const c=state.chars.find(x=>x.id===id);if(!c)return '';
-    return `<div class="turnitem ${c.enemy?'enemy-turn':''} ${state.turn===id?'on':''}" data-id="${esc(id)}" style="${cardVars(c)}"><span class="order">${i+1}</span><div><div class="who" role="button" tabindex="0" data-act="turn" style="cursor:pointer">${esc(c.name)} ${state.turn===id?'◀':''}</div><div class="sub">${c.enemy?'Inimigo · PV ocultos':esc(c.player)}</div></div><div class="controls"><input aria-label="Iniciativa de ${esc(c.name)}" type="number" min="-50" max="99" value="${c.initiative}" data-act="initiative"><button class="secondary" data-act="up" title="Subir na ordem">↑</button><button class="secondary" data-act="down" title="Descer na ordem">↓</button></div></div>`;
+    return `<div class="turnitem ${c.enemy?'enemy-turn':''} ${c.enemy&&c.defeated?'defeated-turn':''} ${state.turn===id?'on':''}" data-id="${esc(id)}" style="${cardVars(c)}"><span class="order">${i+1}</span><div><div class="who" role="button" tabindex="0" data-act="turn" style="cursor:pointer">${esc(c.name)} ${state.turn===id?'◀':''}</div><div class="sub">${c.enemy?(c.defeated?'☠ Derrotado':'Inimigo · PV ocultos'):esc(c.player)}</div></div><div class="controls"><input aria-label="Iniciativa de ${esc(c.name)}" type="number" min="-50" max="99" value="${c.initiative}" data-act="initiative"><button class="secondary" data-act="up" title="Subir na ordem">↑</button><button class="secondary" data-act="down" title="Descer na ordem">↓</button></div></div>`;
   }).join('')||'<div class="noentry">Cadastre personagens para iniciar a ordem.</div>';
 }
 $('cards').addEventListener('click',e=>{const b=e.target.closest('button[data-act]'),article=b?.closest('article');if(!b||!article)return;const id=article.dataset.id,a=b.dataset.act;if(a==='edit')return openForm(id);if(a==='plus'||a==='minus')return characterAction(id,a==='plus'?'heal':'damage',1);const raw=prompt(a==='damage'?'Quantos pontos de dano?':a==='heal'?'Quantos pontos de cura?':'Quantos PV temporários serão concedidos? (mantém o maior)', '5');if(raw===null)return;if(!/^\d+$/.test(raw.trim()))return alert('Digite um número inteiro válido.');characterAction(id,a,Number(raw))});
@@ -192,7 +217,7 @@ $('delete').onclick=async()=>{
 };
 $('form').onsubmit=async e=>{
   e.preventDefault();if(!$('name').value.trim())return;
-  const char={id:editId||'p'+Math.random().toString(36).slice(2),name:$('name').value.trim(),player:$('player').value.trim(),klass:$('klass').value.trim(),max:$('max').value,hp:$('hp').value,temp:$('temp').value,initiative:$('initiative').value,enemy:editKind==='enemy',accent:$('accent').value};
+  const char={id:editId||'p'+Math.random().toString(36).slice(2),name:$('name').value.trim(),player:$('player').value.trim(),klass:$('klass').value.trim(),max:$('max').value,hp:$('hp').value,temp:$('temp').value,initiative:$('initiative').value,enemy:editKind==='enemy',accent:$('accent').value,defeated:editKind==='enemy'&&Number($('hp').value)<=0};
   if(editKind==='enemy'){
     if(!isMaster())return alert('O acesso do mestre não está ativo.');
     try{
@@ -215,7 +240,11 @@ function characterAction(id,type,amount){
     if(type==='damage'){const used=Math.min(temp,num(amount,0,9999));return {max,hp:Math.max(0,hp-(num(amount,0,9999)-used)),temp:temp-used}}
     if(type==='heal')return {max,hp:Math.min(max,hp+num(amount,0,9999)),temp};
     if(type==='temp')return {max,hp,temp:Math.max(temp,num(amount,0,9999))};
-  },(err,committed)=>{if(err||!committed)alert('Não foi possível salvar o PV privado: '+(err?.message||'inimigo não encontrado'))},false);
+  },(err,committed,snapshot)=>{
+    if(err||!committed){alert('Não foi possível salvar o PV privado: '+(err?.message||'inimigo não encontrado'));return;}
+    const updated=snapshot?.val();
+    if(updated&&typeof updated.hp==='number')dispatch({type:'enemyDefeated',id,defeated:updated.hp<=0});
+  },false);
 }
 function roomId(){const bytes=new Uint8Array(10);crypto.getRandomValues(bytes);return [...bytes].map(b=>b.toString(16).padStart(2,'0')).join('')}
 function showShare(){const url=new URL(window.location.href);url.searchParams.set('sala',room);url.hash='';$('link').value=url.href;$('share').classList.remove('hidden');$('roomcode').value=room;$('leave').classList.remove('hidden');masterUI()}
