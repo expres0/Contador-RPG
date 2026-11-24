@@ -1,6 +1,5 @@
-VERSÃO LAYOUT RESPONSIVO — CONTADOR RPG
+Contador RPG – layout moderno e responsivo
 
-Atualize SOMENTE index.html no seu repositório GitHub.
-A imagem floresta-16bits.png já deve existir; se não existir, envie a imagem também.
-NÃO substitua firebase-config.js: mantenha a chave do Firebase que está funcionando no GitHub.
-Todas as funcionalidades e os IDs JavaScript foram preservados.
+No GitHub, substitua SOMENTE o index.html. A imagem floresta-16bits.png deve permanecer na raiz.
+NÃO sobrescreva firebase-config.js.
+Esse pacote mantém os recursos e a sincronização da versão anterior.
