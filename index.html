@@ -182,6 +182,60 @@ select{background:#f4f2e9;color:#1e3126;padding:10px 12px;border:1px solid rgba(
 @media(max-width:650px){.sheet-snapshot{padding:13px}.sheet-snapshot-title h3{font-size:22px}.sheet-snapshot-metrics{gap:6px}.sheet-snapshot-metrics>div{padding:9px 4px}.sheet-snapshot-metrics small{font-size:10px}.sheet-snapshot-metrics strong{font-size:19px}.sheet-tabs{gap:5px}.sheet-tab{font-size:10px;min-height:61px;padding:7px 2px}.sheet-tab-icon{font-size:20px}.sheet-area-head h4{font-size:17px}.sheet-soft-label{font-size:10px}.sheet-overview-grid{gap:8px}.sheet-overview-tile{padding:12px}.sheet-overview-tile strong{font-size:16px}.sheet-quick-links{grid-template-columns:1fr}.wallet-five{grid-template-columns:repeat(3,minmax(0,1fr))}.wallet-five .wallet-cell{padding:10px 3px}.wallet-five .wallet-cell button{width:33px;min-width:30px;height:34px}.sheet-item-add{grid-template-columns:1fr 75px}}
 @media(max-width:370px){.sheet-tab{font-size:9px}.sheet-snapshot-metrics strong{font-size:17px}.sheet-stat{padding:9px 3px}.sheet-stat .modifier{font-size:22px}}
 
+
+/* V3 — compacta para celular, atributos com modificadores em destaque */
+.v3-primary-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 19px}
+.v3-main-tile{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;background:rgba(236,251,236,.065);border:1px solid rgba(226,242,222,.14);border-radius:14px;padding:14px 10px}
+.v3-main-tile>span{font-size:10px;font-weight:700;letter-spacing:.06em;color:#b0cab5}
+.v3-main-tile>strong{font-size:clamp(30px,4vw,43px);font-weight:780;line-height:1.1;color:#f8f7ed}
+.v3-main-tile label{font-size:10px;color:#b0c4b4;max-width:120px;width:100%;text-align:center}
+.v3-main-tile input{display:block;width:100%;padding:7px;margin-top:4px;text-align:center;font-size:16px;border-radius:9px}
+.v3-section-heading{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:20px 0 11px}
+.v3-section-heading h4{margin:0;font-size:15px;color:#f3f5ea}
+.v3-section-heading small{color:#aec3b3;font-size:10px;text-align:right}
+.v3-attributes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.v3-attribute{background:rgba(232,250,235,.065);border:1px solid rgba(218,242,218,.15);border-radius:13px;padding:13px 7px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.v3-attribute>span{color:#c8d8ca;font-size:11px;font-weight:800;letter-spacing:.08em}
+.v3-attribute>strong{font-size:clamp(28px,4vw,40px);color:#e8cf95;line-height:1.1}
+.v3-attribute label{display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px;color:#a9c4b2}
+.v3-attribute input{font-size:13px;width:50px;min-width:0;padding:5px 3px;text-align:center;border-radius:7px}
+.v3-minor-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0 12px}
+.v3-minor-stats>div{background:rgba(217,244,222,.045);border:1px solid rgba(222,239,219,.11);padding:12px 5px;border-radius:11px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:0}
+.v3-minor-stats small{font-size:9px;color:#bacbbd;letter-spacing:.02em}
+.v3-minor-stats strong{font-size:23px;color:#e7eeda}
+.v3-tweaks{border:1px solid rgba(227,242,225,.14);border-radius:12px;padding:0;margin:15px 0;overflow:hidden;background:rgba(6,22,14,.12)}
+.v3-tweaks summary{cursor:pointer;padding:13px 14px;font-weight:670;color:#d2e3d2;font-size:12px}
+.v3-tweaks[open] summary{border-bottom:1px solid rgba(227,242,225,.12)}
+.v3-tweak-fields{padding:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.v3-tweak-fields input{width:100%}
+.v3-weapons{display:grid;gap:10px}
+.v3-weapon{background:rgba(205,241,217,.07);border:1px solid rgba(219,238,222,.16);border-radius:12px;padding:14px}
+.v3-weapon-title{display:flex;justify-content:space-between;gap:9px;align-items:flex-start}
+.v3-weapon-title strong{display:block;font-size:17px;color:#faf7e7}
+.v3-weapon-title small{display:block;font-size:11px;color:#b4c6b4;margin-top:4px}
+.v3-mini-btn{min-height:30px;padding:5px 8px;border-radius:8px}
+.v3-weapon-numbers{display:grid;grid-template-columns:1fr 1.3fr;gap:9px;margin-top:13px}
+.v3-weapon-numbers>div{border-radius:10px;padding:12px 9px;background:rgba(9,25,18,.36);min-width:0}
+.v3-weapon-numbers span{display:block;color:#a5bdad;font-size:10px;letter-spacing:.07em}
+.v3-weapon-numbers strong{display:block;font-size:clamp(20px,3vw,28px);color:#e6d095;overflow-wrap:anywhere;margin:5px 0}
+.v3-weapon-numbers small{font-size:10px;color:#b0c3b3}
+.v3-weapon-form{padding:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.v3-weapon-form label{font-size:12px;color:#c2d2c7}
+.v3-weapon-form input,.v3-weapon-form select{width:100%;margin-top:5px;min-width:0;background:#f4f2e9;color:#1e3126;border:1px solid rgba(17,34,23,.2);border-radius:9px;font-size:16px;padding:9px}
+.v3-weapon-form .v3-checkbox{display:flex;align-items:center;gap:8px;grid-column:1/-1}
+.v3-weapon-form .v3-checkbox input{width:auto;margin:0}
+.v3-weapon-form button{grid-column:1/-1}
+.v3-test-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.v3-test-row{display:flex;align-items:center;gap:9px;padding:10px;border-radius:11px;background:rgba(221,245,223,.055);border:1px solid rgba(220,240,220,.12);min-width:0}
+.v3-test-row label,.v3-test-row>span{flex:1;min-width:0;color:#edf4e6;font-size:12px;line-height:1.2;font-weight:650}
+.v3-test-row small{display:block;font-size:10px;color:#a9bea9;font-weight:500;margin-top:3px}
+.v3-test-row>strong{color:#e7d095;font-size:18px;min-width:25px;text-align:right}
+.v3-test-row select{width:49px;min-width:49px;padding:6px 4px;border-radius:7px;background:#eff1e8;color:#1c3022;font-size:14px}
+.v3-test-row>input{accent-color:#81d3a3;width:18px;height:18px;flex:none}
+.sheet-tab{gap:3px}.sheet-tab-icon{font-size:20px}
+@media(max-width:750px){.v3-test-list{grid-template-columns:1fr}.v3-test-row{padding:11px 12px}.v3-tweak-fields{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.sheet-tab{padding:7px 2px;min-height:62px;font-size:10px}.sheet-tab-icon{font-size:18px}.v3-attributes{gap:7px}.v3-attribute{padding:12px 4px}.v3-main-tile{padding:12px 7px}.v3-weapon-form{grid-template-columns:1fr}.v3-weapon-numbers{grid-template-columns:1fr 1fr}.v3-weapon-numbers strong{font-size:18px}.v3-tweak-fields{grid-template-columns:1fr 1fr}}
+
 </style></head>
 <body><main class="app"><header class="hero"><div><h1>Contador RPG</h1><p>Painel de combate · Pontos de vida e iniciativa</p></div></header>
 <div class="toolbar"><span id="status" class="status offline" aria-live="polite">Modo local — conecte-se à sala para sincronizar.</span><div class="btns"><button class="secondary" id="tv">📺 Modo TV</button><button id="add">+ Personagem</button><button id="addEnemy" class="secondary hidden">+ Inimigo</button><button class="secondary" id="reset">Restaurar PV</button></div></div>
@@ -200,7 +254,7 @@ const defaults=[{id:'goblin',name:'Goblin ladino',player:'Jogador 1',klass:'Ladi
 let state;try{const data=JSON.parse(localStorage.getItem(KEY));state=validState(data)?data:initial()}catch{state=initial()}
 let mode='local',room='',roomRef=null, roomListener=null, editId=null, editKind='player', firebaseDb=null, authPromise=null, roomReady=false, processing=false;
 let masterSecret='', privateRef=null, privateListener=null, privateReady=false, privateEnemies={};
-let sheetOpenId=null, sheetTab='resumo';
+let sheetOpenId=null, sheetTab='combate';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[t])), num=(v,lo,hi)=>Math.max(lo,Math.min(hi,Number(v)||0));
 const ACCENTS={hostile:{label:'Vermelho inimigo',cardBorder:'rgba(255,91,110,.55)',cardBg1:'rgba(99,31,44,.94)',cardBg2:'rgba(47,20,29,.98)',fillA:'#ec405c',fillB:'#ff7182',glow:'#ff526f',turnBg:'rgba(125,35,56,.56)',turnBorder:'rgba(255,96,124,.45)',enemyLabel:'#ff95a7',enemySub:'#ffc1c8'},green:{label:'Verde',cardBorder:'rgba(141,226,179,.24)',cardBg1:'rgba(35,72,52,.88)',cardBg2:'rgba(18,39,30,.94)',fillA:'#51bf87',fillB:'#8ce0af',glow:'#7bdd9f',turnBg:'rgba(49,92,67,.42)',turnBorder:'rgba(118,208,157,.18)',enemyLabel:'#d9c06d',enemySub:'#dbc88f'},blue:{label:'Azul',cardBorder:'rgba(113,175,229,.26)',cardBg1:'rgba(29,54,76,.88)',cardBg2:'rgba(18,31,45,.95)',fillA:'#5ba9f1',fillB:'#93cbff',glow:'#7bb9ff',turnBg:'rgba(39,63,90,.46)',turnBorder:'rgba(113,175,229,.18)',enemyLabel:'#d4e5ff',enemySub:'#b6ccef'},purple:{label:'Roxo',cardBorder:'rgba(183,130,241,.26)',cardBg1:'rgba(57,39,77,.88)',cardBg2:'rgba(31,21,46,.95)',fillA:'#ae73ff',fillB:'#d09fff',glow:'#c08bff',turnBg:'rgba(76,53,101,.46)',turnBorder:'rgba(183,130,241,.18)',enemyLabel:'#ead9ff',enemySub:'#cdb5ef'},red:{label:'Vermelho',cardBorder:'rgba(236,124,124,.26)',cardBg1:'rgba(78,42,44,.89)',cardBg2:'rgba(44,23,24,.95)',fillA:'#e27b7b',fillB:'#ffb0a8',glow:'#ff8d8d',turnBg:'rgba(102,52,52,.46)',turnBorder:'rgba(236,124,124,.2)',enemyLabel:'#ffd0c9',enemySub:'#efb3aa'},gold:{label:'Dourado',cardBorder:'rgba(228,195,127,.33)',cardBg1:'rgba(74,65,41,.87)',cardBg2:'rgba(32,42,32,.96)',fillA:'#c99454',fillB:'#efc779',glow:'#e4c37f',turnBg:'rgba(92,77,46,.42)',turnBorder:'rgba(228,195,127,.2)',enemyLabel:'#f0d28d',enemySub:'#dcc28c'},teal:{label:'Ciano',cardBorder:'rgba(101,217,216,.25)',cardBg1:'rgba(26,70,70,.88)',cardBg2:'rgba(14,39,41,.95)',fillA:'#49c8c2',fillB:'#85f0e5',glow:'#69dfd9',turnBg:'rgba(32,87,86,.42)',turnBorder:'rgba(101,217,216,.2)',enemyLabel:'#c8fbf0',enemySub:'#9fe5db'},orange:{label:'Laranja',cardBorder:'rgba(246,168,98,.27)',cardBg1:'rgba(79,56,32,.88)',cardBg2:'rgba(45,31,17,.95)',fillA:'#e09a45',fillB:'#ffc680',glow:'#f1ad5f',turnBg:'rgba(97,70,39,.45)',turnBorder:'rgba(246,168,98,.2)',enemyLabel:'#ffd3a2',enemySub:'#e7bb85'},gray:{label:'Cinza',cardBorder:'rgba(175,188,196,.24)',cardBg1:'rgba(51,60,66,.88)',cardBg2:'rgba(24,30,35,.95)',fillA:'#9eacb5',fillB:'#d3dde4',glow:'#b3c0c8',turnBg:'rgba(69,79,87,.44)',turnBorder:'rgba(175,188,196,.18)',enemyLabel:'#e6edf1',enemySub:'#c5d0d7'}};
 function accentName(c){if(c&&c.enemy)return 'hostile';const key=(c&&c.accent)||'green';return (key!=='hostile'&&ACCENTS[key])?key:'green'}
@@ -211,13 +265,30 @@ function validState(s){return s&&Array.isArray(s.chars)&&Array.isArray(s.order)&
 
 const STAT_CODES=['FOR','DES','CON','INT','SAB','CAR'];
 const STAT_NAMES=['Força','Destreza','Constituição','Inteligência','Sabedoria','Carisma'];
+const SKILLS=[['Acrobacia','DES'],['Arcanismo','INT'],['Atletismo','FOR'],['Atuação','CAR'],['Enganação','CAR'],['Furtividade','DES'],['História','INT'],['Intimidação','CAR'],['Intuição','SAB'],['Investigação','INT'],['Lidar com animais','SAB'],['Medicina','SAB'],['Natureza','INT'],['Percepção','SAB'],['Persuasão','CAR'],['Prestidigitação','DES'],['Religião','INT'],['Sobrevivência','SAB']];
+const signed=n=>n>=0?'+'+n:String(n);
+const bonus=n=>Math.floor((n-10)/2);
+const proficiency=level=>Math.min(6,2+Math.floor((level-1)/4));
+const skillBonus=(sheet,name,ability)=>bonus(sheet.stats[ability])+proficiency(sheet.level)*(sheet.skillRanks[name]||0);
+const saveBonus=(sheet,code)=>bonus(sheet.stats[code])+(sheet.saveProfs[code]?proficiency(sheet.level):0);
+const passiveValue=sheet=>10+skillBonus(sheet,'Percepção','SAB')+sheet.passiveAdjustment;
+function weaponBonus(sheet,w){return bonus(sheet.stats[w.ability])+(w.proficient?proficiency(sheet.level):0)+w.attackAdjustment}
+function weaponDamage(sheet,w){const n=bonus(sheet.stats[w.ability])+w.damageAdjustment;return w.dice+(n===0?'':` ${n>0?'+':'−'} ${Math.abs(n)} (${w.ability})`)}
+
 function cleanText(v,limit=1000){return String(v??'').slice(0,limit)}
 function cleanSheet(raw){
   const v=raw&&typeof raw==='object'?raw:{};
   const rawStats=v.stats&&typeof v.stats==='object'?v.stats:{};
   const rawCoins=v.coins&&typeof v.coins==='object'?v.coins:{};
+  const rawSkills=v.skillRanks&&typeof v.skillRanks==='object'?v.skillRanks:{};
+  const rawSaves=v.saveProfs&&typeof v.saveProfs==='object'?v.saveProfs:{};
   return {
     stats:Object.fromEntries(STAT_CODES.map(k=>[k,num(rawStats[k]??10,1,30)])),
+    skillRanks:Object.fromEntries(SKILLS.map(([name])=>[name,num(rawSkills[name]||0,0,2)])),
+    saveProfs:Object.fromEntries(STAT_CODES.map(k=>[k,!!rawSaves[k]])),
+    passiveAdjustment:num(v.passiveAdjustment||0,-20,20),
+    initiativeAdjustment:num(v.initiativeAdjustment||0,-20,20),
+    weapons:Array.isArray(v.weapons)?v.weapons.slice(0,35).filter(w=>w&&w.name).map(w=>({id:cleanText(w.id||'',70),name:cleanText(w.name,80),ability:STAT_CODES.includes(w.ability)?w.ability:'FOR',proficient:!!w.proficient,attackAdjustment:num(w.attackAdjustment||0,-20,20),dice:cleanText(w.dice||'1d6',25),damageAdjustment:num(w.damageAdjustment||0,-20,20),damageType:cleanText(w.damageType||'',55)})):[],
     ac:num(v.ac??10,0,99),speed:num(v.speed??9,0,99),level:num(v.level??1,1,20),
     background:cleanText(v.background,150),alignment:cleanText(v.alignment,80),personality:cleanText(v.personality,2600),ideals:cleanText(v.ideals,2600),bonds:cleanText(v.bonds,2600),flaws:cleanText(v.flaws,2600),passive:num(v.passive??10,0,99),
     proficiencies:cleanText(v.proficiencies,3000),traits:cleanText(v.traits,4000),
@@ -229,31 +300,38 @@ function cleanSheet(raw){
 }
 function mod(v){const n=Math.floor((v-10)/2);return n>=0?'+'+n:String(n)}
 function sheetField(label,key,value,kind='text',full=false){return `<label class="sheet-field ${full?'wide':''}">${label}${kind==='textarea'?`<textarea data-sheet-field="${key}" rows="5">${esc(value)}</textarea>`:`<input data-sheet-field="${key}" value="${esc(value)}" ${kind==='number'?'type="number" min="0" max="99"':'type="text"'}>`}</label>`}
+function sheetStatEditor(k,score){return `<div class="v3-attribute"><span>${k}</span><strong data-mod-of="${k}">${mod(score)}</strong><label>Valor <input data-sheet-stat="${k}" type="number" min="1" max="30" aria-label="Valor de ${k}" value="${score}"></label></div>`}
 function sheetPanel(c){
-  const data=cleanSheet(c.sheet),id=esc(c.id);
-  const tabs=[['resumo','⌂','Resumo'],['atributos','✧','Atributos'],['inventario','▣','Inventário'],['magias','✦','Magias'],['historia','▤','História']];
-  const menu=`<nav class="sheet-tabs" role="tablist" aria-label="Seções da ficha">${tabs.map(([key,ico,title])=>`<button class="sheet-tab ${sheetTab===key?'active':''}" type="button" role="tab" aria-selected="${sheetTab===key}" data-sheet-tab="${key}"><span class="sheet-tab-icon" aria-hidden="true">${ico}</span><span>${title}</span></button>`).join('')}</nav>`;
-  const pb=Math.max(2,Math.ceil(data.level/4)+1), dex=Math.floor((data.stats.DES-10)/2);
-  const init=dex>=0?'+'+dex:String(dex);
-  const overview=`<div class="sheet-snapshot"><div class="sheet-snapshot-title"><span class="sheet-eyebrow">FICHA DE PERSONAGEM</span><h3>${esc(c.name)}</h3><p>${esc(c.klass||'Aventureiro')} · Nível ${data.level}</p></div><div class="sheet-snapshot-metrics"><div><small>♥ PV</small><strong>${c.hp}<span> / ${c.max}</span></strong></div><div><small>⬡ CA</small><strong>${data.ac}</strong></div><div><small>ϟ Iniciativa</small><strong>${init}</strong></div></div></div>`;
-  let body='';
-  if(sheetTab==='resumo'){
-    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">VISÃO RÁPIDA</span><h4>Essencial da aventura</h4></div><span class="sheet-soft-label">Consulte em segundos</span></div>
-    <div class="sheet-overview-grid">
-      ${[['Deslocamento',data.speed+' m'],['Bônus de proficiência','+'+pb],['Percepção passiva',String(data.passive)],['Antecedente',data.background||'Não informado']].map(([name,value])=>`<div class="sheet-overview-tile"><small>${name}</small><strong>${esc(value)}</strong></div>`).join('')}
-    </div><div class="sheet-quick-links"><button type="button" data-sheet-tab="atributos">✧ Consultar atributos <span>›</span></button><button type="button" data-sheet-tab="inventario">▣ Abrir inventário <span>›</span></button><button type="button" data-sheet-tab="magias">✦ Ver magias <span>›</span></button></div>
-    <div class="sheet-quick-edit"><h4>Detalhes de combate</h4><div class="sheet-fields">${sheetField('CA','ac',data.ac,'number')}${sheetField('Deslocamento (m)','speed',data.speed,'number')}${sheetField('Nível','level',data.level,'number')}${sheetField('Percepção passiva','passive',data.passive,'number')}${sheetField('Antecedente','background',data.background)}</div><div class="sheet-actions"><small>Iniciativa e proficiência são referências calculadas.</small><button class="success" data-sheet-action="save">Salvar alterações</button></div></div>`;
-  }else if(sheetTab==='atributos'){
-    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">TESTES E PERÍCIAS</span><h4>Atributos</h4></div><span class="sheet-soft-label">Modificadores automáticos</span></div><div class="sheet-grid">${STAT_CODES.map((k,i)=>`<div class="sheet-stat"><label for="stat-${k}">${STAT_NAMES[i]}</label><strong class="modifier">${mod(data.stats[k])}</strong><input id="stat-${k}" aria-label="${STAT_NAMES[i]}" data-sheet-stat="${k}" type="number" min="1" max="30" value="${data.stats[k]}"></div>`).join('')}</div><div class="sheet-actions"><small>Altere o valor e toque em salvar.</small><button class="success" data-sheet-action="save">Salvar atributos</button></div><div class="sheet-quick-edit"><h4>Proficiências e características</h4><div class="sheet-fields">${sheetField('Proficiências e idiomas','proficiencies',data.proficiencies,'textarea',true)}${sheetField('Características e talentos','traits',data.traits,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar informações</button></div></div>`;
-  }else if(sheetTab==='inventario'){
-    const coins=[['pl','Platina','◈'],['po','Ouro','●'],['pe','Electro','◇'],['pp','Prata','●'],['pc','Cobre','●']];
-    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">RECURSOS</span><h4>Carteira</h4></div><span class="sheet-soft-label">Alterações rápidas</span></div><div class="wallet wallet-five">${coins.map(([k,label,ico])=>`<div class="wallet-cell wallet-${k}"><span class="coin-name"><span aria-hidden="true">${ico}</span> ${label}</span><strong>${data.coins[k]}</strong><div class="coin-controls"><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="-1" aria-label="Remover uma moeda de ${label}">−</button><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="1" aria-label="Adicionar uma moeda de ${label}">+</button></div></div>`).join('')}</div><div class="sheet-area-head"><div><span class="sheet-eyebrow">MOCHILA</span><h4>Itens e equipamentos</h4></div><span class="sheet-soft-label">${data.items.length} itens diferentes</span></div><div class="sheet-inventory">${data.items.length?data.items.map(it=>`<div class="sheet-item"><span>${esc(it.name)} <small>× ${it.qty}</small></span><div class="sheet-item-actions"><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="-1" aria-label="Diminuir quantidade">−</button><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="1" aria-label="Aumentar quantidade">+</button><button class="danger" data-sheet-action="item-del" data-item="${esc(it.id)}" aria-label="Excluir item">×</button></div></div>`).join(''):'<p class="sheet-note">Sua mochila está vazia. Adicione um item abaixo.</p>'}</div><div class="sheet-item-add"><label class="sheet-field">Novo item<input id="sheet-item-name" maxlength="140" placeholder="Ex.: Poção de cura"></label><label class="sheet-field">Qtd.<input id="sheet-item-qty" type="number" min="1" max="9999" value="1"></label><button class="success" data-sheet-action="item-add">+ Adicionar</button></div><p class="sheet-drawer-hint">Itens e moedas são salvos ao alterar.</p>`;
-  }else if(sheetTab==='magias'){
-    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">CONJURAÇÃO</span><h4>Magias e habilidades</h4></div></div><div class="sheet-note sheet-intro">Por enquanto, use este espaço para magias, truques, espaços gastos e observações. Podemos evoluir para uma lista interativa por nível depois.</div><div class="sheet-fields">${sheetField('Anotações de magias','spells',data.spells,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar magias</button></div>`;
-  }else{
-    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">INTERPRETAÇÃO</span><h4>História e personalidade</h4></div></div><div class="sheet-fields">${sheetField('Alinhamento','alignment',data.alignment)}${sheetField('Traços de personalidade','personality',data.personality,'textarea',true)}${sheetField('Ideais','ideals',data.ideals,'textarea',true)}${sheetField('Vínculos','bonds',data.bonds,'textarea',true)}${sheetField('Fraquezas','flaws',data.flaws,'textarea',true)}${sheetField('História e origens','story',data.story,'textarea',true)}${sheetField('Aliados e anotações','notes',data.notes,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar história</button></div>`;
-  }
-  return `<section class="sheet-panel" data-sheet-owner="${id}"><div class="sheet-panel-header"><div><span class="sheet-eyebrow">EXPANDIDO DO CONTADOR</span><p class="sheet-note">A ficha faz parte do seu personagem.</p></div><button class="secondary sheet-close" data-sheet-action="close">Fechar ✕</button></div>${overview}${menu}<div class="sheet-area">${body}</div></section>`;
+ const data=cleanSheet(c.sheet),id=esc(c.id),pb=proficiency(data.level),dex=bonus(data.stats.DES),init=dex+data.initiativeAdjustment;
+ const tabs=[['combate','⚔','Combate'],['testes','✧','Testes'],['inventario','▣','Inventário'],['magias','✦','Magias'],['historia','▤','História']];
+ const menu=`<nav class="sheet-tabs" role="tablist" aria-label="Seções da ficha">${tabs.map(([key,ico,title])=>`<button class="sheet-tab ${sheetTab===key?'active':''}" type="button" role="tab" aria-selected="${sheetTab===key}" data-sheet-tab="${key}"><span class="sheet-tab-icon" aria-hidden="true">${ico}</span><span>${title}</span></button>`).join('')}</nav>`;
+ const overview=`<div class="sheet-snapshot"><div class="sheet-snapshot-title"><span class="sheet-eyebrow">FICHA DE PERSONAGEM</span><h3>${esc(c.name)}</h3><p>${esc(c.klass||'Aventureiro')} · Nível ${data.level}</p></div><div class="sheet-snapshot-metrics"><div><small>♥ PV</small><strong>${c.hp}<span> / ${c.max}</span></strong></div><div><small>⬡ CA</small><strong>${data.ac}</strong></div><div><small>ϟ Iniciativa</small><strong>${signed(init)}</strong></div></div></div>`;
+ let body='';
+ if(sheetTab==='combate'){
+   body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">PRONTO PARA AÇÃO</span><h4>Combate</h4></div><span class="sheet-soft-label">Modificadores em destaque</span></div>
+   <div class="v3-primary-stats"><div class="v3-main-tile"><span>⬡ CLASSE DE ARMADURA</span><strong>${data.ac}</strong><label>Editar CA<input data-sheet-field="ac" aria-label="Classe de armadura" type="number" min="0" max="99" value="${data.ac}"></label></div><div class="v3-main-tile"><span>↝ DESLOCAMENTO</span><strong>${data.speed} m</strong><label>Editar metros<input data-sheet-field="speed" aria-label="Deslocamento em metros" type="number" min="0" max="99" value="${data.speed}"></label></div></div>
+   <div class="v3-section-heading"><h4>Atributos</h4><small>Modificador grande · valor editável</small></div><div class="v3-attributes">${STAT_CODES.map(k=>sheetStatEditor(k,data.stats[k])).join('')}</div>
+   <div class="v3-minor-stats"><div><small>INICIATIVA</small><strong data-stat-init>${signed(init)}</strong></div><div><small>PROFICIÊNCIA</small><strong>+${pb}</strong></div><div><small>PERCEPÇÃO PASSIVA</small><strong>${passiveValue(data)}</strong></div></div>
+   <details class="v3-tweaks"><summary>Configurações e ajustes</summary><div class="v3-tweak-fields">${sheetField('Nível','level',data.level,'number')}${sheetField('Ajuste na iniciativa','initiativeAdjustment',data.initiativeAdjustment,'adjust')}${sheetField('Ajuste na percepção passiva','passiveAdjustment',data.passiveAdjustment,'adjust')}</div></details>
+   <div class="sheet-actions"><small>Os bônus das armas e dos testes são calculados usando os valores salvos.</small><button class="success" data-sheet-action="save">Salvar atributos e combate</button></div>
+   <div class="v3-section-heading"><h4>Armas e ataques</h4><small>${data.weapons.length} cadastrados</small></div>
+   <div class="v3-weapons">${data.weapons.length?data.weapons.map(w=>`<div class="v3-weapon"><div class="v3-weapon-title"><div><strong>${esc(w.name)}</strong><small>${esc(w.damageType||'Tipo não informado')} · Atributo ${w.ability}</small></div><button class="secondary v3-mini-btn" data-sheet-action="weapon-del" data-weapon="${esc(w.id)}" title="Excluir arma">✕</button></div><div class="v3-weapon-numbers"><div><span>ATAQUE</span><strong>${signed(weaponBonus(data,w))}</strong><small>1d20 + bônus</small></div><div><span>DANO</span><strong>${esc(weaponDamage(data,w))}</strong><small>${w.proficient?'Proficiência só no ataque':'Sem proficiência'} · ${w.ability}</small></div></div></div>`).join(''):'<p class="sheet-note">Cadastre uma arma para ver o bônus de ataque e a expressão de dano aqui.</p>'}</div>
+   <details class="v3-tweaks"><summary>+ Cadastrar arma ou ataque</summary><div class="v3-weapon-form"><label>Nome<input id="v3-weapon-name" placeholder="Ex.: Adaga" maxlength="80"></label><label>Atributo<select id="v3-weapon-ability">${STAT_CODES.map(k=>`<option value="${k}" ${k==='DES'?'selected':''}>${k}</option>`).join('')}</select></label><label>Dado de dano<input id="v3-weapon-dice" maxlength="25" placeholder="1d4" value="1d4"></label><label>Tipo de dano<input id="v3-weapon-type" maxlength="55" placeholder="Perfurante"></label><label>Bônus extra no ataque<input id="v3-weapon-attack-extra" type="number" min="-20" max="20" value="0"></label><label>Bônus extra no dano<input id="v3-weapon-damage-extra" type="number" min="-20" max="20" value="0"></label><label class="v3-checkbox"><input id="v3-weapon-prof" type="checkbox" checked> Proficiência com a arma</label><button class="success" data-sheet-action="weapon-add">Adicionar arma</button></div></details>
+   <p class="sheet-note">Ataque: 1d20 + atributo + proficiência (quando aplicável) + ajustes. Dano: dados + atributo + ajustes. Características especiais podem alterar essas fórmulas.</p>`;
+ }else if(sheetTab==='testes'){
+  body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">INTERPRETAÇÃO E PERIGOS</span><h4>Testes e resistências</h4></div><span class="sheet-soft-label">Bônus de proficiência: +${pb}</span></div>
+  <div class="v3-section-heading"><h4>Salvaguardas</h4><small>Marque as proficientes</small></div><div class="v3-test-list">${STAT_CODES.map((k,i)=>`<label class="v3-test-row"><input type="checkbox" data-sheet-save="${k}" ${data.saveProfs[k]?'checked':''}><span>${STAT_NAMES[i]} <small>${k}</small></span><strong>${signed(saveBonus(data,k))}</strong></label>`).join('')}</div>
+  <div class="v3-section-heading"><h4>Perícias</h4><small>0 = não · P = proficiente · E = especialização</small></div><div class="v3-test-list">${SKILLS.map(([name,k])=>`<div class="v3-test-row"><label for="v3-skill-${SKILLS.findIndex(x=>x[0]===name)}">${name}<small>${k}</small></label><select id="v3-skill-${SKILLS.findIndex(x=>x[0]===name)}" data-sheet-skill="${esc(name)}" aria-label="Proficiência em ${esc(name)}"><option value="0" ${data.skillRanks[name]===0?'selected':''}>—</option><option value="1" ${data.skillRanks[name]===1?'selected':''}>P</option><option value="2" ${data.skillRanks[name]===2?'selected':''}>E</option></select><strong>${signed(skillBonus(data,name,k))}</strong></div>`).join('')}</div>
+  <div class="sheet-actions"><small>Especialização dobra o bônus de proficiência. Percepção passiva é calculada em Combate.</small><button class="success" data-sheet-action="save">Salvar testes</button></div><div class="v3-section-heading"><h4>Outras proficiências</h4></div><div class="sheet-fields">${sheetField('Armaduras, ferramentas e idiomas','proficiencies',data.proficiencies,'textarea',true)}${sheetField('Características e talentos','traits',data.traits,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar informações</button></div>`;
+ }else if(sheetTab==='inventario'){
+  const coins=[['pl','Platina','◈'],['po','Ouro','●'],['pe','Electro','◇'],['pp','Prata','●'],['pc','Cobre','●']];
+  body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">RECURSOS</span><h4>Carteira</h4></div><span class="sheet-soft-label">Alterações rápidas</span></div><div class="wallet wallet-five">${coins.map(([k,label,ico])=>`<div class="wallet-cell wallet-${k}"><span class="coin-name"><span aria-hidden="true">${ico}</span> ${label}</span><strong>${data.coins[k]}</strong><div class="coin-controls"><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="-1" aria-label="Remover uma moeda de ${label}">−</button><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="1" aria-label="Adicionar uma moeda de ${label}">+</button></div></div>`).join('')}</div><div class="sheet-area-head"><div><span class="sheet-eyebrow">MOCHILA</span><h4>Itens e equipamentos</h4></div><span class="sheet-soft-label">${data.items.length} itens diferentes</span></div><div class="sheet-inventory">${data.items.length?data.items.map(it=>`<div class="sheet-item"><span>${esc(it.name)} <small>× ${it.qty}</small></span><div class="sheet-item-actions"><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="-1" aria-label="Diminuir quantidade">−</button><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="1" aria-label="Aumentar quantidade">+</button><button class="danger" data-sheet-action="item-del" data-item="${esc(it.id)}" aria-label="Excluir item">×</button></div></div>`).join(''):'<p class="sheet-note">Sua mochila está vazia. Adicione um item abaixo.</p>'}</div><div class="sheet-item-add"><label class="sheet-field">Novo item<input id="sheet-item-name" maxlength="140" placeholder="Ex.: Poção de cura"></label><label class="sheet-field">Qtd.<input id="sheet-item-qty" type="number" min="1" max="9999" value="1"></label><button class="success" data-sheet-action="item-add">+ Adicionar</button></div><p class="sheet-drawer-hint">Itens e moedas são salvos ao alterar.</p>`;
+ }else if(sheetTab==='magias'){
+  body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">CONJURAÇÃO</span><h4>Magias e habilidades</h4></div></div><div class="sheet-note sheet-intro">Esta aba ainda usa anotações livres para truques, magias e espaços. O detalhamento por nível pode ser adicionado depois.</div><div class="sheet-fields">${sheetField('Anotações de magias','spells',data.spells,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar magias</button></div>`;
+ }else{
+  body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">INTERPRETAÇÃO</span><h4>História e personalidade</h4></div></div><div class="sheet-fields">${sheetField('Antecedente','background',data.background)}${sheetField('Alinhamento','alignment',data.alignment)}${sheetField('Traços de personalidade','personality',data.personality,'textarea',true)}${sheetField('Ideais','ideals',data.ideals,'textarea',true)}${sheetField('Vínculos','bonds',data.bonds,'textarea',true)}${sheetField('Fraquezas','flaws',data.flaws,'textarea',true)}${sheetField('História e origens','story',data.story,'textarea',true)}${sheetField('Aliados e anotações','notes',data.notes,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar história</button></div>`;
+ }
+ return `<section class="sheet-panel" data-sheet-owner="${id}"><div class="sheet-panel-header"><div><span class="sheet-eyebrow">EXPANDIDO DO CONTADOR</span><p class="sheet-note">A ficha faz parte do seu personagem.</p></div><button class="secondary sheet-close" data-sheet-action="close">Fechar ✕</button></div>${overview}${menu}<div class="sheet-area">${body}</div></section>`;
 }
 function normalize(s){if(!validState(s))return initial();s.chars=s.chars.filter(c=>c&&typeof c.id==='string').slice(0,40).map(c=>({id:String(c.id).slice(0,70),name:String(c.name||'Personagem').slice(0,70),player:c.enemy?'INIMIGO':String(c.player||'').slice(0,60),klass:String(c.klass||'').slice(0,80),enemy:!!c.enemy,max:c.enemy?1:num(c.max,1,9999),hp:c.enemy?1:num(c.hp,0,num(c.max,1,9999)),temp:c.enemy?0:num(c.temp,0,9999),initiative:num(c.initiative,-50,99),accent:accentName(c),defeated:!!c.enemy&&c.defeated===true,...(!c.enemy?{sheet:cleanSheet(c.sheet)}:{})}));const ids=s.chars.map(c=>c.id);s.order=[...new Set(s.order.filter(id=>ids.includes(id)))];for(const id of ids)if(!s.order.includes(id))s.order.push(id);if(!s.order.includes(s.turn))s.turn=null;s.round=num(s.round,1,999);return s}
 state=normalize(state);
@@ -297,7 +375,9 @@ case 'next':{if(!state.order.length)break;const i=state.order.indexOf(state.turn
 case 'prev':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i-1+state.order.length)%state.order.length;if(i===0&&state.round>1)state.round--;state.turn=state.order[j];}break;
 case 'reset':state.chars.forEach(c=>{if(!c.enemy){c.hp=c.max;c.temp=0}});break;
 case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),enemy=!!d.enemy,data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:enemy?'INIMIGO':String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),enemy,max:enemy?1:max,hp:enemy?1:num(d.hp,0,max),temp:enemy?0:num(d.temp,0,9999),initiative:num(d.initiative,-50,99),accent:accentName(d),defeated:enemy?!!d.defeated:false};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0){data.sheet=state.chars[i].sheet;state.chars[i]=data}else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
-case 'sheet-save':if(c&&!c.enemy){const prev=cleanSheet(c.sheet);const d=a.data||{};for(const k of ['ac','speed','level','background','alignment','proficiencies','traits','story','notes','spells','personality','ideals','bonds','flaws','passive'])if(Object.hasOwn(d,k))prev[k]=d[k];if(d.stats&&typeof d.stats==='object')Object.assign(prev.stats,d.stats);c.sheet=cleanSheet(prev)}break;
+case 'sheet-save':if(c&&!c.enemy){const prev=cleanSheet(c.sheet);const d=a.data||{};for(const k of ['ac','speed','level','background','alignment','proficiencies','traits','story','notes','spells','personality','ideals','bonds','flaws','passive','initiativeAdjustment','passiveAdjustment'])if(Object.hasOwn(d,k))prev[k]=d[k];if(d.stats&&typeof d.stats==='object')Object.assign(prev.stats,d.stats);if(d.skillRanks&&typeof d.skillRanks==='object')Object.assign(prev.skillRanks,d.skillRanks);if(d.saveProfs&&typeof d.saveProfs==='object')Object.assign(prev.saveProfs,d.saveProfs);c.sheet=cleanSheet(prev)}break;
+case 'sheet-weapon-add':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),w=a.weapon||{};if(w.name&&sheet.weapons.length<35){sheet.weapons.push({id:cleanText(w.id,70),name:cleanText(w.name,80),ability:STAT_CODES.includes(w.ability)?w.ability:'FOR',proficient:!!w.proficient,attackAdjustment:num(w.attackAdjustment,-20,20),dice:cleanText(w.dice||'1d6',25),damageAdjustment:num(w.damageAdjustment,-20,20),damageType:cleanText(w.damageType,55)});c.sheet=sheet}}break;
+case 'sheet-weapon-del':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet);sheet.weapons=sheet.weapons.filter(w=>w.id!==a.weaponId);c.sheet=sheet}break;
 case 'sheet-coin':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),key=String(a.coin||'');if(Object.hasOwn(sheet.coins,key)){sheet.coins[key]=num(sheet.coins[key]+num(a.delta,-9999,9999),0,999999);c.sheet=sheet}}break;
 case 'sheet-item-add':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),name=cleanText(a.name,140).trim(),qty=num(a.qty,1,9999);if(name&&sheet.items.length<120){sheet.items.push({id:cleanText(a.itemId||'i'+Math.random().toString(36).slice(2),70),name,qty});c.sheet=sheet}}break;
 case 'sheet-item-qty':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),it=sheet.items.find(x=>x.id===a.itemId);if(it){it.qty=num(it.qty+num(a.delta,-9999,9999),0,9999);c.sheet=sheet}}break;
@@ -331,6 +411,8 @@ function hasUnsavedSheet(card){
   const data=cleanSheet(owner.sheet);
   for(const el of card.querySelectorAll('[data-sheet-field]'))if(String(data[el.dataset.sheetField]??'')!==el.value)return true;
   for(const el of card.querySelectorAll('[data-sheet-stat]'))if(String(data.stats[el.dataset.sheetStat])!==el.value)return true;
+  for(const el of card.querySelectorAll('[data-sheet-skill]'))if(String(data.skillRanks[el.dataset.sheetSkill]||0)!==el.value)return true;
+  for(const el of card.querySelectorAll('[data-sheet-save]'))if(!!data.saveProfs[el.dataset.sheetSave]!==el.checked)return true;
   return false;
 }
 $('cards').addEventListener('click',e=>{
@@ -339,7 +421,7 @@ $('cards').addEventListener('click',e=>{
   const card=btn.closest('.card');if(!card)return;
   const id=card.dataset.id;
   if(btn.dataset.sheetAction==='toggle'){
-    sheetOpenId=sheetOpenId===id?null:id;sheetTab='resumo';render();
+    sheetOpenId=sheetOpenId===id?null:id;sheetTab='combate';render();
     if(sheetOpenId)requestAnimationFrame(()=>document.querySelector('.sheet-expanded')?.scrollIntoView({behavior:'smooth',block:'nearest'}));
     return;
   }
@@ -352,8 +434,18 @@ $('cards').addEventListener('click',e=>{
     card.querySelectorAll('[data-sheet-field]').forEach(el=>{payload[el.dataset.sheetField]=el.value});
     const fields=card.querySelectorAll('[data-sheet-stat]');
     if(fields.length){payload.stats={};fields.forEach(el=>{payload.stats[el.dataset.sheetStat]=num(el.value,1,30)})}
+    const skillFields=card.querySelectorAll('[data-sheet-skill]');if(skillFields.length){payload.skillRanks={};skillFields.forEach(el=>{payload.skillRanks[el.dataset.sheetSkill]=num(el.value,0,2)})}
+    const saveFields=card.querySelectorAll('[data-sheet-save]');if(saveFields.length){payload.saveProfs={};saveFields.forEach(el=>{payload.saveProfs[el.dataset.sheetSave]=el.checked})}
     dispatch({type:'sheet-save',id,data:payload});return;
   }
+  if(act==='weapon-add'){
+    const name=card.querySelector('#v3-weapon-name')?.value.trim(),dice=card.querySelector('#v3-weapon-dice')?.value.trim();
+    if(!name)return alert('Digite o nome da arma.');
+    if(!/^[0-9]{1,2}d(?:4|6|8|10|12|20|100)$/i.test(dice))return alert('Digite o dado no formato 1d4, 1d6, 2d8 etc.');
+    const bytes=new Uint8Array(8);crypto.getRandomValues(bytes);
+    dispatch({type:'sheet-weapon-add',id,weapon:{id:'w'+Array.from(bytes,x=>x.toString(16).padStart(2,'0')).join(''),name,dice,ability:card.querySelector('#v3-weapon-ability').value,damageType:card.querySelector('#v3-weapon-type').value.trim(),proficient:card.querySelector('#v3-weapon-prof').checked,attackAdjustment:card.querySelector('#v3-weapon-attack-extra').value,damageAdjustment:card.querySelector('#v3-weapon-damage-extra').value}});return;
+  }
+  if(act==='weapon-del'){if(confirm('Remover esta arma?'))dispatch({type:'sheet-weapon-del',id,weaponId:btn.dataset.weapon});return}
   if(act==='coin')dispatch({type:'sheet-coin',id,coin:btn.dataset.coin,delta:Number(btn.dataset.delta)});
   if(act==='item-add'){
     const name=card.querySelector('#sheet-item-name')?.value.trim();const qty=Number(card.querySelector('#sheet-item-qty')?.value||1);
@@ -363,6 +455,11 @@ $('cards').addEventListener('click',e=>{
   }
   if(act==='item-qty')dispatch({type:'sheet-item-qty',id,itemId:btn.dataset.item,delta:Number(btn.dataset.delta)});
   if(act==='item-del'&&confirm('Excluir este item do inventário?'))dispatch({type:'sheet-item-del',id,itemId:btn.dataset.item});
+});
+$('cards').addEventListener('input',e=>{
+  const input=e.target.closest('[data-sheet-stat]');if(!input)return;
+  const box=input.closest('.v3-attribute');const display=box?.querySelector('[data-mod-of]');
+  if(display)display.textContent=mod(num(input.value,1,30));
 });
 $('cards').addEventListener('click',e=>{const b=e.target.closest('button[data-act]'),article=b?.closest('article');if(!b||!article)return;const id=article.dataset.id,a=b.dataset.act;if(a==='edit')return openForm(id);if(a==='plus'||a==='minus')return characterAction(id,a==='plus'?'heal':'damage',1);const raw=prompt(a==='damage'?'Quantos pontos de dano?':a==='heal'?'Quantos pontos de cura?':'Quantos PV temporários serão concedidos? (mantém o maior)', '5');if(raw===null)return;if(!/^\d+$/.test(raw.trim()))return alert('Digite um número inteiro válido.');characterAction(id,a,Number(raw))});
 $('turnlist').addEventListener('click',e=>{const b=e.target.closest('[data-act]'),row=b?.closest('.turnitem');if(!b||!row)return;const a=b.dataset.act;if(a==='initiative')return;dispatch({type:a,id:row.dataset.id})});

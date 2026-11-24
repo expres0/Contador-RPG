@@ -1,7 +1,7 @@
-Contador RPG — Ficha Digital V2
+Contador RPG — Ficha Digital V3 (Combate + Testes)
 
-Atualize SOMENTE index.html no GitHub, mantendo firebase-config.js e regras atuais. A floresta-16bits.png não mudou.
+Atualize SOMENTE index.html no GitHub, sem alterar as regras Firebase, firebase-config.js ou imagem.
 
-Abra o card de um personagem → Abrir ficha. Cinco abas: Resumo, Atributos, Inventário, Magias e História.
+A gaveta possui as abas Combate, Testes, Inventário, Magias e História. Inclui atributos com modificadores em destaque, perícias, salvaguardas, armas e ataques.
 
-Esta versão ainda NÃO implementa permissões individuais nem PV exclusivos ao mestre. Para testar, prefira uma sala nova.
+Obs.: os controles de PV ainda seguem as permissões anteriores. Esta versão não implementa propriedade individual de fichas nem bloqueio de PV para jogadores. Teste em uma sala de ensaio antes de usar dados reais.
