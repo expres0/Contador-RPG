@@ -43,28 +43,56 @@ input{background:#f4f2e9;color:#1e3126;padding:10px 12px;border:1px solid rgba(1
 @media(max-width:650px){.app{padding:14px 12px 36px}.hero{min-height:79px;padding:0 0 8px}.hero h1{font-size:28px}.hero p{font-size:11px}.toolbar{gap:8px;margin-bottom:12px}.status{flex-basis:100%;min-height:0;font-size:11px}.toolbar>.btns{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:7px}.toolbar #reset{display:none}.toolbar button{min-height:39px;font-size:12px;padding:8px}.session-drawer{margin-bottom:12px;border-radius:12px}.session-drawer>summary{min-height:43px;padding:9px 12px;font-size:13px}.session-drawer>summary .session-note{display:none}.session-drawer .section.lobby{padding:12px}.lobby .lobby{display:grid;grid-template-columns:1fr 1fr;gap:8px}.lobby .lobby input{width:100%;max-width:none;grid-column:1/-1;grid-row:2}.lobby .lobby button{font-size:12px;min-height:40px;padding:7px}.lobby .lobby #leave{grid-column:1/-1}.shareline{display:grid;grid-template-columns:1fr 1fr;gap:8px}.shareline label,.shareline input{grid-column:1/-1;width:100%}.shareline button{grid-column:1/-1}.section{padding:14px;border-radius:13px}.section h2{margin-bottom:12px}.grid{grid-template-columns:1fr;gap:10px}.card{padding:16px}.hp{margin-top:15px;font-size:51px}.actions button{min-height:48px}.turnlist{grid-template-columns:1fr;gap:6px}.turnitem{padding:8px}.turnitem .controls button{min-width:33px}.turncontrols{display:grid}.help{display:none}.layout{gap:12px}.tv .card .hp{font-size:60px}}
 @media(min-width:651px) and (max-width:1040px){.grid{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}.turnlist{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+
+/* INIMIGOS E ACESSO DO MESTRE */
+#addEnemy{border-color:rgba(222,188,124,.42);background:#594a31;color:#f7dfad}
+#addEnemy:hover{background:#6c5938}
+.gm-share{margin-top:14px;padding:14px 15px;border-radius:12px;border:1px solid rgba(232,197,128,.28);background:rgba(145,114,53,.1)}
+.gm-label{font-size:11px;font-weight:800;letter-spacing:.1em;color:#e4c37f}
+.gm-share p{margin:6px 0 12px;color:#b8c6b8;font-size:12px;line-height:1.5}
+.enemy-notice{border:1px solid rgba(232,197,128,.4);background:rgba(232,197,128,.09);color:#f2d39b;font-size:12px;padding:10px 12px;border-radius:10px;margin:0 0 14px}
+.card.enemy{border-color:rgba(228,195,127,.37);background:linear-gradient(145deg,rgba(64,57,42,.89),rgba(33,41,32,.92))}
+.card.enemy .player{color:#e4c37f}.card.enemy .fill{background:linear-gradient(90deg,#b78358,#e2b779)}
+.enemy-dot{display:inline-block;background:rgba(228,195,127,.13);color:#f3d59b;font-size:10px;padding:3px 7px;border-radius:6px;margin-right:5px}
+.turnitem.enemy-turn{border-left:3px solid rgba(228,195,127,.55)}
+.turnitem.enemy-turn .who:before{content:'⚔ ';color:#e4c37f}
+.tv .card.enemy{display:none!important}
+.tv #addEnemy{display:none!important}
+@media(max-width:650px){.gm-share{padding:12px}.gm-share button{width:100%}#addEnemy{flex:1}}
+
 </style></head>
 <body><main class="app"><header class="hero"><div><h1>Contador RPG</h1><p>Painel de combate · Pontos de vida e iniciativa</p></div></header>
-<div class="toolbar"><span id="status" class="status offline" aria-live="polite">Modo local — conecte-se à sala para sincronizar.</span><div class="btns"><button class="secondary" id="tv">📺 Modo TV</button><button id="add">+ Personagem</button><button class="secondary" id="reset">Restaurar PV</button></div></div>
-<details class="session-drawer" id="sessionDrawer"><summary>Sala compartilhada <span class="session-note">Convidar jogadores · Gerenciar acesso</span></summary><section class="section lobby" id="lobby"><h2>✧ SALA COMPARTILHADA</h2><div class="lobby"><button id="host" class="success">✦ Criar sala na nuvem</button><input id="roomcode" placeholder="Código da sala" aria-label="Código da sala"><button id="join">Entrar na sala</button><button id="leave" class="secondary hidden">Sair da sala</button></div><div class="shareline hidden" id="share"><label for="link">Link para jogadores e TV</label><input id="link" readonly><button id="copy">📋 Copiar link</button></div><div class="tip">Sala pela nuvem: todos podem editar PV e iniciativa. Os dados ficam salvos mesmo quando todos saem. Compartilhe o link só com quem participa da mesa.</div></section></details>
+<div class="toolbar"><span id="status" class="status offline" aria-live="polite">Modo local — conecte-se à sala para sincronizar.</span><div class="btns"><button class="secondary" id="tv">📺 Modo TV</button><button id="add">+ Personagem</button><button id="addEnemy" class="secondary hidden">+ Inimigo</button><button class="secondary" id="reset">Restaurar PV</button></div></div>
+<details class="session-drawer" id="sessionDrawer"><summary>Sala compartilhada <span class="session-note">Convidar jogadores · Gerenciar acesso</span></summary><section class="section lobby" id="lobby"><h2>✧ SALA COMPARTILHADA</h2><div class="lobby"><button id="host" class="success">✦ Criar sala na nuvem</button><input id="roomcode" placeholder="Código da sala" aria-label="Código da sala"><button id="join">Entrar na sala</button><button id="leave" class="secondary hidden">Sair da sala</button></div><div class="shareline hidden" id="share"><label for="link">Link para jogadores e TV</label><input id="link" readonly><button id="copy">📋 Copiar link</button></div><div class="tip">Sala pela nuvem: jogadores podem alterar PV e iniciativa. PV de inimigos ficam separados no painel privado do mestre. O link da sala é para jogadores e TV.</div><div id="gmShare" class="gm-share hidden"><div class="gm-label">🔒 ACESSO DO MESTRE</div><p>Este acesso é exclusivo do mestre. Guarde-o para abrir a sala em outro dispositivo. Não envie aos jogadores nem abra na TV compartilhada.</p><button type="button" id="copyMaster" class="secondary">Copiar link do mestre</button></div></section></details>
 <div class="layout"><section class="section"><h2>♥ PERSONAGENS <small id="count" style="color:var(--dim);font-size:11px"></small></h2><div id="cards" class="grid"></div></section><aside class="section"><h2>⚔ ORDEM DOS TURNOS</h2><div class="bigturn" id="turnInfo">Rodada 1 · Nenhum turno selecionado</div><div class="turncontrols btns" style="margin-bottom:12px"><button id="next" class="success">▶ Próximo turno</button><button id="prev" class="secondary">◀ Voltar</button><button id="sort" class="secondary">⇣ Ordenar iniciativa</button></div><div class="turnlist" id="turnlist"></div><p class="help">Digite a iniciativa de cada personagem. Use ↑ ↓ para trocar a ordem. Clique no nome para escolher de quem é o turno. Ao passar do último para o primeiro, a rodada aumenta.</p></aside></div>
-<footer class="help" style="text-align:center">PV temporários absorvem dano antes dos PV normais. · As alterações da sala são salvas no Firebase. · Todos podem editar usando o link da sala. · É necessária conexão com a internet.</footer></main>
-<div class="overlay hidden" id="overlay"><form class="modal" id="form"><h2 id="modalTitle">Editar personagem</h2><label>Nome do personagem<input id="name" required maxlength="70"></label><label>Nome do jogador<input id="player" maxlength="60"></label><label>Raça / classe<input id="klass" maxlength="80"></label><label>PV máximos<input id="max" required type="number" min="1" max="9999"></label><label>PV atuais<input id="hp" required type="number" min="0" max="9999"></label><label>PV temporários<input id="temp" type="number" min="0" max="9999"></label><label>Iniciativa<input id="initiative" type="number" min="-50" max="99"></label><footer><button type="button" id="delete" class="danger">Excluir</button><button type="button" id="cancel" class="secondary">Cancelar</button><button type="submit" class="success">Salvar</button></footer></form></div>
+<footer class="help" style="text-align:center">PV temporários absorvem dano antes dos PV normais. · As alterações da sala são salvas no Firebase. · Jogadores editam apenas os PV dos personagens; PV dos inimigos são privados do mestre. · É necessária conexão com a internet.</footer></main>
+<div class="overlay hidden" id="overlay"><form class="modal" id="form"><h2 id="modalTitle">Editar personagem</h2><div id="enemyNotice" class="enemy-notice hidden">🔒 Inimigo: os pontos de vida são visíveis apenas ao mestre. Os jogadores verão somente o nome na iniciativa.</div><label>Nome<input id="name" required maxlength="70"></label><label id="playerLabel">Nome do jogador<input id="player" maxlength="60"></label><label>Raça / classe / tipo<input id="klass" maxlength="80"></label><label>PV máximos<input id="max" required type="number" min="1" max="9999"></label><label>PV atuais<input id="hp" required type="number" min="0" max="9999"></label><label>PV temporários<input id="temp" type="number" min="0" max="9999"></label><label>Iniciativa<input id="initiative" type="number" min="-50" max="99"></label><footer><button type="button" id="delete" class="danger">Excluir</button><button type="button" id="cancel" class="secondary">Cancelar</button><button type="submit" class="success">Salvar</button></footer></form></div>
 <script src="./firebase-config.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script>
 (()=>{'use strict';
-const KEY='vdf-hp-turns-v2';
+const KEY='vdf-hp-turns-v2', GM_KEY='vdf-master-codes-v1';
 const defaults=[{id:'goblin',name:'Goblin ladino',player:'Jogador 1',klass:'Ladino · Goblin',max:24,hp:24,temp:0,initiative:0},{id:'draconato',name:'Draconato guerreiro',player:'Jogador 2',klass:'Guerreiro · Draconato',max:28,hp:28,temp:0,initiative:0},{id:'tiefling',name:'Tiefling clériga',player:'Jogadora 3',klass:'Clériga · Tiefling',max:22,hp:22,temp:0,initiative:0}];
 let state;try{const data=JSON.parse(localStorage.getItem(KEY));state=validState(data)?data:initial()}catch{state=initial()}
-let mode='local',room='',roomRef=null, roomListener=null, editId=null, firebaseDb=null, authPromise=null, roomReady=false, processing=false;
+let mode='local',room='',roomRef=null, roomListener=null, editId=null, editKind='player', firebaseDb=null, authPromise=null, roomReady=false, processing=false;
+let masterSecret='', privateRef=null, privateListener=null, privateReady=false, privateEnemies={};
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[t])), num=(v,lo,hi)=>Math.max(lo,Math.min(hi,Number(v)||0));
 function initial(){return {chars:structuredClone(defaults),order:defaults.map(x=>x.id),turn:null,round:1,revision:0}}
 function validState(s){return s&&Array.isArray(s.chars)&&Array.isArray(s.order)&&typeof s.round==='number'}
-function normalize(s){if(!validState(s))return initial();s.chars=s.chars.filter(c=>c&&typeof c.id==='string').slice(0,40).map(c=>({id:String(c.id).slice(0,70),name:String(c.name||'Personagem').slice(0,70),player:String(c.player||'').slice(0,60),klass:String(c.klass||'').slice(0,80),max:num(c.max,1,9999),hp:num(c.hp,0,num(c.max,1,9999)),temp:num(c.temp,0,9999),initiative:num(c.initiative,-50,99)}));const ids=s.chars.map(c=>c.id);s.order=[...new Set(s.order.filter(id=>ids.includes(id)))];for(const id of ids)if(!s.order.includes(id))s.order.push(id);if(!s.order.includes(s.turn))s.turn=null;s.round=num(s.round,1,999);return s}
+function normalize(s){if(!validState(s))return initial();s.chars=s.chars.filter(c=>c&&typeof c.id==='string').slice(0,40).map(c=>({id:String(c.id).slice(0,70),name:String(c.name||'Personagem').slice(0,70),player:c.enemy?'INIMIGO':String(c.player||'').slice(0,60),klass:String(c.klass||'').slice(0,80),enemy:!!c.enemy,max:c.enemy?1:num(c.max,1,9999),hp:c.enemy?1:num(c.hp,0,num(c.max,1,9999)),temp:c.enemy?0:num(c.temp,0,9999),initiative:num(c.initiative,-50,99)}));const ids=s.chars.map(c=>c.id);s.order=[...new Set(s.order.filter(id=>ids.includes(id)))];for(const id of ids)if(!s.order.includes(id))s.order.push(id);if(!s.order.includes(s.turn))s.turn=null;s.round=num(s.round,1,999);return s}
 state=normalize(state);
+function gmCodes(){try{return JSON.parse(localStorage.getItem(GM_KEY))||{}}catch{return {}}}
+function storedSecret(code){return String(gmCodes()[code]||'')}
+function storeSecret(code,key){const all=gmCodes();all[code]=key;try{localStorage.setItem(GM_KEY,JSON.stringify(all))}catch{}}
+function isMaster(){return mode==='cloud' && !!masterSecret && !!privateRef && privateReady}
+function masterUI(){
+  $('addEnemy').classList.toggle('hidden',!isMaster());
+  $('gmShare').classList.toggle('hidden',!isMaster());
+}
+function secretHex(){const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);return [...bytes].map(b=>b.toString(16).padStart(2,'0')).join('')}
+function privateActor(id){const e=privateEnemies[id];if(!e)return null;const max=num(e.max,1,9999);return {max,hp:num(e.hp,0,max),temp:num(e.temp,0,9999)}}
 function save(){if(mode==='local'){try{localStorage.setItem(KEY,JSON.stringify(state))}catch{}}}
 function status(s,online){$('status').textContent=s;$('status').className='status '+(online?'online':'offline')}
 function commit(){state.revision=(state.revision||0)+1;save();render()}
@@ -83,42 +111,102 @@ function dispatch(action){
   },false);
 }
 function reduce(a){if(!a||typeof a.type!=='string')return;const c=state.chars.find(x=>x.id===a.id);switch(a.type){
-case 'damage':if(!c)return;{const amt=num(a.amount,0,9999),abs=Math.min(c.temp,amt);c.temp-=abs;c.hp=Math.max(0,c.hp-(amt-abs))}break;
-case 'heal':if(c)c.hp=num(c.hp+num(a.amount,0,9999),0,c.max);break;
-case 'temp':if(c)c.temp=Math.max(c.temp,num(a.amount,0,9999));break;
+case 'damage':if(!c||c.enemy)return;{const amt=num(a.amount,0,9999),abs=Math.min(c.temp,amt);c.temp-=abs;c.hp=Math.max(0,c.hp-(amt-abs))}break;
+case 'heal':if(c&&!c.enemy)c.hp=num(c.hp+num(a.amount,0,9999),0,c.max);break;
+case 'temp':if(c&&!c.enemy)c.temp=Math.max(c.temp,num(a.amount,0,9999));break;
 case 'initiative':if(c)c.initiative=num(a.value,-50,99);break;
 case 'up':case 'down':{const i=state.order.indexOf(a.id),j=i+(a.type==='up'?-1:1);if(i>=0&&j>=0&&j<state.order.length)[state.order[i],state.order[j]]=[state.order[j],state.order[i]];}break;
 case 'sort':state.order.sort((x,y)=>(state.chars.find(c=>c.id===y)?.initiative||0)-(state.chars.find(c=>c.id===x)?.initiative||0));break;
 case 'turn':if(state.order.includes(a.id))state.turn=a.id;break;
 case 'next':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i+1)%state.order.length;if(i>=0&&j===0)state.round++;state.turn=state.order[j];}break;
 case 'prev':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i-1+state.order.length)%state.order.length;if(i===0&&state.round>1)state.round--;state.turn=state.order[j];}break;
-case 'reset':state.chars.forEach(c=>{c.hp=c.max;c.temp=0});break;
-case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),max,hp:num(d.hp,0,max),temp:num(d.temp,0,9999),initiative:num(d.initiative,-50,99)};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0)state.chars[i]=data;else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
+case 'reset':state.chars.forEach(c=>{if(!c.enemy){c.hp=c.max;c.temp=0}});break;
+case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),enemy=!!d.enemy,data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:enemy?'INIMIGO':String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),enemy,max:enemy?1:max,hp:enemy?1:num(d.hp,0,max),temp:enemy?0:num(d.temp,0,9999),initiative:num(d.initiative,-50,99)};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0)state.chars[i]=data;else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
 case 'delete':state.chars=state.chars.filter(c=>c.id!==a.id);state.order=state.order.filter(id=>id!==a.id);if(state.turn===a.id)state.turn=null;break;
 }}
-function render(){const cards=$('cards');$('count').textContent=`(${state.chars.length})`;
-cards.innerHTML=state.chars.map(c=>{const pc=100*c.hp/c.max,level=pc<=25?'critical':pc<=50?'mid':'';return `<article class="card ${level} ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}"><div class="toprow"><div><div class="player">${esc(c.player||'AVENTUREIRO')}</div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass)}</div></div><button class="secondary smallbtn edit" data-act="edit" title="Editar personagem">✎</button></div><div class="hp">${c.hp}<span> / ${c.max}</span></div><div class="hp-caption">PONTOS DE VIDA</div><div class="bar"><div class="fill" style="width:${pc}%"></div></div><div class="foot"><span>${c.hp===0?'☠️ 0 PV':pc<=25?'⚠ CRÍTICO':pc<=50?'FERIDO':'PRONTO'}</span><span class="temp">🛡 TEMP.: ${c.temp}</span></div><div class="actions"><button class="danger" data-act="damage">− DANO</button><button class="success" data-act="heal">+ CURA</button></div><div class="extras"><label>Ajuste rápido</label><span><button class="secondary" data-act="minus">−1</button> <button class="secondary" data-act="plus">+1</button> <button class="secondary" data-act="temp">🛡 PV temp.</button></span></div></article>`}).join('')||'<p class="noentry">Nenhum personagem cadastrado.</p>';
-const current=state.chars.find(c=>c.id===state.turn);$('turnInfo').textContent=`Rodada ${state.round} · ${current?'Vez de '+current.name:'Nenhum turno selecionado'}`;
-$('turnlist').innerHTML=state.order.map((id,i)=>{const c=state.chars.find(x=>x.id===id);if(!c)return '';return `<div class="turnitem ${state.turn===id?'on':''}" data-id="${esc(id)}"><span class="order">${i+1}</span><div><div class="who" role="button" tabindex="0" data-act="turn" style="cursor:pointer">${esc(c.name)} ${state.turn===id?'◀':''}</div><div class="sub">${esc(c.player)}</div></div><div class="controls"><input aria-label="Iniciativa de ${esc(c.name)}" type="number" min="-50" max="99" value="${c.initiative}" data-act="initiative"><button class="secondary" data-act="up" title="Subir na ordem">↑</button><button class="secondary" data-act="down" title="Descer na ordem">↓</button></div></div>`}).join('')||'<div class="noentry">Cadastre personagens para iniciar a ordem.</div>';
+function render(){
+  const visible=state.chars.filter(c=>!c.enemy||isMaster());
+  $('count').textContent=`(${state.chars.filter(c=>!c.enemy).length} jogadores${isMaster()?', '+state.chars.filter(c=>c.enemy).length+' inimigos':''})`;
+  $('cards').innerHTML=visible.map(c=>{
+    const e=c.enemy ? privateActor(c.id) : {max:c.max,hp:c.hp,temp:c.temp};
+    const hp=e?.hp??0,max=e?.max??1,temp=e?.temp??0,pc=100*hp/max,level=pc<=25?'critical':pc<=50?'mid':'';
+    return `<article class="card ${level} ${c.enemy?'enemy':''} ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}"><div class="toprow"><div><div class="player">${c.enemy?'<span class="enemy-dot">MESTRE · INIMIGO</span>':esc(c.player||'AVENTUREIRO')}</div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass)}</div></div><button class="secondary smallbtn edit" data-act="edit" title="Editar ${c.enemy?'inimigo':'personagem'}">✎</button></div><div class="hp">${e?hp:'—'}<span> / ${e?max:'—'}</span></div><div class="hp-caption">${c.enemy?'PV PRIVADOS DO MESTRE':'PONTOS DE VIDA'}</div><div class="bar"><div class="fill" style="width:${e?pc:0}%"></div></div><div class="foot"><span>${e?(hp===0?'☠️ 0 PV':pc<=25?'⚠ CRÍTICO':pc<=50?'FERIDO':'PRONTO'):'Carregando dados privados…'}</span><span class="temp">🛡 TEMP.: ${e?temp:'—'}</span></div><div class="actions"><button class="danger" data-act="damage" ${e?'':'disabled'}>− DANO</button><button class="success" data-act="heal" ${e?'':'disabled'}>+ CURA</button></div><div class="extras"><label>Ajuste rápido</label><span><button class="secondary" data-act="minus" ${e?'':'disabled'}>−1</button> <button class="secondary" data-act="plus" ${e?'':'disabled'}>+1</button> <button class="secondary" data-act="temp" ${e?'':'disabled'}>🛡 PV temp.</button></span></div></article>`;
+  }).join('')||'<p class="noentry">Nenhum personagem cadastrado.</p>';
+  const current=state.chars.find(c=>c.id===state.turn);
+  $('turnInfo').textContent=`Rodada ${state.round} · ${current?'Vez de '+current.name:'Nenhum turno selecionado'}`;
+  $('turnlist').innerHTML=state.order.map((id,i)=>{
+    const c=state.chars.find(x=>x.id===id);if(!c)return '';
+    return `<div class="turnitem ${c.enemy?'enemy-turn':''} ${state.turn===id?'on':''}" data-id="${esc(id)}"><span class="order">${i+1}</span><div><div class="who" role="button" tabindex="0" data-act="turn" style="cursor:pointer">${esc(c.name)} ${state.turn===id?'◀':''}</div><div class="sub">${c.enemy?'Inimigo · PV ocultos':esc(c.player)}</div></div><div class="controls"><input aria-label="Iniciativa de ${esc(c.name)}" type="number" min="-50" max="99" value="${c.initiative}" data-act="initiative"><button class="secondary" data-act="up" title="Subir na ordem">↑</button><button class="secondary" data-act="down" title="Descer na ordem">↓</button></div></div>`;
+  }).join('')||'<div class="noentry">Cadastre personagens para iniciar a ordem.</div>';
 }
-$('cards').addEventListener('click',e=>{const b=e.target.closest('button[data-act]'),article=b?.closest('article');if(!b||!article)return;const id=article.dataset.id,a=b.dataset.act;if(a==='edit')return openForm(id);if(a==='plus'||a==='minus')return dispatch({type:a==='plus'?'heal':'damage',id,amount:1});const raw=prompt(a==='damage'?'Quantos pontos de dano?':a==='heal'?'Quantos pontos de cura?':'Quantos PV temporários serão concedidos? (mantém o maior)', '5');if(raw===null)return;if(!/^\d+$/.test(raw.trim()))return alert('Digite um número inteiro válido.');dispatch({type:a,id,amount:Number(raw)})});
+$('cards').addEventListener('click',e=>{const b=e.target.closest('button[data-act]'),article=b?.closest('article');if(!b||!article)return;const id=article.dataset.id,a=b.dataset.act;if(a==='edit')return openForm(id);if(a==='plus'||a==='minus')return characterAction(id,a==='plus'?'heal':'damage',1);const raw=prompt(a==='damage'?'Quantos pontos de dano?':a==='heal'?'Quantos pontos de cura?':'Quantos PV temporários serão concedidos? (mantém o maior)', '5');if(raw===null)return;if(!/^\d+$/.test(raw.trim()))return alert('Digite um número inteiro válido.');characterAction(id,a,Number(raw))});
 $('turnlist').addEventListener('click',e=>{const b=e.target.closest('[data-act]'),row=b?.closest('.turnitem');if(!b||!row)return;const a=b.dataset.act;if(a==='initiative')return;dispatch({type:a,id:row.dataset.id})});
 $('turnlist').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.dataset.act==='turn'){e.preventDefault();dispatch({type:'turn',id:e.target.closest('.turnitem').dataset.id})}});
 $('turnlist').addEventListener('change',e=>{if(e.target.dataset.act!=='initiative')return;dispatch({type:'initiative',id:e.target.closest('.turnitem').dataset.id,value:e.target.value})});
 $('next').onclick=()=>dispatch({type:'next'});$('prev').onclick=()=>dispatch({type:'prev'});$('sort').onclick=()=>dispatch({type:'sort'});$('reset').onclick=()=>{if(confirm('Restaurar os PV máximos de todos e remover PV temporários?'))dispatch({type:'reset'})};$('tv').onclick=()=>{const tv=document.body.classList.toggle('tv');$('tv').textContent=tv?'✎ Sair da TV':'📺 Modo TV'};
-function openForm(id){editId=id;const c=state.chars.find(c=>c.id===id);$('modalTitle').textContent=c?'Editar personagem':'Novo personagem';$('name').value=c?.name||'';$('player').value=c?.player||'';$('klass').value=c?.klass||'';$('max').value=c?.max||20;$('hp').value=c?.hp??20;$('temp').value=c?.temp||0;$('initiative').value=c?.initiative??0;$('delete').classList.toggle('hidden',!c);$('overlay').classList.remove('hidden');$('name').focus()}
+function openForm(id,kind='player'){
+  editId=id;const c=state.chars.find(c=>c.id===id);editKind=c?.enemy?'enemy':kind;
+  if(editKind==='enemy'&&!isMaster())return alert('Apenas o mestre pode gerenciar inimigos. Crie uma nova sala como mestre.');
+  const e=editKind==='enemy'?privateActor(id):null;
+  $('modalTitle').textContent=c?(c.enemy?'Editar inimigo':'Editar personagem'):(editKind==='enemy'?'Novo inimigo':'Novo personagem');
+  $('enemyNotice').classList.toggle('hidden',editKind!=='enemy');
+  $('playerLabel').classList.toggle('hidden',editKind==='enemy');
+  $('name').value=c?.name||'';$('player').value=c?.enemy?'':c?.player||'';$('klass').value=c?.klass||'';
+  $('max').value=e?.max??c?.max??20;$('hp').value=e?.hp??(c?.enemy?20:c?.hp??20);
+  $('temp').value=e?.temp??(c?.enemy?0:c?.temp??0);$('initiative').value=c?.initiative??0;
+  $('delete').classList.toggle('hidden',!c);$('overlay').classList.remove('hidden');$('name').focus();
+}
 function closeForm(){$('overlay').classList.add('hidden')}
-$('add').onclick=()=>openForm(null);$('cancel').onclick=closeForm;$('overlay').addEventListener('click',e=>{if(e.target===$('overlay'))closeForm()});window.addEventListener('keydown',e=>{if(e.key==='Escape')closeForm()});$('delete').onclick=()=>{if(editId&&confirm('Excluir personagem da sala?')){dispatch({type:'delete',id:editId});closeForm()}};
-$('form').onsubmit=e=>{e.preventDefault();if(!$('name').value.trim())return;const char={id:editId||'p'+Math.random().toString(36).slice(2),name:$('name').value.trim(),player:$('player').value.trim(),klass:$('klass').value.trim(),max:$('max').value,hp:$('hp').value,temp:$('temp').value,initiative:$('initiative').value};dispatch({type:'savechar',char});closeForm()};
-
+$('add').onclick=()=>openForm(null,'player');
+$('addEnemy').onclick=()=>openForm(null,'enemy');
+$('cancel').onclick=closeForm;
+$('overlay').addEventListener('click',e=>{if(e.target===$('overlay'))closeForm()});
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeForm()});
+$('delete').onclick=async()=>{
+  if(!editId||!confirm('Excluir '+(editKind==='enemy'?'inimigo':'personagem')+' da sala?'))return;
+  const deletedId=editId;
+  if(editKind==='enemy'&&!isMaster())return;
+  dispatch({type:'delete',id:deletedId});
+  if(editKind==='enemy')await privateRef.child('enemies/'+deletedId).remove().catch(err=>alert('Erro ao excluir dados privados: '+err.message));
+  closeForm();
+};
+$('form').onsubmit=async e=>{
+  e.preventDefault();if(!$('name').value.trim())return;
+  const char={id:editId||'p'+Math.random().toString(36).slice(2),name:$('name').value.trim(),player:$('player').value.trim(),klass:$('klass').value.trim(),max:$('max').value,hp:$('hp').value,temp:$('temp').value,initiative:$('initiative').value,enemy:editKind==='enemy'};
+  if(editKind==='enemy'){
+    if(!isMaster())return alert('O acesso do mestre não está ativo.');
+    try{
+      const max=num(char.max,1,9999);
+      await privateRef.child('enemies/'+char.id).set({max,hp:num(char.hp,0,max),temp:num(char.temp,0,9999)});
+      dispatch({type:'savechar',char});
+    }catch(err){alert('Erro ao salvar inimigo: '+err.message);return;}
+  }else dispatch({type:'savechar',char});
+  closeForm();
+};
+function characterAction(id,type,amount){
+  const c=state.chars.find(x=>x.id===id);
+  if(!c)return;
+  if(!c.enemy)return dispatch({type,id,amount});
+  if(!isMaster())return alert('Os PV dos inimigos são privados do mestre.');
+  const ref=privateRef.child('enemies/'+id);
+  ref.transaction(current=>{
+    if(!current)return;
+    const max=num(current.max,1,9999),hp=num(current.hp,0,max),temp=num(current.temp,0,9999);
+    if(type==='damage'){const used=Math.min(temp,num(amount,0,9999));return {max,hp:Math.max(0,hp-(num(amount,0,9999)-used)),temp:temp-used}}
+    if(type==='heal')return {max,hp:Math.min(max,hp+num(amount,0,9999)),temp};
+    if(type==='temp')return {max,hp,temp:Math.max(temp,num(amount,0,9999))};
+  },(err,committed)=>{if(err||!committed)alert('Não foi possível salvar o PV privado: '+(err?.message||'inimigo não encontrado'))},false);
+}
 function roomId(){const bytes=new Uint8Array(10);crypto.getRandomValues(bytes);return [...bytes].map(b=>b.toString(16).padStart(2,'0')).join('')}
-function showShare(){const url=new URL(window.location.href);url.searchParams.set('sala',room);$('link').value=url.href;$('share').classList.remove('hidden');$('roomcode').value=room;$('leave').classList.remove('hidden')}
+function showShare(){const url=new URL(window.location.href);url.searchParams.set('sala',room);url.hash='';$('link').value=url.href;$('share').classList.remove('hidden');$('roomcode').value=room;$('leave').classList.remove('hidden');masterUI()}
 function cleanup(){
   if(roomRef&&roomListener){roomRef.off('value',roomListener)}
+  if(privateRef&&privateListener)privateRef.off('value',privateListener);
+  privateRef=null;privateListener=null;privateEnemies={};privateReady=false;masterSecret='';
   roomRef=null;roomListener=null;roomReady=false;mode='local';room='';
   $('share').classList.add('hidden');$('leave').classList.add('hidden');
-  status('Modo local — salvos neste aparelho.',false);
-  const url=new URL(location.href);url.searchParams.delete('sala');history.replaceState(null,'',url);render();
+  status('Modo local — salvos neste aparelho.',false);masterUI();
+  const url=new URL(location.href);url.searchParams.delete('sala');url.hash='';history.replaceState(null,'',url);render();
 }
 async function ready(){
   if(firebaseDb){if(authPromise)await authPromise;return firebaseDb;}
@@ -135,6 +223,11 @@ async function ready(){
 }
 function listenRoom(code){
   room=code;mode='cloud';roomRef=firebaseDb.ref('rooms/'+room+'/state');roomReady=false;
+  if(masterSecret){
+    privateRef=firebaseDb.ref('gmSecrets/'+masterSecret+'/'+room);
+    privateListener=snap=>{privateEnemies=snap.val()?.enemies||{};privateReady=!!snap.exists();masterUI();render()};
+    privateRef.on('value',privateListener,err=>{privateReady=false;status('Erro no acesso privado do mestre: '+err.message,false);masterUI();render()});
+  }
   showShare();
   roomListener=snap=>{
     if(!snap.exists()){roomReady=false;status('Sala não encontrada. Peça ao mestre para criar uma nova.',false);return}
@@ -152,7 +245,8 @@ $('host').onclick=async()=>{
     const seed=normalize(structuredClone(state));
     const result=await ref.transaction(current=>current===null?seed:undefined,undefined,false);
     if(!result.committed)throw new Error('Não foi possível reservar uma sala. Tente novamente.');
-    listenRoom(code);
+    const secret=secretHex();await firebaseDb.ref('gmSecrets/'+secret+'/'+code).set({created:Date.now(),enemies:{}});
+    storeSecret(code,secret);masterSecret=secret;listenRoom(code);
   }catch(err){status('Erro ao criar sala: '+(err.message||err),false)}finally{processing=false}
 };
 async function joinRoom(code){
@@ -160,10 +254,16 @@ async function joinRoom(code){
   try{
     code=String(code||'').trim().toLowerCase();
     if(!/^[a-f0-9]{20}$/.test(code)){alert('Código inválido. Use o link ou o código de 20 caracteres da sala.');return}
+    const incomingSecret=new URLSearchParams(location.hash.slice(1)).get('mestre');
     cleanup();status('Conectando à sala na nuvem…',false);await ready();
     const ref=firebaseDb.ref('rooms/'+code+'/state');
     const snap=await ref.once('value');
     if(!snap.exists())throw new Error('Sala não encontrada. Confira o link enviado.');
+    const candidate=/^[a-f0-9]{32}$/.test(incomingSecret||'')?incomingSecret:storedSecret(code);
+    if(/^[a-f0-9]{32}$/.test(candidate)) {
+      const secretData=await firebaseDb.ref('gmSecrets/'+candidate+'/'+code).once('value');
+      if(secretData.exists()){masterSecret=candidate;storeSecret(code,candidate)}
+    }
     listenRoom(code);
   }catch(err){status('Erro ao entrar: '+(err.message||err),false)}finally{processing=false}
 }
@@ -171,6 +271,7 @@ $('join').onclick=()=>joinRoom($('roomcode').value);
 $('roomcode').addEventListener('keydown',e=>{if(e.key==='Enter')joinRoom($('roomcode').value)});
 $('leave').onclick=cleanup;
 $('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('link').value);$('copy').textContent='✓ Copiado';setTimeout(()=>$('copy').textContent='📋 Copiar link',1500)}catch{$('link').select();alert('Copie o texto selecionado manualmente.')}};
-render();const param=new URL(location.href).searchParams.get('sala');if(param){$('roomcode').value=param;joinRoom(param)}
+$('copyMaster').onclick=async()=>{if(!isMaster())return;const url=new URL(location.href);url.searchParams.set('sala',room);url.hash='mestre='+masterSecret;try{await navigator.clipboard.writeText(url.href);$('copyMaster').textContent='✓ Link privado copiado';setTimeout(()=>$('copyMaster').textContent='Copiar link do mestre',1700)}catch{prompt('Copie o link privado do mestre:',url.href)}};
+render();masterUI();const param=new URL(location.href).searchParams.get('sala');if(param){$('roomcode').value=param;joinRoom(param)}
 })();
 </script></body></html>

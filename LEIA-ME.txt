@@ -1,5 +1,14 @@
-Contador RPG – layout moderno e responsivo
+CONTADOR RPG — INIMIGOS COM PV PRIVADOS
 
-No GitHub, substitua SOMENTE o index.html. A imagem floresta-16bits.png deve permanecer na raiz.
-NÃO sobrescreva firebase-config.js.
-Esse pacote mantém os recursos e a sincronização da versão anterior.
+ATENÇÃO: PRECISA ATUALIZAR AS REGRAS DO FIREBASE, NÃO SOMENTE O SITE.
+
+1. No Firebase Console, Realtime Database > Regras, substitua pelas regras em database.rules.json e clique Publicar.
+2. No GitHub, atualize o index.html (também pode subir floresta-16bits.png, mas ela não mudou). NÃO substitua firebase-config.js.
+3. Aguarde publicação e atualize a aba com Ctrl+Shift+R.
+4. Crie uma NOVA sala para ativar o papel de mestre. O navegador que cria a sala recebe um acesso privado aleatório.
+5. Como mestre, clique + Inimigo, informe nome, PV, iniciativa. Jogadores verão somente nome/turno, e não verão os PV.
+6. Acesso do mestre: no menu Sala compartilhada, use Copiar link do mestre para outro aparelho seu. NÃO COMPARTILHE ESSE LINK COM JOGADORES.
+7. Link para jogadores e TV: use Copiar link normal. O modo TV não mostra os cards de inimigos mesmo no navegador do mestre.
+8. A senha de acesso do mestre é um segredo aleatório guardado no navegador que cria a sala e não no banco público. Se limpar os dados locais e perder o link mestre, perde acesso aos PV privados.
+
+IMPORTANTE: As regras públicas do projeto permitem editar a ordem/nomes da sala a todos os participantes; isto não é um sistema anti-trapaça. O banco dos PV de inimigos fica separado do estado público, e seu acesso depende de conhecer o segredo longo do mestre.
