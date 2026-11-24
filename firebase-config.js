@@ -1,7 +1,7 @@
-// Cole aqui os dados de Configuração do aplicativo web no console Firebase.
+// Configuração do aplicativo web no Firebase.
 // Isso NÃO é uma senha: a proteção dos dados depende das regras do Realtime Database.
 window.VDF_FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBAg5SyJ4RsyYYr3dae2V0uZ6Wb5b8ZuFI",
+  apiKey: "AIzaSyBAG5SyJ4RsyYYr3dae2V0uZ6Wb5b8ZuFI",
   authDomain: "contador-rpg.firebaseapp.com",
   databaseURL: "https://contador-rpg-default-rtdb.firebaseio.com",
   projectId: "contador-rpg",
