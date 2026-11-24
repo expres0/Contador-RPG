@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#10231d"><title>Vau do Freixo • Painel compartilhado</title>
+<style>
+:root{--bg:#0c1716;--panel:#1c3028;--panel2:#274237;--line:#6b8874;--gold:#efc477;--text:#f4e7ce;--dim:#b5c6b4;--green:#67b98b;--red:#e57569;--blue:#82b9d8}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100svh;background:radial-gradient(ellipse at 50% 0,#294c40 0,#0c1716 70%);color:var(--text);font:14px/1.5 ui-monospace,Consolas,'Courier New',monospace}body:before{content:"";inset:0;position:fixed;pointer-events:none;opacity:.08;background-image:linear-gradient(90deg,transparent 96%,#c1d8bc 100%),linear-gradient(transparent 96%,#c1d8bc 100%);background-size:8px 8px}.app{max-width:1320px;margin:auto;padding:18px 18px 50px}.hero{position:relative;border:4px solid #5d826b;box-shadow:0 7px 0 #07140e;min-height:164px;display:grid;place-items:center;text-align:center;overflow:hidden;background:linear-gradient(180deg,#102b29dd,#12251df0),radial-gradient(ellipse,#426b54,#101c18)}.hero:before,.hero:after{content:"♣  ❧  ♣  ❧";position:absolute;top:20px;color:#7eac7f;opacity:.6;font-size:22px}.hero:before{left:12px}.hero:after{right:12px}.tiny{font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:800}.hero h1{font-size:clamp(24px,4vw,42px);letter-spacing:1px;text-shadow:3px 3px #000;margin:7px 0}.hero p{margin:0;color:var(--dim);font-size:12px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:24px 0}.status{color:var(--dim);font-size:12px;max-width:700px}.online{color:#9cf0bd}.offline{color:#f1b978}button,input{font:inherit}button{border:2px solid #849f86;background:#345441;color:var(--text);font-weight:800;padding:9px 13px;cursor:pointer;box-shadow:3px 3px #07150d;touch-action:manipulation}button:focus-visible,input:focus-visible{outline:3px solid #e9ca80;outline-offset:2px}button:hover{filter:brightness(1.15)}button:active{transform:translate(2px,2px);box-shadow:1px 1px #07150d}button:disabled{opacity:.5;cursor:not-allowed}input{background:#f1edda;color:#19291f;border:2px solid #91a793;border-radius:0;padding:9px 11px;min-width:0;font-size:16px}.btns{display:flex;gap:9px;flex-wrap:wrap}.secondary{background:#233a30}.danger{background:#763630;border-color:#b77b6d}.success{background:#255a43;border-color:#77b98f}.section{border:2px solid var(--line);background:linear-gradient(165deg,#22392e,#14271f);padding:17px;margin:17px 0;box-shadow:4px 4px #09160f}.section h2{font-size:17px;color:var(--gold);letter-spacing:1px;margin:0 0 14px}.lobby{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.lobby input{max-width:250px}.tip{font-size:11px;color:var(--dim);margin-top:11px}.shareline{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}.shareline input{width:min(100%,560px);flex:1}.layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,.9fr);align-items:start;gap:16px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,265px),1fr));gap:13px}.card{border:3px solid #88a187;position:relative;background:linear-gradient(150deg,#294738,#1b3028);padding:16px;box-shadow:4px 4px #08150e;min-width:0}.card.current{border-color:var(--gold);box-shadow:0 0 0 2px #a57a3b,4px 4px #07150d}.card:before,.card:after{content:'✦';color:var(--gold);position:absolute;top:5px;font-size:11px}.card:before{left:6px}.card:after{right:6px}.toprow{display:flex;align-items:start;justify-content:space-between;gap:7px}.player{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:1px}.char{font-size:clamp(20px,2.6vw,27px);font-weight:900;overflow-wrap:anywhere;line-height:1.18;margin-top:3px}.classline{font-size:11px;color:#bed0bf;margin-top:4px}.smallbtn{font-size:12px;padding:5px 8px}.hp{text-align:center;font-size:clamp(37px,5vw,57px);font-weight:900;line-height:1;margin-top:20px}.hp span{font-size:.55em;color:#96a99a}.hp-caption{font-size:10px;text-align:center;letter-spacing:2px;color:var(--gold);margin:8px 0 11px}.bar{height:22px;background:#102019;border:2px solid #758b78;overflow:hidden}.fill{height:100%;background:repeating-linear-gradient(90deg,#69b985,#69b985 11px,#579d73 11px,#579d73 14px);transition:width .24s}.mid .fill{background:#dbaa55}.critical .fill{background:#d7655a}.foot{display:flex;justify-content:space-between;gap:6px;color:#c0cfc3;font-size:11px;margin:10px 0 15px}.foot .temp{color:#a0d1ef}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.actions button{font-size:15px;padding:11px 0}.extras{margin-top:12px;display:flex;gap:5px;align-items:center;justify-content:space-between;flex-wrap:wrap}.extras button{padding:6px 8px;font-size:11px}.extras label{font-size:11px;color:#cad6c6}.turnlist{display:grid;gap:7px}.turnitem{display:grid;grid-template-columns:30px 1fr auto;gap:7px;align-items:center;background:#213b2f;border:1px solid #5d8668;padding:8px}.turnitem.on{border:2px solid var(--gold);background:#38533b}.turnitem .who{font-size:13px;font-weight:800;overflow-wrap:anywhere}.turnitem .order{color:var(--gold);font-size:16px;font-weight:bold;text-align:center}.turnitem .sub{font-size:11px;color:#aec3b2}.turnitem .controls{display:flex;gap:4px;align-items:center}.turnitem .controls button{padding:5px 8px;font-size:13px}.turnitem .controls input{width:55px;padding:5px 4px;font-size:15px;text-align:center}.bigturn{font-size:16px;font-weight:800;color:var(--gold);margin:8px 0 14px}.noentry{color:var(--dim);font-size:12px;padding:14px}.help{font-size:11px;color:#abbfb0;line-height:1.7;margin-top:14px}.overlay{position:fixed;inset:0;background:#000c;display:grid;place-items:center;padding:12px;z-index:20}.modal{background:#243e31;border:3px solid #a4bd94;padding:22px;width:min(100%,470px);box-shadow:8px 8px #0c190f;max-height:90vh;overflow:auto}.modal h2{margin:0 0 12px;color:var(--gold);font-size:19px}.modal label{display:block;margin-top:10px;font-size:12px}.modal input{display:block;width:100%;margin-top:5px}.modal footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:18px}.hidden{display:none!important}.tv .lobby,.tv #add,.tv #reset,.tv .card .edit,.tv .card .actions,.tv .card .extras,.tv .turnitem .controls,.tv .turncontrols,.tv .tip,.tv .help{display:none!important}.tv .layout{grid-template-columns:1.7fr .9fr}.tv .card{padding:24px}.tv .card .hp{font-size:clamp(54px,7vw,95px)}.tv .status{font-size:11px}.tv .section{padding:20px}.tv .toolbar{justify-content:center}.tv .turnitem{grid-template-columns:30px 1fr}.tv .hero{min-height:135px}@media(max-width:860px){.layout{grid-template-columns:1fr}.tv .layout{grid-template-columns:1fr}.hero:before,.hero:after{display:none}}@media(max-width:480px){.app{padding:10px 10px 30px}.section{padding:12px}.grid{grid-template-columns:1fr}.toolbar{margin:15px 0}.btns button{flex:1}.hero{min-height:130px}.hero h1{font-size:24px}}
+</style></head>
+<body><main class="app"><header class="hero"><div><div class="tiny">✦ VAU DO FREIXO ✦</div><h1>PAINEL DE COMBATE</h1><p>O Rosto da Mentira · PV + Ordem de Iniciativa · 16 bits</p></div></header>
+<div class="toolbar"><span id="status" class="status offline" aria-live="polite">Modo local — conecte-se à sala para sincronizar.</span><div class="btns"><button class="secondary" id="tv">📺 Modo TV</button><button id="add">+ Personagem</button><button class="secondary" id="reset">Restaurar PV</button></div></div>
+<section class="section lobby" id="lobby"><h2>✧ SALA COMPARTILHADA</h2><div class="lobby"><button id="host" class="success">✦ Criar sala na nuvem</button><input id="roomcode" placeholder="Código da sala" aria-label="Código da sala"><button id="join">Entrar na sala</button><button id="leave" class="secondary hidden">Sair da sala</button></div><div class="shareline hidden" id="share"><label for="link">Link para jogadores e TV</label><input id="link" readonly><button id="copy">📋 Copiar link</button></div><div class="tip">Sala pela nuvem: todos podem editar PV e iniciativa. Os dados ficam salvos mesmo quando todos saem. Compartilhe o link só com quem participa da mesa.</div></section>
+<div class="layout"><section class="section"><h2>♥ PERSONAGENS <small id="count" style="color:var(--dim);font-size:11px"></small></h2><div id="cards" class="grid"></div></section><aside class="section"><h2>⚔ ORDEM DOS TURNOS</h2><div class="bigturn" id="turnInfo">Rodada 1 · Nenhum turno selecionado</div><div class="turncontrols btns" style="margin-bottom:12px"><button id="next" class="success">▶ Próximo turno</button><button id="prev" class="secondary">◀ Voltar</button><button id="sort" class="secondary">⇣ Ordenar iniciativa</button></div><div class="turnlist" id="turnlist"></div><p class="help">Digite a iniciativa de cada personagem. Use ↑ ↓ para trocar a ordem. Clique no nome para escolher de quem é o turno. Ao passar do último para o primeiro, a rodada aumenta.</p></aside></div>
+<footer class="help" style="text-align:center">PV temporários absorvem dano antes dos PV normais. · As alterações da sala são salvas no Firebase. · Todos podem editar usando o link da sala. · É necessária conexão com a internet.</footer></main>
+<div class="overlay hidden" id="overlay"><form class="modal" id="form"><h2 id="modalTitle">Editar personagem</h2><label>Nome do personagem<input id="name" required maxlength="70"></label><label>Nome do jogador<input id="player" maxlength="60"></label><label>Raça / classe<input id="klass" maxlength="80"></label><label>PV máximos<input id="max" required type="number" min="1" max="9999"></label><label>PV atuais<input id="hp" required type="number" min="0" max="9999"></label><label>PV temporários<input id="temp" type="number" min="0" max="9999"></label><label>Iniciativa<input id="initiative" type="number" min="-50" max="99"></label><footer><button type="button" id="delete" class="danger">Excluir</button><button type="button" id="cancel" class="secondary">Cancelar</button><button type="submit" class="success">Salvar</button></footer></form></div>
+<script src="./firebase-config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<script>
+(()=>{'use strict';
+const KEY='vdf-hp-turns-v2';
+const defaults=[{id:'goblin',name:'Goblin ladino',player:'Jogador 1',klass:'Ladino · Goblin',max:24,hp:24,temp:0,initiative:0},{id:'draconato',name:'Draconato guerreiro',player:'Jogador 2',klass:'Guerreiro · Draconato',max:28,hp:28,temp:0,initiative:0},{id:'tiefling',name:'Tiefling clériga',player:'Jogadora 3',klass:'Clériga · Tiefling',max:22,hp:22,temp:0,initiative:0}];
+let state;try{const data=JSON.parse(localStorage.getItem(KEY));state=validState(data)?data:initial()}catch{state=initial()}
+let mode='local',room='',roomRef=null, roomListener=null, editId=null, firebaseDb=null, authPromise=null, roomReady=false, processing=false;
+const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[t])), num=(v,lo,hi)=>Math.max(lo,Math.min(hi,Number(v)||0));
+function initial(){return {chars:structuredClone(defaults),order:defaults.map(x=>x.id),turn:null,round:1,revision:0}}
+function validState(s){return s&&Array.isArray(s.chars)&&Array.isArray(s.order)&&typeof s.round==='number'}
+function normalize(s){if(!validState(s))return initial();s.chars=s.chars.filter(c=>c&&typeof c.id==='string').slice(0,40).map(c=>({id:String(c.id).slice(0,70),name:String(c.name||'Personagem').slice(0,70),player:String(c.player||'').slice(0,60),klass:String(c.klass||'').slice(0,80),max:num(c.max,1,9999),hp:num(c.hp,0,num(c.max,1,9999)),temp:num(c.temp,0,9999),initiative:num(c.initiative,-50,99)}));const ids=s.chars.map(c=>c.id);s.order=[...new Set(s.order.filter(id=>ids.includes(id)))];for(const id of ids)if(!s.order.includes(id))s.order.push(id);if(!s.order.includes(s.turn))s.turn=null;s.round=num(s.round,1,999);return s}
+state=normalize(state);
+function save(){if(mode==='local'){try{localStorage.setItem(KEY,JSON.stringify(state))}catch{}}}
+function status(s,online){$('status').textContent=s;$('status').className='status '+(online?'online':'offline')}
+function commit(){state.revision=(state.revision||0)+1;save();render()}
+function dispatch(action){
+  if(mode==='local'){reduce(action);commit();return}
+  if(!roomReady||!roomRef){alert('Sala desconectada. Confira a internet e tente novamente.');return}
+  // Database transactions prevent two concurrent writes from overwriting each other.
+  roomRef.transaction(current=>{
+    if(!validState(current))return; // never recreate deleted/invalid room on edits
+    const original=state;
+    try{state=normalize(structuredClone(current));reduce(action);state.revision=(state.revision||0)+1;return state}
+    finally{state=original}
+  },(err,committed)=>{
+    if(err){status('Falha ao salvar mudança: '+err.message,false);alert('Não foi possível sincronizar sua alteração. Verifique sua conexão.');}
+    else if(!committed)status('Alteração não concluída. A sala pode ter sido removida.',false);
+  },false);
+}
+function reduce(a){if(!a||typeof a.type!=='string')return;const c=state.chars.find(x=>x.id===a.id);switch(a.type){
+case 'damage':if(!c)return;{const amt=num(a.amount,0,9999),abs=Math.min(c.temp,amt);c.temp-=abs;c.hp=Math.max(0,c.hp-(amt-abs))}break;
+case 'heal':if(c)c.hp=num(c.hp+num(a.amount,0,9999),0,c.max);break;
+case 'temp':if(c)c.temp=Math.max(c.temp,num(a.amount,0,9999));break;
+case 'initiative':if(c)c.initiative=num(a.value,-50,99);break;
+case 'up':case 'down':{const i=state.order.indexOf(a.id),j=i+(a.type==='up'?-1:1);if(i>=0&&j>=0&&j<state.order.length)[state.order[i],state.order[j]]=[state.order[j],state.order[i]];}break;
+case 'sort':state.order.sort((x,y)=>(state.chars.find(c=>c.id===y)?.initiative||0)-(state.chars.find(c=>c.id===x)?.initiative||0));break;
+case 'turn':if(state.order.includes(a.id))state.turn=a.id;break;
+case 'next':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i+1)%state.order.length;if(i>=0&&j===0)state.round++;state.turn=state.order[j];}break;
+case 'prev':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i-1+state.order.length)%state.order.length;if(i===0&&state.round>1)state.round--;state.turn=state.order[j];}break;
+case 'reset':state.chars.forEach(c=>{c.hp=c.max;c.temp=0});break;
+case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),max,hp:num(d.hp,0,max),temp:num(d.temp,0,9999),initiative:num(d.initiative,-50,99)};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0)state.chars[i]=data;else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
+case 'delete':state.chars=state.chars.filter(c=>c.id!==a.id);state.order=state.order.filter(id=>id!==a.id);if(state.turn===a.id)state.turn=null;break;
+}}
+function render(){const cards=$('cards');$('count').textContent=`(${state.chars.length})`;
+cards.innerHTML=state.chars.map(c=>{const pc=100*c.hp/c.max,level=pc<=25?'critical':pc<=50?'mid':'';return `<article class="card ${level} ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}"><div class="toprow"><div><div class="player">${esc(c.player||'AVENTUREIRO')}</div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass)}</div></div><button class="secondary smallbtn edit" data-act="edit" title="Editar personagem">✎</button></div><div class="hp">${c.hp}<span> / ${c.max}</span></div><div class="hp-caption">PONTOS DE VIDA</div><div class="bar"><div class="fill" style="width:${pc}%"></div></div><div class="foot"><span>${c.hp===0?'☠️ 0 PV':pc<=25?'⚠ CRÍTICO':pc<=50?'FERIDO':'PRONTO'}</span><span class="temp">🛡 TEMP.: ${c.temp}</span></div><div class="actions"><button class="danger" data-act="damage">− DANO</button><button class="success" data-act="heal">+ CURA</button></div><div class="extras"><label>Ajuste rápido</label><span><button class="secondary" data-act="minus">−1</button> <button class="secondary" data-act="plus">+1</button> <button class="secondary" data-act="temp">🛡 PV temp.</button></span></div></article>`}).join('')||'<p class="noentry">Nenhum personagem cadastrado.</p>';
+const current=state.chars.find(c=>c.id===state.turn);$('turnInfo').textContent=`Rodada ${state.round} · ${current?'Vez de '+current.name:'Nenhum turno selecionado'}`;
+$('turnlist').innerHTML=state.order.map((id,i)=>{const c=state.chars.find(x=>x.id===id);if(!c)return '';return `<div class="turnitem ${state.turn===id?'on':''}" data-id="${esc(id)}"><span class="order">${i+1}</span><div><div class="who" role="button" tabindex="0" data-act="turn" style="cursor:pointer">${esc(c.name)} ${state.turn===id?'◀':''}</div><div class="sub">${esc(c.player)}</div></div><div class="controls"><input aria-label="Iniciativa de ${esc(c.name)}" type="number" min="-50" max="99" value="${c.initiative}" data-act="initiative"><button class="secondary" data-act="up" title="Subir na ordem">↑</button><button class="secondary" data-act="down" title="Descer na ordem">↓</button></div></div>`}).join('')||'<div class="noentry">Cadastre personagens para iniciar a ordem.</div>';
+}
+$('cards').addEventListener('click',e=>{const b=e.target.closest('button[data-act]'),article=b?.closest('article');if(!b||!article)return;const id=article.dataset.id,a=b.dataset.act;if(a==='edit')return openForm(id);if(a==='plus'||a==='minus')return dispatch({type:a==='plus'?'heal':'damage',id,amount:1});const raw=prompt(a==='damage'?'Quantos pontos de dano?':a==='heal'?'Quantos pontos de cura?':'Quantos PV temporários serão concedidos? (mantém o maior)', '5');if(raw===null)return;if(!/^\d+$/.test(raw.trim()))return alert('Digite um número inteiro válido.');dispatch({type:a,id,amount:Number(raw)})});
+$('turnlist').addEventListener('click',e=>{const b=e.target.closest('[data-act]'),row=b?.closest('.turnitem');if(!b||!row)return;const a=b.dataset.act;if(a==='initiative')return;dispatch({type:a,id:row.dataset.id})});
+$('turnlist').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.dataset.act==='turn'){e.preventDefault();dispatch({type:'turn',id:e.target.closest('.turnitem').dataset.id})}});
+$('turnlist').addEventListener('change',e=>{if(e.target.dataset.act!=='initiative')return;dispatch({type:'initiative',id:e.target.closest('.turnitem').dataset.id,value:e.target.value})});
+$('next').onclick=()=>dispatch({type:'next'});$('prev').onclick=()=>dispatch({type:'prev'});$('sort').onclick=()=>dispatch({type:'sort'});$('reset').onclick=()=>{if(confirm('Restaurar os PV máximos de todos e remover PV temporários?'))dispatch({type:'reset'})};$('tv').onclick=()=>{const tv=document.body.classList.toggle('tv');$('tv').textContent=tv?'✎ Sair da TV':'📺 Modo TV'};
+function openForm(id){editId=id;const c=state.chars.find(c=>c.id===id);$('modalTitle').textContent=c?'Editar personagem':'Novo personagem';$('name').value=c?.name||'';$('player').value=c?.player||'';$('klass').value=c?.klass||'';$('max').value=c?.max||20;$('hp').value=c?.hp??20;$('temp').value=c?.temp||0;$('initiative').value=c?.initiative??0;$('delete').classList.toggle('hidden',!c);$('overlay').classList.remove('hidden');$('name').focus()}
+function closeForm(){$('overlay').classList.add('hidden')}
+$('add').onclick=()=>openForm(null);$('cancel').onclick=closeForm;$('overlay').addEventListener('click',e=>{if(e.target===$('overlay'))closeForm()});window.addEventListener('keydown',e=>{if(e.key==='Escape')closeForm()});$('delete').onclick=()=>{if(editId&&confirm('Excluir personagem da sala?')){dispatch({type:'delete',id:editId});closeForm()}};
+$('form').onsubmit=e=>{e.preventDefault();if(!$('name').value.trim())return;const char={id:editId||'p'+Math.random().toString(36).slice(2),name:$('name').value.trim(),player:$('player').value.trim(),klass:$('klass').value.trim(),max:$('max').value,hp:$('hp').value,temp:$('temp').value,initiative:$('initiative').value};dispatch({type:'savechar',char});closeForm()};
+
+function roomId(){const bytes=new Uint8Array(10);crypto.getRandomValues(bytes);return [...bytes].map(b=>b.toString(16).padStart(2,'0')).join('')}
+function showShare(){const url=new URL(window.location.href);url.searchParams.set('sala',room);$('link').value=url.href;$('share').classList.remove('hidden');$('roomcode').value=room;$('leave').classList.remove('hidden')}
+function cleanup(){
+  if(roomRef&&roomListener){roomRef.off('value',roomListener)}
+  roomRef=null;roomListener=null;roomReady=false;mode='local';room='';
+  $('share').classList.add('hidden');$('leave').classList.add('hidden');
+  status('Modo local — salvos neste aparelho.',false);
+  const url=new URL(location.href);url.searchParams.delete('sala');history.replaceState(null,'',url);render();
+}
+async function ready(){
+  if(firebaseDb){if(authPromise)await authPromise;return firebaseDb;}
+  const cfg=window.VDF_FIREBASE_CONFIG;
+  if(!cfg||!cfg.apiKey||!cfg.databaseURL||cfg.apiKey.startsWith('COLE_')){
+    throw new Error('Firebase ainda não configurado. Preencha o arquivo firebase-config.js e publique novamente.');
+  }
+  if(typeof firebase==='undefined')throw new Error('Bibliotecas Firebase não carregaram. Verifique sua conexão.');
+  if(!firebase.apps.length)firebase.initializeApp(cfg);
+  firebaseDb=firebase.database();
+  if(!authPromise)authPromise=firebase.auth().signInAnonymously().catch(err=>{authPromise=null;throw err});
+  await authPromise;
+  return firebaseDb;
+}
+function listenRoom(code){
+  room=code;mode='cloud';roomRef=firebaseDb.ref('rooms/'+room+'/state');roomReady=false;
+  showShare();
+  roomListener=snap=>{
+    if(!snap.exists()){roomReady=false;status('Sala não encontrada. Peça ao mestre para criar uma nova.',false);return}
+    const data=snap.val();
+    if(!validState(data)){roomReady=false;status('Dados da sala inválidos.',false);return}
+    roomReady=true;state=normalize(data);render();status('☁ Sala '+room+' sincronizada em tempo real.',true);
+  };
+  roomRef.on('value',roomListener,err=>{roomReady=false;status('Erro ao ler sala: '+err.message,false)});
+}
+$('host').onclick=async()=>{
+  if(processing)return;processing=true;
+  try{
+    cleanup();status('Criando sala na nuvem…',false);await ready();
+    const code=roomId();const ref=firebaseDb.ref('rooms/'+code+'/state');
+    const seed=normalize(structuredClone(state));
+    const result=await ref.transaction(current=>current===null?seed:undefined,undefined,false);
+    if(!result.committed)throw new Error('Não foi possível reservar uma sala. Tente novamente.');
+    listenRoom(code);
+  }catch(err){status('Erro ao criar sala: '+(err.message||err),false)}finally{processing=false}
+};
+async function joinRoom(code){
+  if(processing)return;processing=true;
+  try{
+    code=String(code||'').trim().toLowerCase();
+    if(!/^[a-f0-9]{20}$/.test(code)){alert('Código inválido. Use o link ou o código de 20 caracteres da sala.');return}
+    cleanup();status('Conectando à sala na nuvem…',false);await ready();
+    const ref=firebaseDb.ref('rooms/'+code+'/state');
+    const snap=await ref.once('value');
+    if(!snap.exists())throw new Error('Sala não encontrada. Confira o link enviado.');
+    listenRoom(code);
+  }catch(err){status('Erro ao entrar: '+(err.message||err),false)}finally{processing=false}
+}
+$('join').onclick=()=>joinRoom($('roomcode').value);
+$('roomcode').addEventListener('keydown',e=>{if(e.key==='Enter')joinRoom($('roomcode').value)});
+$('leave').onclick=cleanup;
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('link').value);$('copy').textContent='✓ Copiado';setTimeout(()=>$('copy').textContent='📋 Copiar link',1500)}catch{$('link').select();alert('Copie o texto selecionado manualmente.')}};
+render();const param=new URL(location.href).searchParams.get('sala');if(param){$('roomcode').value=param;joinRoom(param)}
+})();
+</script></body></html>
