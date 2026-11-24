@@ -139,6 +139,49 @@ select{background:#f4f2e9;color:#1e3126;padding:10px 12px;border:1px solid rgba(
 .tv .sheet-open,.tv .sheet-panel{display:none!important}
 @media(max-width:650px){.grid>.card.sheet-expanded{grid-column:1/-1}.sheet-panel{margin-top:15px}.sheet-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.sheet-fields{grid-template-columns:1fr}.sheet-field.wide{grid-column:auto}.sheet-item-add{grid-template-columns:1fr 82px}.sheet-item-add button{grid-column:1/-1}.sheet-tabs{margin:8px -4px 12px}.sheet-tab{font-size:12px;padding:8px 12px}.sheet-panel-header h3{font-size:18px}.wallet-cell{padding:12px 4px}.wallet-cell .coin-controls{gap:4px}.wallet-cell button{width:36px}}
 
+
+/* Ficha-gaveta V2: navegação de aplicativo, sem sair do cartão */
+.sheet-panel{margin-top:18px;padding-top:17px}
+.sheet-panel-header{margin-bottom:15px}
+.sheet-eyebrow{display:block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:760;color:#a3c4ac;margin-bottom:6px}
+.sheet-close{min-height:36px;font-size:12px;padding:7px 12px}
+.sheet-snapshot{display:grid;grid-template-columns:minmax(0,1fr) minmax(270px,.95fr);gap:17px;align-items:center;padding:16px;border-radius:15px;background:rgba(8,26,20,.42);border:1px solid rgba(219,239,222,.1)}
+.sheet-snapshot-title h3{font-size:clamp(23px,2.4vw,31px);margin:0;letter-spacing:-.7px;line-height:1.14}
+.sheet-snapshot-title p{font-size:12px;color:#b8cdbd;margin:7px 0 0}
+.sheet-snapshot-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sheet-snapshot-metrics>div{border-radius:12px;background:rgba(235,250,237,.07);border:1px solid rgba(222,240,224,.12);padding:11px 8px;text-align:center}
+.sheet-snapshot-metrics small{font-size:10px;color:#b6cabc;display:block;white-space:nowrap}
+.sheet-snapshot-metrics strong{display:block;font-size:clamp(17px,2.1vw,24px);margin-top:4px;color:#f8f8ef}
+.sheet-snapshot-metrics strong span{font-size:.6em;color:#aac2ae}
+.sheet-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:17px 0 13px;overflow:visible;padding:0}
+.sheet-tab{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;white-space:normal;min-width:0;min-height:68px;padding:9px 5px;border-radius:13px;background:rgba(225,246,230,.07);border:1px solid rgba(229,247,231,.09);font-size:12px;line-height:1.15;color:#edf4e8}
+.sheet-tab-icon{font-size:22px;font-weight:600;color:#ebd394;line-height:1}
+.sheet-tab.active{background:color-mix(in srgb, var(--card-glow,#567c61) 34%, #162b22);color:#fff;border-color:color-mix(in srgb, var(--card-glow,#567c61) 62%, transparent);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+.sheet-tab.active .sheet-tab-icon{color:#f9e3a7}
+.sheet-tab:hover{background:rgba(225,246,230,.16)}
+.sheet-area{padding:clamp(14px,2vw,23px);background:rgba(9,25,18,.35)}
+.sheet-area-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 17px}
+.sheet-area-head h4{font-size:18px;letter-spacing:-.3px;margin:0}
+.sheet-soft-label{font-size:11px;color:#aac3ad;text-align:right}
+.sheet-overview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sheet-overview-tile{border:1px solid rgba(225,243,225,.11);background:rgba(236,251,236,.06);padding:16px;border-radius:12px;min-width:0}
+.sheet-overview-tile small{display:block;font-size:11px;color:#b4c8b8;margin-bottom:7px}
+.sheet-overview-tile strong{display:block;font-size:19px;line-height:1.1;overflow-wrap:anywhere}
+.sheet-quick-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:17px 0}
+.sheet-quick-links button{display:flex;justify-content:space-between;align-items:center;min-width:0;background:rgba(228,248,229,.06);color:#f2f4ed;font-size:12px}
+.sheet-quick-links span{font-size:21px;color:#e7d093}
+.sheet-quick-edit{border-top:1px solid rgba(224,241,226,.12);margin-top:19px;padding-top:18px}
+.sheet-quick-edit h4{font-size:15px}
+.sheet-stat{padding:15px 10px}.sheet-stat label{font-size:12px}.sheet-stat .modifier{font-size:clamp(23px,2.6vw,30px);font-weight:800;color:#ead393;margin:5px 0 8px}
+.sheet-stat input{font-size:15px;max-width:80px}
+.wallet-five{grid-template-columns:repeat(5,minmax(0,1fr))}.wallet-five .wallet-cell{padding:15px 7px 12px}.wallet-five .wallet-cell strong{font-size:clamp(22px,2.3vw,30px)}
+.wallet-five .coin-controls{gap:5px}.wallet-five .wallet-cell button{min-width:36px;width:38px}
+.wallet-po .coin-name,.wallet-pl .coin-name{color:#e2cc93}.wallet-pe .coin-name{color:#acd0b9}.wallet-pp .coin-name{color:#d2dde1}.wallet-pc .coin-name{color:#d4ad88}
+.sheet-intro{margin-bottom:17px;padding:12px;background:rgba(219,240,220,.05);border-radius:10px}
+@media(max-width:800px){.sheet-snapshot{grid-template-columns:1fr}.sheet-snapshot-metrics strong{font-size:21px}.wallet-five{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.sheet-snapshot{padding:13px}.sheet-snapshot-title h3{font-size:22px}.sheet-snapshot-metrics{gap:6px}.sheet-snapshot-metrics>div{padding:9px 4px}.sheet-snapshot-metrics small{font-size:10px}.sheet-snapshot-metrics strong{font-size:19px}.sheet-tabs{gap:5px}.sheet-tab{font-size:10px;min-height:61px;padding:7px 2px}.sheet-tab-icon{font-size:20px}.sheet-area-head h4{font-size:17px}.sheet-soft-label{font-size:10px}.sheet-overview-grid{gap:8px}.sheet-overview-tile{padding:12px}.sheet-overview-tile strong{font-size:16px}.sheet-quick-links{grid-template-columns:1fr}.wallet-five{grid-template-columns:repeat(3,minmax(0,1fr))}.wallet-five .wallet-cell{padding:10px 3px}.wallet-five .wallet-cell button{width:33px;min-width:30px;height:34px}.sheet-item-add{grid-template-columns:1fr 75px}}
+@media(max-width:370px){.sheet-tab{font-size:9px}.sheet-snapshot-metrics strong{font-size:17px}.sheet-stat{padding:9px 3px}.sheet-stat .modifier{font-size:22px}}
+
 </style></head>
 <body><main class="app"><header class="hero"><div><h1>Contador RPG</h1><p>Painel de combate · Pontos de vida e iniciativa</p></div></header>
 <div class="toolbar"><span id="status" class="status offline" aria-live="polite">Modo local — conecte-se à sala para sincronizar.</span><div class="btns"><button class="secondary" id="tv">📺 Modo TV</button><button id="add">+ Personagem</button><button id="addEnemy" class="secondary hidden">+ Inimigo</button><button class="secondary" id="reset">Restaurar PV</button></div></div>
@@ -176,33 +219,41 @@ function cleanSheet(raw){
   return {
     stats:Object.fromEntries(STAT_CODES.map(k=>[k,num(rawStats[k]??10,1,30)])),
     ac:num(v.ac??10,0,99),speed:num(v.speed??9,0,99),level:num(v.level??1,1,20),
-    background:cleanText(v.background,150),alignment:cleanText(v.alignment,80),
+    background:cleanText(v.background,150),alignment:cleanText(v.alignment,80),personality:cleanText(v.personality,2600),ideals:cleanText(v.ideals,2600),bonds:cleanText(v.bonds,2600),flaws:cleanText(v.flaws,2600),passive:num(v.passive??10,0,99),
     proficiencies:cleanText(v.proficiencies,3000),traits:cleanText(v.traits,4000),
     story:cleanText(v.story,9000),notes:cleanText(v.notes,5000),
     spells:cleanText(v.spells,8000),
-    coins:{po:num(rawCoins.po,0,999999),pp:num(rawCoins.pp,0,999999),pc:num(rawCoins.pc,0,999999)},
+    coins:{po:num(rawCoins.po,0,999999),pp:num(rawCoins.pp,0,999999),pc:num(rawCoins.pc,0,999999),pe:num(rawCoins.pe,0,999999),pl:num(rawCoins.pl,0,999999)},
     items:Array.isArray(v.items)?v.items.slice(0,120).filter(it=>it&&typeof it.name==='string').map(it=>({id:cleanText(it.id,70),name:cleanText(it.name,140),qty:num(it.qty??1,0,9999)})):[]
   };
 }
 function mod(v){const n=Math.floor((v-10)/2);return n>=0?'+'+n:String(n)}
 function sheetField(label,key,value,kind='text',full=false){return `<label class="sheet-field ${full?'wide':''}">${label}${kind==='textarea'?`<textarea data-sheet-field="${key}" rows="5">${esc(value)}</textarea>`:`<input data-sheet-field="${key}" value="${esc(value)}" ${kind==='number'?'type="number" min="0" max="99"':'type="text"'}>`}</label>`}
 function sheetPanel(c){
-  const data=cleanSheet(c.sheet),id=esc(c.id),tabs=[['resumo','Atributos'],['combate','Combate'],['inventario','Inventário'],['historia','História'],['magias','Magias']];
-  const menu=`<div class="sheet-tabs" role="tablist" aria-label="Áreas da ficha">${tabs.map(([key,title])=>`<button class="sheet-tab ${sheetTab===key?'active':''}" role="tab" aria-selected="${sheetTab===key}" data-sheet-tab="${key}">${title}</button>`).join('')}</div>`;
+  const data=cleanSheet(c.sheet),id=esc(c.id);
+  const tabs=[['resumo','⌂','Resumo'],['atributos','✧','Atributos'],['inventario','▣','Inventário'],['magias','✦','Magias'],['historia','▤','História']];
+  const menu=`<nav class="sheet-tabs" role="tablist" aria-label="Seções da ficha">${tabs.map(([key,ico,title])=>`<button class="sheet-tab ${sheetTab===key?'active':''}" type="button" role="tab" aria-selected="${sheetTab===key}" data-sheet-tab="${key}"><span class="sheet-tab-icon" aria-hidden="true">${ico}</span><span>${title}</span></button>`).join('')}</nav>`;
+  const pb=Math.max(2,Math.ceil(data.level/4)+1), dex=Math.floor((data.stats.DES-10)/2);
+  const init=dex>=0?'+'+dex:String(dex);
+  const overview=`<div class="sheet-snapshot"><div class="sheet-snapshot-title"><span class="sheet-eyebrow">FICHA DE PERSONAGEM</span><h3>${esc(c.name)}</h3><p>${esc(c.klass||'Aventureiro')} · Nível ${data.level}</p></div><div class="sheet-snapshot-metrics"><div><small>♥ PV</small><strong>${c.hp}<span> / ${c.max}</span></strong></div><div><small>⬡ CA</small><strong>${data.ac}</strong></div><div><small>ϟ Iniciativa</small><strong>${init}</strong></div></div></div>`;
   let body='';
   if(sheetTab==='resumo'){
-    body=`<h4>Seus atributos</h4><div class="sheet-grid">${STAT_CODES.map((k,i)=>`<div class="sheet-stat"><label for="stat-${k}">${STAT_NAMES[i]}</label><input id="stat-${k}" aria-label="${STAT_NAMES[i]}" data-sheet-stat="${k}" type="number" min="1" max="30" value="${data.stats[k]}"><span class="modifier">${mod(data.stats[k])}</span></div>`).join('')}</div><div class="sheet-actions"><small>Modificadores calculados automaticamente.</small><button class="success" data-sheet-action="save">Salvar atributos</button></div>`;
-  }else if(sheetTab==='combate'){
-    body=`<h4>Informações de combate</h4><div class="sheet-fields">${sheetField('Classe de armadura','ac',data.ac,'number')}${sheetField('Deslocamento (m)','speed',data.speed,'number')}${sheetField('Nível','level',data.level,'number')}${sheetField('Antecedente','background',data.background)}${sheetField('Proficiências e idiomas','proficiencies',data.proficiencies,'textarea',true)}${sheetField('Características e talentos','traits',data.traits,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar informações</button></div>`;
+    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">VISÃO RÁPIDA</span><h4>Essencial da aventura</h4></div><span class="sheet-soft-label">Consulte em segundos</span></div>
+    <div class="sheet-overview-grid">
+      ${[['Deslocamento',data.speed+' m'],['Bônus de proficiência','+'+pb],['Percepção passiva',String(data.passive)],['Antecedente',data.background||'Não informado']].map(([name,value])=>`<div class="sheet-overview-tile"><small>${name}</small><strong>${esc(value)}</strong></div>`).join('')}
+    </div><div class="sheet-quick-links"><button type="button" data-sheet-tab="atributos">✧ Consultar atributos <span>›</span></button><button type="button" data-sheet-tab="inventario">▣ Abrir inventário <span>›</span></button><button type="button" data-sheet-tab="magias">✦ Ver magias <span>›</span></button></div>
+    <div class="sheet-quick-edit"><h4>Detalhes de combate</h4><div class="sheet-fields">${sheetField('CA','ac',data.ac,'number')}${sheetField('Deslocamento (m)','speed',data.speed,'number')}${sheetField('Nível','level',data.level,'number')}${sheetField('Percepção passiva','passive',data.passive,'number')}${sheetField('Antecedente','background',data.background)}</div><div class="sheet-actions"><small>Iniciativa e proficiência são referências calculadas.</small><button class="success" data-sheet-action="save">Salvar alterações</button></div></div>`;
+  }else if(sheetTab==='atributos'){
+    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">TESTES E PERÍCIAS</span><h4>Atributos</h4></div><span class="sheet-soft-label">Modificadores automáticos</span></div><div class="sheet-grid">${STAT_CODES.map((k,i)=>`<div class="sheet-stat"><label for="stat-${k}">${STAT_NAMES[i]}</label><strong class="modifier">${mod(data.stats[k])}</strong><input id="stat-${k}" aria-label="${STAT_NAMES[i]}" data-sheet-stat="${k}" type="number" min="1" max="30" value="${data.stats[k]}"></div>`).join('')}</div><div class="sheet-actions"><small>Altere o valor e toque em salvar.</small><button class="success" data-sheet-action="save">Salvar atributos</button></div><div class="sheet-quick-edit"><h4>Proficiências e características</h4><div class="sheet-fields">${sheetField('Proficiências e idiomas','proficiencies',data.proficiencies,'textarea',true)}${sheetField('Características e talentos','traits',data.traits,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar informações</button></div></div>`;
   }else if(sheetTab==='inventario'){
-    const coins=[['po','Ouro','🟡'],['pp','Prata','⚪'],['pc','Cobre','🟠']];
-    body=`<h4>Carteira de moedas</h4><div class="wallet">${coins.map(([k,label,emoji])=>`<div class="wallet-cell"><span class="coin-name">${emoji} ${label}</span><strong>${data.coins[k]}</strong><div class="coin-controls"><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="-1" aria-label="Remover uma moeda de ${label}">−</button><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="1" aria-label="Adicionar uma moeda de ${label}">+</button></div></div>`).join('')}</div><h4>Equipamentos e itens</h4><div class="sheet-inventory">${data.items.length?data.items.map(it=>`<div class="sheet-item"><span>${esc(it.name)} <small>× ${it.qty}</small></span><div class="sheet-item-actions"><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="-1" title="Remover 1">−</button><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="1" title="Adicionar 1">+</button><button class="danger" data-sheet-action="item-del" data-item="${esc(it.id)}" title="Excluir item">×</button></div></div>`).join(''):'<p class="sheet-note">Inventário vazio. Adicione o primeiro item abaixo.</p>'}</div><div class="sheet-item-add"><label class="sheet-field">Item<input id="sheet-item-name" maxlength="140" placeholder="Ex.: Poção de cura"></label><label class="sheet-field">Qtd.<input id="sheet-item-qty" type="number" min="1" max="9999" value="1"></label><button class="success" data-sheet-action="item-add">+ Adicionar</button></div><p class="sheet-drawer-hint">As moedas e os itens são salvos na sala ao alterar.</p>`;
-  }else if(sheetTab==='historia'){
-    body=`<h4>História e origens</h4><div class="sheet-fields">${sheetField('Alinhamento','alignment',data.alignment)}${sheetField('História','story',data.story,'textarea',true)}${sheetField('Anotações e aliados','notes',data.notes,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar história</button></div>`;
-  }else {
-    body=`<h4>Magias e habilidades</h4><div class="sheet-fields">${sheetField('Truques, magias e observações','spells',data.spells,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar magias</button></div>`;
+    const coins=[['pl','Platina','◈'],['po','Ouro','●'],['pe','Electro','◇'],['pp','Prata','●'],['pc','Cobre','●']];
+    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">RECURSOS</span><h4>Carteira</h4></div><span class="sheet-soft-label">Alterações rápidas</span></div><div class="wallet wallet-five">${coins.map(([k,label,ico])=>`<div class="wallet-cell wallet-${k}"><span class="coin-name"><span aria-hidden="true">${ico}</span> ${label}</span><strong>${data.coins[k]}</strong><div class="coin-controls"><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="-1" aria-label="Remover uma moeda de ${label}">−</button><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="1" aria-label="Adicionar uma moeda de ${label}">+</button></div></div>`).join('')}</div><div class="sheet-area-head"><div><span class="sheet-eyebrow">MOCHILA</span><h4>Itens e equipamentos</h4></div><span class="sheet-soft-label">${data.items.length} itens diferentes</span></div><div class="sheet-inventory">${data.items.length?data.items.map(it=>`<div class="sheet-item"><span>${esc(it.name)} <small>× ${it.qty}</small></span><div class="sheet-item-actions"><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="-1" aria-label="Diminuir quantidade">−</button><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="1" aria-label="Aumentar quantidade">+</button><button class="danger" data-sheet-action="item-del" data-item="${esc(it.id)}" aria-label="Excluir item">×</button></div></div>`).join(''):'<p class="sheet-note">Sua mochila está vazia. Adicione um item abaixo.</p>'}</div><div class="sheet-item-add"><label class="sheet-field">Novo item<input id="sheet-item-name" maxlength="140" placeholder="Ex.: Poção de cura"></label><label class="sheet-field">Qtd.<input id="sheet-item-qty" type="number" min="1" max="9999" value="1"></label><button class="success" data-sheet-action="item-add">+ Adicionar</button></div><p class="sheet-drawer-hint">Itens e moedas são salvos ao alterar.</p>`;
+  }else if(sheetTab==='magias'){
+    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">CONJURAÇÃO</span><h4>Magias e habilidades</h4></div></div><div class="sheet-note sheet-intro">Por enquanto, use este espaço para magias, truques, espaços gastos e observações. Podemos evoluir para uma lista interativa por nível depois.</div><div class="sheet-fields">${sheetField('Anotações de magias','spells',data.spells,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar magias</button></div>`;
+  }else{
+    body=`<div class="sheet-area-head"><div><span class="sheet-eyebrow">INTERPRETAÇÃO</span><h4>História e personalidade</h4></div></div><div class="sheet-fields">${sheetField('Alinhamento','alignment',data.alignment)}${sheetField('Traços de personalidade','personality',data.personality,'textarea',true)}${sheetField('Ideais','ideals',data.ideals,'textarea',true)}${sheetField('Vínculos','bonds',data.bonds,'textarea',true)}${sheetField('Fraquezas','flaws',data.flaws,'textarea',true)}${sheetField('História e origens','story',data.story,'textarea',true)}${sheetField('Aliados e anotações','notes',data.notes,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar história</button></div>`;
   }
-  return `<div class="sheet-panel" data-sheet-owner="${id}"><div class="sheet-panel-header"><div><h3>Ficha de ${esc(c.name)}</h3><p class="sheet-note">Abra uma área, edite e salve sem sair do combate.</p></div><button class="secondary" data-sheet-action="close">Fechar ficha ✕</button></div>${menu}<div class="sheet-area">${body}</div></div>`;
+  return `<section class="sheet-panel" data-sheet-owner="${id}"><div class="sheet-panel-header"><div><span class="sheet-eyebrow">EXPANDIDO DO CONTADOR</span><p class="sheet-note">A ficha faz parte do seu personagem.</p></div><button class="secondary sheet-close" data-sheet-action="close">Fechar ✕</button></div>${overview}${menu}<div class="sheet-area">${body}</div></section>`;
 }
 function normalize(s){if(!validState(s))return initial();s.chars=s.chars.filter(c=>c&&typeof c.id==='string').slice(0,40).map(c=>({id:String(c.id).slice(0,70),name:String(c.name||'Personagem').slice(0,70),player:c.enemy?'INIMIGO':String(c.player||'').slice(0,60),klass:String(c.klass||'').slice(0,80),enemy:!!c.enemy,max:c.enemy?1:num(c.max,1,9999),hp:c.enemy?1:num(c.hp,0,num(c.max,1,9999)),temp:c.enemy?0:num(c.temp,0,9999),initiative:num(c.initiative,-50,99),accent:accentName(c),defeated:!!c.enemy&&c.defeated===true,...(!c.enemy?{sheet:cleanSheet(c.sheet)}:{})}));const ids=s.chars.map(c=>c.id);s.order=[...new Set(s.order.filter(id=>ids.includes(id)))];for(const id of ids)if(!s.order.includes(id))s.order.push(id);if(!s.order.includes(s.turn))s.turn=null;s.round=num(s.round,1,999);return s}
 state=normalize(state);
@@ -246,7 +297,7 @@ case 'next':{if(!state.order.length)break;const i=state.order.indexOf(state.turn
 case 'prev':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i-1+state.order.length)%state.order.length;if(i===0&&state.round>1)state.round--;state.turn=state.order[j];}break;
 case 'reset':state.chars.forEach(c=>{if(!c.enemy){c.hp=c.max;c.temp=0}});break;
 case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),enemy=!!d.enemy,data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:enemy?'INIMIGO':String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),enemy,max:enemy?1:max,hp:enemy?1:num(d.hp,0,max),temp:enemy?0:num(d.temp,0,9999),initiative:num(d.initiative,-50,99),accent:accentName(d),defeated:enemy?!!d.defeated:false};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0){data.sheet=state.chars[i].sheet;state.chars[i]=data}else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
-case 'sheet-save':if(c&&!c.enemy){const prev=cleanSheet(c.sheet);const d=a.data||{};for(const k of ['ac','speed','level','background','alignment','proficiencies','traits','story','notes','spells'])if(Object.hasOwn(d,k))prev[k]=d[k];if(d.stats&&typeof d.stats==='object')Object.assign(prev.stats,d.stats);c.sheet=cleanSheet(prev)}break;
+case 'sheet-save':if(c&&!c.enemy){const prev=cleanSheet(c.sheet);const d=a.data||{};for(const k of ['ac','speed','level','background','alignment','proficiencies','traits','story','notes','spells','personality','ideals','bonds','flaws','passive'])if(Object.hasOwn(d,k))prev[k]=d[k];if(d.stats&&typeof d.stats==='object')Object.assign(prev.stats,d.stats);c.sheet=cleanSheet(prev)}break;
 case 'sheet-coin':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),key=String(a.coin||'');if(Object.hasOwn(sheet.coins,key)){sheet.coins[key]=num(sheet.coins[key]+num(a.delta,-9999,9999),0,999999);c.sheet=sheet}}break;
 case 'sheet-item-add':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),name=cleanText(a.name,140).trim(),qty=num(a.qty,1,9999);if(name&&sheet.items.length<120){sheet.items.push({id:cleanText(a.itemId||'i'+Math.random().toString(36).slice(2),70),name,qty});c.sheet=sheet}}break;
 case 'sheet-item-qty':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),it=sheet.items.find(x=>x.id===a.itemId);if(it){it.qty=num(it.qty+num(a.delta,-9999,9999),0,9999);c.sheet=sheet}}break;
@@ -275,6 +326,13 @@ function render(){
   }).join('')||'<div class="noentry">Cadastre personagens para iniciar a ordem.</div>';
 }
 
+function hasUnsavedSheet(card){
+  const owner=state.chars.find(c=>c.id===card?.dataset?.id);if(!owner||owner.enemy)return false;
+  const data=cleanSheet(owner.sheet);
+  for(const el of card.querySelectorAll('[data-sheet-field]'))if(String(data[el.dataset.sheetField]??'')!==el.value)return true;
+  for(const el of card.querySelectorAll('[data-sheet-stat]'))if(String(data.stats[el.dataset.sheetStat])!==el.value)return true;
+  return false;
+}
 $('cards').addEventListener('click',e=>{
   const btn=e.target.closest('button[data-sheet-action],button[data-sheet-tab]');
   if(!btn)return;
@@ -285,9 +343,9 @@ $('cards').addEventListener('click',e=>{
     if(sheetOpenId)requestAnimationFrame(()=>document.querySelector('.sheet-expanded')?.scrollIntoView({behavior:'smooth',block:'nearest'}));
     return;
   }
-  if(btn.dataset.sheetTab){sheetTab=btn.dataset.sheetTab;render();return}
+  if(btn.dataset.sheetTab){if(hasUnsavedSheet(card)&&!confirm('Há alterações não salvas nesta aba. Deseja sair sem salvar?'))return;sheetTab=btn.dataset.sheetTab;render();return}
   const act=btn.dataset.sheetAction;
-  if(act==='close'){sheetOpenId=null;render();return}
+  if(act==='close'){if(hasUnsavedSheet(card)&&!confirm('Descartar alterações não salvas?'))return;sheetOpenId=null;render();return}
   const owner=state.chars.find(x=>x.id===id);if(!owner||owner.enemy)return;
   if(act==='save'){
     const payload={};
