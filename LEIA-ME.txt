@@ -1,1 +1,21 @@
-Atualização visual da V3. Substitua somente index.html no GitHub Pages. Mantém o Firebase e todas as regras. Os textos explicativos foram movidos para ícones de ajuda (?) e os bônus adicionais foram renomeados.
+CONTADOR RPG - V4.2
+
+Atualização: substituir apenas index.html no GitHub. Preserve firebase-config.js e a imagem de fundo.
+
+NA INTERFACE:
+- Mestre (link privado): dano, cura, PV temporários, PV máximos e restauração de PV.
+- Jogadores (link público): não têm botões manuais de dano/cura; edição de PV bloqueada em personagens existentes.
+- Jogadores continuam podendo recuperar PV com descanso curto/longo na ficha.
+- Inimigos permanecem privados.
+- No modo local, o dispositivo atua como mestre.
+
+ATENÇÃO SOBRE SEGURANÇA:
+Essa atualização restringe as AÇÕES DO APLICATIVO, não é uma autorização criptograficamente assegurada.
+O modelo atual salva a sala inteira em rooms/<codigo>/state e usa autenticação anônima.
+Se as regras atuais permitem gravação do nó pelos jogadores, clientes modificados podem escrever
+na base fora da interface e alterar PV. Para GARANTIR que só o mestre pode editar PV
+fora de descansos é necessário separar os dados protegidos e usar permissões seguras
+por UID do mestre e validação do descanso em código confiável (ex.: Cloud Functions).
+Não substitua regras do Firebase por regras permissivas.
+
+Teste em sala secundária antes de usar na campanha.
