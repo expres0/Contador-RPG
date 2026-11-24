@@ -1,0 +1,9 @@
+CONTADOR RPG — FICHA DIGITAL EM GAVETA
+
+Atualize APENAS o index.html no GitHub Pages.
+Mantenha firebase-config.js e regras do Firebase como estão.
+
+Esta primeira etapa adiciona atributos, combate, história, magias, moedas e inventário dentro do card do jogador. Os campos são salvos junto do estado compartilhado da sala.
+
+IMPORTANTE: Esta versão NÃO IMPLEMENTA proteção por dono da ficha nem exclusividade de PV ao mestre. São etapas futuras, que exigem atualização de regras de acesso e autenticação.
+Faça um teste em uma sala nova antes de usar numa sessão real.

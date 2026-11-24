@@ -94,12 +94,57 @@ select{background:#f4f2e9;color:#1e3126;padding:10px 12px;border:1px solid rgba(
 .turnitem:not(.defeated-turn) .order{color:var(--turn-glow,#e2c17a)}
 .turnitem:not(.defeated-turn) .who{color:color-mix(in srgb,var(--turn-glow,#e2c17a) 40%,#fff 60%)}
 .turnitem.on:not(.defeated-turn){border-left:5px solid var(--turn-glow,#e2c17a);border-color:var(--turn-glow,#e2c17a);background:linear-gradient(90deg,color-mix(in srgb,var(--turn-glow,#e2c17a) 22%,transparent),transparent 75%),var(--turn-bg,rgba(54,81,62,.45));box-shadow:0 0 0 1px var(--turn-glow,#e2c17a),0 0 25px color-mix(in srgb,var(--turn-glow,#e2c17a) 25%,transparent)}
+
+/* Ficha embutida: expansão do próprio card, mobile-first */
+.grid>.card.sheet-expanded{grid-column:1/-1;overflow:visible;animation:sheetAppear .2s ease-out}
+@keyframes sheetAppear{from{opacity:.78;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sheet-open{display:inline-flex;align-items:center;justify-content:center;margin-top:13px;width:100%;border:1px solid rgba(194,227,202,.28);background:rgba(255,255,255,.05);color:#edf5e8;min-height:41px;border-radius:10px;gap:8px;font-size:13px}
+.sheet-open:hover{background:rgba(225,247,228,.12)}
+.sheet-expanded .sheet-open{background:rgba(225,247,228,.12);border-color:var(--card-glow,#a9cfaf)}
+.sheet-panel{margin-top:20px;padding-top:19px;border-top:1px solid rgba(214,231,214,.18)}
+.sheet-panel-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;margin-bottom:15px}
+.sheet-panel-header h3{font-size:20px;font-weight:760;letter-spacing:-.6px;margin:0}.sheet-note{font-size:12px;color:#acc7b6;margin:0}
+.sheet-tabs{display:flex;gap:8px;overflow:auto;padding:0 0 10px;margin:10px -2px 12px;scrollbar-width:thin}
+.sheet-tab{min-height:40px;padding:8px 13px;white-space:nowrap;border-radius:11px;background:rgba(10,24,18,.45);font-size:13px}
+.sheet-tab.active{background:var(--card-glow,#567c61);color:#102319;border-color:transparent}
+.sheet-area{background:rgba(6,18,12,.31);padding:clamp(13px,2vw,22px);border:1px solid rgba(217,234,215,.1);border-radius:14px}
+.sheet-area h4{font-size:15px;margin:0 0 13px;color:#e6efdf}
+.sheet-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.sheet-stat{background:rgba(231,248,232,.06);border:1px solid rgba(217,234,215,.12);border-radius:12px;padding:12px 10px;text-align:center}
+.sheet-stat label{display:block;font-size:11px;color:#b7c9bb;margin-bottom:5px;font-weight:650}
+.sheet-stat input{width:min(100%,90px);text-align:center;background:rgba(251,252,248,.95);padding:8px 4px;font-size:18px;font-weight:700}
+.sheet-stat .modifier{display:block;margin:6px 0 0;color:#e2cd9b;font-size:13px}
+.sheet-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.sheet-field{display:block;font-size:12px;color:#bfcfc1;font-weight:600}
+.sheet-field input,.sheet-field textarea{width:100%;margin-top:6px;min-height:40px}
+.sheet-field textarea{background:#f4f2e9;color:#1e3126;border-radius:11px;border:1px solid rgba(17,34,23,.2);padding:11px 12px;font:inherit;resize:vertical;min-height:110px}
+.sheet-field.wide{grid-column:1/-1}
+.sheet-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:15px;flex-wrap:wrap}
+.sheet-actions small{margin-right:auto;color:#acc0ae;font-size:11px}
+.wallet{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.wallet-cell{padding:14px 9px 10px;border-radius:14px;background:rgba(234,240,230,.065);border:1px solid rgba(215,235,216,.12);text-align:center}
+.wallet-cell .coin-name{font-size:11px;color:#ccd6cc;text-transform:uppercase;letter-spacing:.7px}
+.wallet-cell strong{display:block;font-size:clamp(22px,3.8vw,32px);margin:3px 0 9px}
+.wallet-cell .coin-controls{display:flex;align-items:center;justify-content:center;gap:7px}
+.wallet-cell button{width:42px;height:36px;min-height:36px;padding:0;font-size:20px}
+.sheet-inventory{display:grid;gap:8px;margin-bottom:15px}
+.sheet-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 11px;border:1px solid rgba(215,235,216,.13);border-radius:10px;background:rgba(17,37,27,.48)}
+.sheet-item span{overflow-wrap:anywhere}.sheet-item small{color:#9bb6a7}
+.sheet-item-actions{display:flex;align-items:center;gap:5px}
+.sheet-item-actions button{min-height:34px;padding:4px 9px;font-size:13px}
+.sheet-item-add{display:grid;grid-template-columns:minmax(0,1fr) 90px auto;gap:8px;align-items:end}
+.sheet-item-add label{min-width:0}.sheet-item-add input{width:100%;min-width:0;margin-top:5px}
+.sheet-item-add button{min-height:45px}
+.sheet-drawer-hint{font-size:11px;color:#9db0a4;margin:10px 0 0}
+.tv .sheet-open,.tv .sheet-panel{display:none!important}
+@media(max-width:650px){.grid>.card.sheet-expanded{grid-column:1/-1}.sheet-panel{margin-top:15px}.sheet-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.sheet-fields{grid-template-columns:1fr}.sheet-field.wide{grid-column:auto}.sheet-item-add{grid-template-columns:1fr 82px}.sheet-item-add button{grid-column:1/-1}.sheet-tabs{margin:8px -4px 12px}.sheet-tab{font-size:12px;padding:8px 12px}.sheet-panel-header h3{font-size:18px}.wallet-cell{padding:12px 4px}.wallet-cell .coin-controls{gap:4px}.wallet-cell button{width:36px}}
+
 </style></head>
 <body><main class="app"><header class="hero"><div><h1>Contador RPG</h1><p>Painel de combate · Pontos de vida e iniciativa</p></div></header>
 <div class="toolbar"><span id="status" class="status offline" aria-live="polite">Modo local — conecte-se à sala para sincronizar.</span><div class="btns"><button class="secondary" id="tv">📺 Modo TV</button><button id="add">+ Personagem</button><button id="addEnemy" class="secondary hidden">+ Inimigo</button><button class="secondary" id="reset">Restaurar PV</button></div></div>
 <details class="session-drawer" id="sessionDrawer"><summary>Sala compartilhada <span class="session-note">Convidar jogadores · Gerenciar acesso</span></summary><section class="section lobby" id="lobby"><h2>✧ SALA COMPARTILHADA</h2><div class="lobby"><button id="host" class="success">✦ Criar sala na nuvem</button><input id="roomcode" placeholder="Código da sala" aria-label="Código da sala"><button id="join">Entrar na sala</button><button id="leave" class="secondary hidden">Sair da sala</button></div><div class="shareline hidden" id="share"><label for="link">Link para jogadores e TV</label><input id="link" readonly><button id="copy">📋 Copiar link</button></div><div class="tip">Sala pela nuvem: jogadores podem alterar PV e iniciativa. PV de inimigos ficam separados no painel privado do mestre. O link da sala é para jogadores e TV.</div><div id="gmShare" class="gm-share hidden"><div class="gm-label">🔒 ACESSO DO MESTRE</div><p>Este acesso é exclusivo do mestre. Guarde-o para abrir a sala em outro dispositivo. Não envie aos jogadores nem abra na TV compartilhada.</p><button type="button" id="copyMaster" class="secondary">Copiar link do mestre</button></div></section></details>
 <div class="layout"><section class="section"><h2>♥ PERSONAGENS <small id="count" style="color:var(--dim);font-size:11px"></small></h2><div id="cards" class="grid"></div></section><aside class="section"><h2>⚔ ORDEM DOS TURNOS</h2><div class="bigturn" id="turnInfo">Rodada 1 · Nenhum turno selecionado</div><div class="turncontrols btns" style="margin-bottom:12px"><button id="next" class="success">▶ Próximo turno</button><button id="prev" class="secondary">◀ Voltar</button><button id="sort" class="secondary">⇣ Ordenar iniciativa</button></div><div class="turnlist" id="turnlist"></div><p class="help">Digite a iniciativa de cada personagem. Use ↑ ↓ para trocar a ordem. Clique no nome para escolher de quem é o turno. Ao passar do último para o primeiro, a rodada aumenta.</p></aside></div>
-<footer class="help" style="text-align:center">PV temporários absorvem dano antes dos PV normais. · As alterações da sala são salvas no Firebase. · Jogadores editam apenas os PV dos personagens; PV dos inimigos são privados do mestre. · É necessária conexão com a internet.</footer></main>
+<footer class="help" style="text-align:center">Ficha digital experimental: na sala atual, todos ainda podem editar fichas e PV. Permissões individuais serão implementadas depois. · PV temporários absorvem dano antes dos PV normais. · As alterações da sala são salvas no Firebase. · Jogadores editam apenas os PV dos personagens; PV dos inimigos são privados do mestre. · É necessária conexão com a internet.</footer></main>
 <div class="overlay hidden" id="overlay"><form class="modal" id="form"><h2 id="modalTitle">Editar personagem</h2><div id="enemyNotice" class="enemy-notice hidden">🔒 Inimigo: os pontos de vida são visíveis apenas ao mestre. Os jogadores verão o card do inimigo sem os PV.</div><label>Nome<input id="name" required maxlength="70"></label><label id="playerLabel">Nome do jogador<input id="player" maxlength="60"></label><label>Raça / classe / tipo<input id="klass" maxlength="80"></label><label id="accentLabel">Cor do quadro<select id="accent"><option value="green">Verde</option><option value="blue">Azul</option><option value="purple">Roxo</option><option value="red">Vermelho</option><option value="gold">Dourado</option><option value="teal">Ciano</option><option value="orange">Laranja</option><option value="gray">Cinza</option></select></label><label>PV máximos<input id="max" required type="number" min="1" max="9999"></label><label>PV atuais<input id="hp" required type="number" min="0" max="9999"></label><label>PV temporários<input id="temp" type="number" min="0" max="9999"></label><label>Iniciativa<input id="initiative" type="number" min="-50" max="99"></label><footer><button type="button" id="delete" class="danger">Excluir</button><button type="button" id="cancel" class="secondary">Cancelar</button><button type="submit" class="success">Salvar</button></footer></form></div>
 <script src="./firebase-config.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
@@ -112,6 +157,7 @@ const defaults=[{id:'goblin',name:'Goblin ladino',player:'Jogador 1',klass:'Ladi
 let state;try{const data=JSON.parse(localStorage.getItem(KEY));state=validState(data)?data:initial()}catch{state=initial()}
 let mode='local',room='',roomRef=null, roomListener=null, editId=null, editKind='player', firebaseDb=null, authPromise=null, roomReady=false, processing=false;
 let masterSecret='', privateRef=null, privateListener=null, privateReady=false, privateEnemies={};
+let sheetOpenId=null, sheetTab='resumo';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,t=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[t])), num=(v,lo,hi)=>Math.max(lo,Math.min(hi,Number(v)||0));
 const ACCENTS={hostile:{label:'Vermelho inimigo',cardBorder:'rgba(255,91,110,.55)',cardBg1:'rgba(99,31,44,.94)',cardBg2:'rgba(47,20,29,.98)',fillA:'#ec405c',fillB:'#ff7182',glow:'#ff526f',turnBg:'rgba(125,35,56,.56)',turnBorder:'rgba(255,96,124,.45)',enemyLabel:'#ff95a7',enemySub:'#ffc1c8'},green:{label:'Verde',cardBorder:'rgba(141,226,179,.24)',cardBg1:'rgba(35,72,52,.88)',cardBg2:'rgba(18,39,30,.94)',fillA:'#51bf87',fillB:'#8ce0af',glow:'#7bdd9f',turnBg:'rgba(49,92,67,.42)',turnBorder:'rgba(118,208,157,.18)',enemyLabel:'#d9c06d',enemySub:'#dbc88f'},blue:{label:'Azul',cardBorder:'rgba(113,175,229,.26)',cardBg1:'rgba(29,54,76,.88)',cardBg2:'rgba(18,31,45,.95)',fillA:'#5ba9f1',fillB:'#93cbff',glow:'#7bb9ff',turnBg:'rgba(39,63,90,.46)',turnBorder:'rgba(113,175,229,.18)',enemyLabel:'#d4e5ff',enemySub:'#b6ccef'},purple:{label:'Roxo',cardBorder:'rgba(183,130,241,.26)',cardBg1:'rgba(57,39,77,.88)',cardBg2:'rgba(31,21,46,.95)',fillA:'#ae73ff',fillB:'#d09fff',glow:'#c08bff',turnBg:'rgba(76,53,101,.46)',turnBorder:'rgba(183,130,241,.18)',enemyLabel:'#ead9ff',enemySub:'#cdb5ef'},red:{label:'Vermelho',cardBorder:'rgba(236,124,124,.26)',cardBg1:'rgba(78,42,44,.89)',cardBg2:'rgba(44,23,24,.95)',fillA:'#e27b7b',fillB:'#ffb0a8',glow:'#ff8d8d',turnBg:'rgba(102,52,52,.46)',turnBorder:'rgba(236,124,124,.2)',enemyLabel:'#ffd0c9',enemySub:'#efb3aa'},gold:{label:'Dourado',cardBorder:'rgba(228,195,127,.33)',cardBg1:'rgba(74,65,41,.87)',cardBg2:'rgba(32,42,32,.96)',fillA:'#c99454',fillB:'#efc779',glow:'#e4c37f',turnBg:'rgba(92,77,46,.42)',turnBorder:'rgba(228,195,127,.2)',enemyLabel:'#f0d28d',enemySub:'#dcc28c'},teal:{label:'Ciano',cardBorder:'rgba(101,217,216,.25)',cardBg1:'rgba(26,70,70,.88)',cardBg2:'rgba(14,39,41,.95)',fillA:'#49c8c2',fillB:'#85f0e5',glow:'#69dfd9',turnBg:'rgba(32,87,86,.42)',turnBorder:'rgba(101,217,216,.2)',enemyLabel:'#c8fbf0',enemySub:'#9fe5db'},orange:{label:'Laranja',cardBorder:'rgba(246,168,98,.27)',cardBg1:'rgba(79,56,32,.88)',cardBg2:'rgba(45,31,17,.95)',fillA:'#e09a45',fillB:'#ffc680',glow:'#f1ad5f',turnBg:'rgba(97,70,39,.45)',turnBorder:'rgba(246,168,98,.2)',enemyLabel:'#ffd3a2',enemySub:'#e7bb85'},gray:{label:'Cinza',cardBorder:'rgba(175,188,196,.24)',cardBg1:'rgba(51,60,66,.88)',cardBg2:'rgba(24,30,35,.95)',fillA:'#9eacb5',fillB:'#d3dde4',glow:'#b3c0c8',turnBg:'rgba(69,79,87,.44)',turnBorder:'rgba(175,188,196,.18)',enemyLabel:'#e6edf1',enemySub:'#c5d0d7'}};
 function accentName(c){if(c&&c.enemy)return 'hostile';const key=(c&&c.accent)||'green';return (key!=='hostile'&&ACCENTS[key])?key:'green'}
@@ -119,7 +165,46 @@ function palette(c){return ACCENTS[accentName(c)]||ACCENTS.green}
 function cardVars(c, publicEnemy=false){const p=palette(c);return `--card-border:${p.cardBorder};--card-bg1:${p.cardBg1};--card-bg2:${p.cardBg2};--fill-a:${p.fillA};--fill-b:${p.fillB};--card-glow:${p.glow};--turn-glow:${p.glow};--turn-bg:${p.turnBg};--turn-border:${p.turnBorder};--enemy-label:${p.enemyLabel};--enemy-sub:${p.enemySub};`}
 function initial(){return {chars:structuredClone(defaults),order:defaults.map(x=>x.id),turn:null,round:1,revision:0}}
 function validState(s){return s&&Array.isArray(s.chars)&&Array.isArray(s.order)&&typeof s.round==='number'}
-function normalize(s){if(!validState(s))return initial();s.chars=s.chars.filter(c=>c&&typeof c.id==='string').slice(0,40).map(c=>({id:String(c.id).slice(0,70),name:String(c.name||'Personagem').slice(0,70),player:c.enemy?'INIMIGO':String(c.player||'').slice(0,60),klass:String(c.klass||'').slice(0,80),enemy:!!c.enemy,max:c.enemy?1:num(c.max,1,9999),hp:c.enemy?1:num(c.hp,0,num(c.max,1,9999)),temp:c.enemy?0:num(c.temp,0,9999),initiative:num(c.initiative,-50,99),accent:accentName(c),defeated:!!c.enemy&&c.defeated===true}));const ids=s.chars.map(c=>c.id);s.order=[...new Set(s.order.filter(id=>ids.includes(id)))];for(const id of ids)if(!s.order.includes(id))s.order.push(id);if(!s.order.includes(s.turn))s.turn=null;s.round=num(s.round,1,999);return s}
+
+const STAT_CODES=['FOR','DES','CON','INT','SAB','CAR'];
+const STAT_NAMES=['Força','Destreza','Constituição','Inteligência','Sabedoria','Carisma'];
+function cleanText(v,limit=1000){return String(v??'').slice(0,limit)}
+function cleanSheet(raw){
+  const v=raw&&typeof raw==='object'?raw:{};
+  const rawStats=v.stats&&typeof v.stats==='object'?v.stats:{};
+  const rawCoins=v.coins&&typeof v.coins==='object'?v.coins:{};
+  return {
+    stats:Object.fromEntries(STAT_CODES.map(k=>[k,num(rawStats[k]??10,1,30)])),
+    ac:num(v.ac??10,0,99),speed:num(v.speed??9,0,99),level:num(v.level??1,1,20),
+    background:cleanText(v.background,150),alignment:cleanText(v.alignment,80),
+    proficiencies:cleanText(v.proficiencies,3000),traits:cleanText(v.traits,4000),
+    story:cleanText(v.story,9000),notes:cleanText(v.notes,5000),
+    spells:cleanText(v.spells,8000),
+    coins:{po:num(rawCoins.po,0,999999),pp:num(rawCoins.pp,0,999999),pc:num(rawCoins.pc,0,999999)},
+    items:Array.isArray(v.items)?v.items.slice(0,120).filter(it=>it&&typeof it.name==='string').map(it=>({id:cleanText(it.id,70),name:cleanText(it.name,140),qty:num(it.qty??1,0,9999)})):[]
+  };
+}
+function mod(v){const n=Math.floor((v-10)/2);return n>=0?'+'+n:String(n)}
+function sheetField(label,key,value,kind='text',full=false){return `<label class="sheet-field ${full?'wide':''}">${label}${kind==='textarea'?`<textarea data-sheet-field="${key}" rows="5">${esc(value)}</textarea>`:`<input data-sheet-field="${key}" value="${esc(value)}" ${kind==='number'?'type="number" min="0" max="99"':'type="text"'}>`}</label>`}
+function sheetPanel(c){
+  const data=cleanSheet(c.sheet),id=esc(c.id),tabs=[['resumo','Atributos'],['combate','Combate'],['inventario','Inventário'],['historia','História'],['magias','Magias']];
+  const menu=`<div class="sheet-tabs" role="tablist" aria-label="Áreas da ficha">${tabs.map(([key,title])=>`<button class="sheet-tab ${sheetTab===key?'active':''}" role="tab" aria-selected="${sheetTab===key}" data-sheet-tab="${key}">${title}</button>`).join('')}</div>`;
+  let body='';
+  if(sheetTab==='resumo'){
+    body=`<h4>Seus atributos</h4><div class="sheet-grid">${STAT_CODES.map((k,i)=>`<div class="sheet-stat"><label for="stat-${k}">${STAT_NAMES[i]}</label><input id="stat-${k}" aria-label="${STAT_NAMES[i]}" data-sheet-stat="${k}" type="number" min="1" max="30" value="${data.stats[k]}"><span class="modifier">${mod(data.stats[k])}</span></div>`).join('')}</div><div class="sheet-actions"><small>Modificadores calculados automaticamente.</small><button class="success" data-sheet-action="save">Salvar atributos</button></div>`;
+  }else if(sheetTab==='combate'){
+    body=`<h4>Informações de combate</h4><div class="sheet-fields">${sheetField('Classe de armadura','ac',data.ac,'number')}${sheetField('Deslocamento (m)','speed',data.speed,'number')}${sheetField('Nível','level',data.level,'number')}${sheetField('Antecedente','background',data.background)}${sheetField('Proficiências e idiomas','proficiencies',data.proficiencies,'textarea',true)}${sheetField('Características e talentos','traits',data.traits,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar informações</button></div>`;
+  }else if(sheetTab==='inventario'){
+    const coins=[['po','Ouro','🟡'],['pp','Prata','⚪'],['pc','Cobre','🟠']];
+    body=`<h4>Carteira de moedas</h4><div class="wallet">${coins.map(([k,label,emoji])=>`<div class="wallet-cell"><span class="coin-name">${emoji} ${label}</span><strong>${data.coins[k]}</strong><div class="coin-controls"><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="-1" aria-label="Remover uma moeda de ${label}">−</button><button class="secondary" data-sheet-action="coin" data-coin="${k}" data-delta="1" aria-label="Adicionar uma moeda de ${label}">+</button></div></div>`).join('')}</div><h4>Equipamentos e itens</h4><div class="sheet-inventory">${data.items.length?data.items.map(it=>`<div class="sheet-item"><span>${esc(it.name)} <small>× ${it.qty}</small></span><div class="sheet-item-actions"><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="-1" title="Remover 1">−</button><button class="secondary" data-sheet-action="item-qty" data-item="${esc(it.id)}" data-delta="1" title="Adicionar 1">+</button><button class="danger" data-sheet-action="item-del" data-item="${esc(it.id)}" title="Excluir item">×</button></div></div>`).join(''):'<p class="sheet-note">Inventário vazio. Adicione o primeiro item abaixo.</p>'}</div><div class="sheet-item-add"><label class="sheet-field">Item<input id="sheet-item-name" maxlength="140" placeholder="Ex.: Poção de cura"></label><label class="sheet-field">Qtd.<input id="sheet-item-qty" type="number" min="1" max="9999" value="1"></label><button class="success" data-sheet-action="item-add">+ Adicionar</button></div><p class="sheet-drawer-hint">As moedas e os itens são salvos na sala ao alterar.</p>`;
+  }else if(sheetTab==='historia'){
+    body=`<h4>História e origens</h4><div class="sheet-fields">${sheetField('Alinhamento','alignment',data.alignment)}${sheetField('História','story',data.story,'textarea',true)}${sheetField('Anotações e aliados','notes',data.notes,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar história</button></div>`;
+  }else {
+    body=`<h4>Magias e habilidades</h4><div class="sheet-fields">${sheetField('Truques, magias e observações','spells',data.spells,'textarea',true)}</div><div class="sheet-actions"><button class="success" data-sheet-action="save">Salvar magias</button></div>`;
+  }
+  return `<div class="sheet-panel" data-sheet-owner="${id}"><div class="sheet-panel-header"><div><h3>Ficha de ${esc(c.name)}</h3><p class="sheet-note">Abra uma área, edite e salve sem sair do combate.</p></div><button class="secondary" data-sheet-action="close">Fechar ficha ✕</button></div>${menu}<div class="sheet-area">${body}</div></div>`;
+}
+function normalize(s){if(!validState(s))return initial();s.chars=s.chars.filter(c=>c&&typeof c.id==='string').slice(0,40).map(c=>({id:String(c.id).slice(0,70),name:String(c.name||'Personagem').slice(0,70),player:c.enemy?'INIMIGO':String(c.player||'').slice(0,60),klass:String(c.klass||'').slice(0,80),enemy:!!c.enemy,max:c.enemy?1:num(c.max,1,9999),hp:c.enemy?1:num(c.hp,0,num(c.max,1,9999)),temp:c.enemy?0:num(c.temp,0,9999),initiative:num(c.initiative,-50,99),accent:accentName(c),defeated:!!c.enemy&&c.defeated===true,...(!c.enemy?{sheet:cleanSheet(c.sheet)}:{})}));const ids=s.chars.map(c=>c.id);s.order=[...new Set(s.order.filter(id=>ids.includes(id)))];for(const id of ids)if(!s.order.includes(id))s.order.push(id);if(!s.order.includes(s.turn))s.turn=null;s.round=num(s.round,1,999);return s}
 state=normalize(state);
 function gmCodes(){try{return JSON.parse(localStorage.getItem(GM_KEY))||{}}catch{return {}}}
 function storedSecret(code){return String(gmCodes()[code]||'')}
@@ -160,7 +245,12 @@ case 'turn':if(state.order.includes(a.id))state.turn=a.id;break;
 case 'next':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i+1)%state.order.length;if(i>=0&&j===0)state.round++;state.turn=state.order[j];}break;
 case 'prev':{if(!state.order.length)break;const i=state.order.indexOf(state.turn);const j=i<0?0:(i-1+state.order.length)%state.order.length;if(i===0&&state.round>1)state.round--;state.turn=state.order[j];}break;
 case 'reset':state.chars.forEach(c=>{if(!c.enemy){c.hp=c.max;c.temp=0}});break;
-case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),enemy=!!d.enemy,data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:enemy?'INIMIGO':String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),enemy,max:enemy?1:max,hp:enemy?1:num(d.hp,0,max),temp:enemy?0:num(d.temp,0,9999),initiative:num(d.initiative,-50,99),accent:accentName(d),defeated:enemy?!!d.defeated:false};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0)state.chars[i]=data;else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
+case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;const max=num(d.max,1,9999),enemy=!!d.enemy,data={id:String(d.id||('p'+Math.random().toString(36).slice(2))).slice(0,70),name:String(d.name).slice(0,70),player:enemy?'INIMIGO':String(d.player||'').slice(0,60),klass:String(d.klass||'').slice(0,80),enemy,max:enemy?1:max,hp:enemy?1:num(d.hp,0,max),temp:enemy?0:num(d.temp,0,9999),initiative:num(d.initiative,-50,99),accent:accentName(d),defeated:enemy?!!d.defeated:false};const i=state.chars.findIndex(c=>c.id===data.id);if(i>=0){data.sheet=state.chars[i].sheet;state.chars[i]=data}else if(state.chars.length<40){state.chars.push(data);state.order.push(data.id)}}break;
+case 'sheet-save':if(c&&!c.enemy){const prev=cleanSheet(c.sheet);const d=a.data||{};for(const k of ['ac','speed','level','background','alignment','proficiencies','traits','story','notes','spells'])if(Object.hasOwn(d,k))prev[k]=d[k];if(d.stats&&typeof d.stats==='object')Object.assign(prev.stats,d.stats);c.sheet=cleanSheet(prev)}break;
+case 'sheet-coin':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),key=String(a.coin||'');if(Object.hasOwn(sheet.coins,key)){sheet.coins[key]=num(sheet.coins[key]+num(a.delta,-9999,9999),0,999999);c.sheet=sheet}}break;
+case 'sheet-item-add':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),name=cleanText(a.name,140).trim(),qty=num(a.qty,1,9999);if(name&&sheet.items.length<120){sheet.items.push({id:cleanText(a.itemId||'i'+Math.random().toString(36).slice(2),70),name,qty});c.sheet=sheet}}break;
+case 'sheet-item-qty':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet),it=sheet.items.find(x=>x.id===a.itemId);if(it){it.qty=num(it.qty+num(a.delta,-9999,9999),0,9999);c.sheet=sheet}}break;
+case 'sheet-item-del':if(c&&!c.enemy){const sheet=cleanSheet(c.sheet);sheet.items=sheet.items.filter(x=>x.id!==a.itemId);c.sheet=sheet}break;
 case 'delete':state.chars=state.chars.filter(c=>c.id!==a.id);state.order=state.order.filter(id=>id!==a.id);if(state.turn===a.id)state.turn=null;break;
 }}
 function render(){
@@ -175,7 +265,7 @@ function render(){
     }
     const e=c.enemy ? privateActor(c.id) : {max:c.max,hp:c.hp,temp:c.temp};
     const hp=e?.hp??0,max=e?.max??1,temp=e?.temp??0,pc=100*hp/max,level=pc<=25?'critical':pc<=50?'mid':'';
-    return `<article class="card ${level} ${c.enemy?'enemy':''} ${c.enemy&&c.defeated?'enemy-defeated':''} ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}" style="${cardVars(c)}"><div class="toprow"><div><div class="player">${c.enemy?'<span class="enemy-dot">MESTRE · INIMIGO</span>':esc(c.player||'AVENTUREIRO')}</div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass)}</div></div><button class="secondary smallbtn edit" data-act="edit" title="Editar ${c.enemy?'inimigo':'personagem'}">✎</button></div><div class="hp">${e?hp:'—'}<span> / ${e?max:'—'}</span></div><div class="hp-caption">${c.enemy?'PV PRIVADOS DO MESTRE':'PONTOS DE VIDA'}</div><div class="bar"><div class="fill" style="width:${e?pc:0}%"></div></div><div class="foot"><span>${e?(hp===0?'☠️ 0 PV':pc<=25?'⚠ CRÍTICO':pc<=50?'FERIDO':'PRONTO'):'Carregando dados privados…'}</span><span class="temp">🛡 TEMP.: ${e?temp:'—'}</span></div><div class="actions"><button class="danger" data-act="damage" ${e?'':'disabled'}>− DANO</button><button class="success" data-act="heal" ${e?'':'disabled'}>+ CURA</button></div><div class="extras"><label>Ajuste rápido</label><span><button class="secondary" data-act="minus" ${e?'':'disabled'}>−1</button> <button class="secondary" data-act="plus" ${e?'':'disabled'}>+1</button> <button class="secondary" data-act="temp" ${e?'':'disabled'}>🛡 PV temp.</button></span></div></article>`;
+    return `<article class="card ${level} ${c.enemy?'enemy':''} ${c.enemy&&c.defeated?'enemy-defeated':''} ${!c.enemy&&sheetOpenId===c.id&&!tvMode?'sheet-expanded':''} ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}" style="${cardVars(c)}"><div class="toprow"><div><div class="player">${c.enemy?'<span class="enemy-dot">MESTRE · INIMIGO</span>':esc(c.player||'AVENTUREIRO')}</div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass)}</div></div><button class="secondary smallbtn edit" data-act="edit" title="Editar ${c.enemy?'inimigo':'personagem'}">✎</button></div><div class="hp">${e?hp:'—'}<span> / ${e?max:'—'}</span></div><div class="hp-caption">${c.enemy?'PV PRIVADOS DO MESTRE':'PONTOS DE VIDA'}</div><div class="bar"><div class="fill" style="width:${e?pc:0}%"></div></div><div class="foot"><span>${e?(hp===0?'☠️ 0 PV':pc<=25?'⚠ CRÍTICO':pc<=50?'FERIDO':'PRONTO'):'Carregando dados privados…'}</span><span class="temp">🛡 TEMP.: ${e?temp:'—'}</span></div><div class="actions"><button class="danger" data-act="damage" ${e?'':'disabled'}>− DANO</button><button class="success" data-act="heal" ${e?'':'disabled'}>+ CURA</button></div><div class="extras"><label>Ajuste rápido</label><span><button class="secondary" data-act="minus" ${e?'':'disabled'}>−1</button> <button class="secondary" data-act="plus" ${e?'':'disabled'}>+1</button> <button class="secondary" data-act="temp" ${e?'':'disabled'}>🛡 PV temp.</button></span></div>${!c.enemy&&!tvMode?`<button class="sheet-open" data-sheet-action="toggle" aria-expanded="${sheetOpenId===c.id}">📖 ${sheetOpenId===c.id?"Recolher ficha":"Abrir ficha do personagem"} ${sheetOpenId===c.id?"▴":"▾"}</button>${sheetOpenId===c.id?sheetPanel(c):""}`:""}</article>`;
   }).join('')||'<p class="noentry">Nenhum personagem cadastrado.</p>';
   const current=state.chars.find(c=>c.id===state.turn);
   $('turnInfo').textContent=`Rodada ${state.round} · ${current?'Vez de '+current.name:'Nenhum turno selecionado'}`;
@@ -184,6 +274,38 @@ function render(){
     return `<div class="turnitem ${c.enemy?'enemy-turn':''} ${c.enemy&&c.defeated?'defeated-turn':''} ${state.turn===id?'on':''}" data-id="${esc(id)}" style="${cardVars(c)}"><span class="order">${i+1}</span><div><div class="who" role="button" tabindex="0" data-act="turn" style="cursor:pointer">${esc(c.name)} ${state.turn===id?'◀':''}</div><div class="sub">${c.enemy?(c.defeated?'☠ Derrotado':'Inimigo · PV ocultos'):esc(c.player)}</div></div><div class="controls"><input aria-label="Iniciativa de ${esc(c.name)}" type="number" min="-50" max="99" value="${c.initiative}" data-act="initiative"><button class="secondary" data-act="up" title="Subir na ordem">↑</button><button class="secondary" data-act="down" title="Descer na ordem">↓</button></div></div>`;
   }).join('')||'<div class="noentry">Cadastre personagens para iniciar a ordem.</div>';
 }
+
+$('cards').addEventListener('click',e=>{
+  const btn=e.target.closest('button[data-sheet-action],button[data-sheet-tab]');
+  if(!btn)return;
+  const card=btn.closest('.card');if(!card)return;
+  const id=card.dataset.id;
+  if(btn.dataset.sheetAction==='toggle'){
+    sheetOpenId=sheetOpenId===id?null:id;sheetTab='resumo';render();
+    if(sheetOpenId)requestAnimationFrame(()=>document.querySelector('.sheet-expanded')?.scrollIntoView({behavior:'smooth',block:'nearest'}));
+    return;
+  }
+  if(btn.dataset.sheetTab){sheetTab=btn.dataset.sheetTab;render();return}
+  const act=btn.dataset.sheetAction;
+  if(act==='close'){sheetOpenId=null;render();return}
+  const owner=state.chars.find(x=>x.id===id);if(!owner||owner.enemy)return;
+  if(act==='save'){
+    const payload={};
+    card.querySelectorAll('[data-sheet-field]').forEach(el=>{payload[el.dataset.sheetField]=el.value});
+    const fields=card.querySelectorAll('[data-sheet-stat]');
+    if(fields.length){payload.stats={};fields.forEach(el=>{payload.stats[el.dataset.sheetStat]=num(el.value,1,30)})}
+    dispatch({type:'sheet-save',id,data:payload});return;
+  }
+  if(act==='coin')dispatch({type:'sheet-coin',id,coin:btn.dataset.coin,delta:Number(btn.dataset.delta)});
+  if(act==='item-add'){
+    const name=card.querySelector('#sheet-item-name')?.value.trim();const qty=Number(card.querySelector('#sheet-item-qty')?.value||1);
+    if(!name)return alert('Digite o nome do item.');
+    const bytes=new Uint8Array(8);crypto.getRandomValues(bytes);
+    dispatch({type:'sheet-item-add',id,name,qty,itemId:'i'+Array.from(bytes,x=>x.toString(16).padStart(2,'0')).join('')});
+  }
+  if(act==='item-qty')dispatch({type:'sheet-item-qty',id,itemId:btn.dataset.item,delta:Number(btn.dataset.delta)});
+  if(act==='item-del'&&confirm('Excluir este item do inventário?'))dispatch({type:'sheet-item-del',id,itemId:btn.dataset.item});
+});
 $('cards').addEventListener('click',e=>{const b=e.target.closest('button[data-act]'),article=b?.closest('article');if(!b||!article)return;const id=article.dataset.id,a=b.dataset.act;if(a==='edit')return openForm(id);if(a==='plus'||a==='minus')return characterAction(id,a==='plus'?'heal':'damage',1);const raw=prompt(a==='damage'?'Quantos pontos de dano?':a==='heal'?'Quantos pontos de cura?':'Quantos PV temporários serão concedidos? (mantém o maior)', '5');if(raw===null)return;if(!/^\d+$/.test(raw.trim()))return alert('Digite um número inteiro válido.');characterAction(id,a,Number(raw))});
 $('turnlist').addEventListener('click',e=>{const b=e.target.closest('[data-act]'),row=b?.closest('.turnitem');if(!b||!row)return;const a=b.dataset.act;if(a==='initiative')return;dispatch({type:a,id:row.dataset.id})});
 $('turnlist').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.dataset.act==='turn'){e.preventDefault();dispatch({type:'turn',id:e.target.closest('.turnitem').dataset.id})}});
