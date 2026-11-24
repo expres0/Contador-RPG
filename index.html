@@ -56,8 +56,17 @@ input{background:#f4f2e9;color:#1e3126;padding:10px 12px;border:1px solid rgba(1
 .enemy-dot{display:inline-block;background:rgba(228,195,127,.13);color:#f3d59b;font-size:10px;padding:3px 7px;border-radius:6px;margin-right:5px}
 .turnitem.enemy-turn{border-left:3px solid rgba(228,195,127,.55)}
 .turnitem.enemy-turn .who:before{content:'⚔ ';color:#e4c37f}
-.tv .card.enemy{display:none!important}
+/* Inimigos aparecem para todos; apenas o mestre vê os PV fora do Modo TV. */
+.card.enemy-public{display:flex;flex-direction:column;justify-content:space-between;min-height:345px;border:1px solid rgba(226,187,105,.48);background:linear-gradient(145deg,rgba(74,65,41,.87),rgba(32,42,32,.96))}
+.card.enemy-public .player{color:#eed29a}
+.card.enemy-public .char{color:#fff0cc}
+.card.enemy-public .classline{color:#d0bd93;font-size:12px}
+.enemy-public-center{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:145px;color:#dfba77}
+.enemy-public-center .enemy-emblem{display:grid;place-items:center;width:76px;height:76px;border:1px solid rgba(226,187,105,.35);border-radius:18px;background:rgba(226,187,105,.09);font-size:34px}
+.enemy-public-center .enemy-rule{width:78px;height:2px;background:linear-gradient(90deg,transparent,#d6ae71,transparent)}
+.card.enemy-public .enemy-bottom{font-size:11px;letter-spacing:.11em;text-align:center;color:#d9be87;padding-bottom:7px}
 .tv #addEnemy{display:none!important}
+@media(max-width:650px){.card.enemy-public{min-height:265px}.enemy-public-center{min-height:95px}.enemy-public-center .enemy-emblem{width:60px;height:60px;font-size:27px}}
 @media(max-width:650px){.gm-share{padding:12px}.gm-share button{width:100%}#addEnemy{flex:1}}
 
 </style></head>
@@ -125,9 +134,14 @@ case 'savechar':{const d=a.char;if(!d||!d.name||String(d.name).length>70)return;
 case 'delete':state.chars=state.chars.filter(c=>c.id!==a.id);state.order=state.order.filter(id=>id!==a.id);if(state.turn===a.id)state.turn=null;break;
 }}
 function render(){
-  const visible=state.chars.filter(c=>!c.enemy||isMaster());
-  $('count').textContent=`(${state.chars.filter(c=>!c.enemy).length} jogadores${isMaster()?', '+state.chars.filter(c=>c.enemy).length+' inimigos':''})`;
+  const visible=state.chars;
+  const tvMode=document.body.classList.contains('tv');
+  $('count').textContent=`(${state.chars.filter(c=>!c.enemy).length} jogadores, ${state.chars.filter(c=>c.enemy).length} inimigos)`;
   $('cards').innerHTML=visible.map(c=>{
+    // Nunca carregar valores privados para a exibição pública (jogadores ou TV).
+    if(c.enemy && (!isMaster() || tvMode)){
+      return `<article class="card enemy enemy-public ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}"><div class="toprow"><div><div class="player"><span class="enemy-dot">⚔ INIMIGO</span></div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass||'Criatura')}</div></div></div><div class="enemy-public-center" aria-hidden="true"><div class="enemy-emblem">⚔</div><span class="enemy-rule"></span></div><div class="enemy-bottom">ORDEM DE INICIATIVA</div></article>`;
+    }
     const e=c.enemy ? privateActor(c.id) : {max:c.max,hp:c.hp,temp:c.temp};
     const hp=e?.hp??0,max=e?.max??1,temp=e?.temp??0,pc=100*hp/max,level=pc<=25?'critical':pc<=50?'mid':'';
     return `<article class="card ${level} ${c.enemy?'enemy':''} ${state.turn===c.id?'current':''}" data-id="${esc(c.id)}"><div class="toprow"><div><div class="player">${c.enemy?'<span class="enemy-dot">MESTRE · INIMIGO</span>':esc(c.player||'AVENTUREIRO')}</div><div class="char">${esc(c.name)}</div><div class="classline">${esc(c.klass)}</div></div><button class="secondary smallbtn edit" data-act="edit" title="Editar ${c.enemy?'inimigo':'personagem'}">✎</button></div><div class="hp">${e?hp:'—'}<span> / ${e?max:'—'}</span></div><div class="hp-caption">${c.enemy?'PV PRIVADOS DO MESTRE':'PONTOS DE VIDA'}</div><div class="bar"><div class="fill" style="width:${e?pc:0}%"></div></div><div class="foot"><span>${e?(hp===0?'☠️ 0 PV':pc<=25?'⚠ CRÍTICO':pc<=50?'FERIDO':'PRONTO'):'Carregando dados privados…'}</span><span class="temp">🛡 TEMP.: ${e?temp:'—'}</span></div><div class="actions"><button class="danger" data-act="damage" ${e?'':'disabled'}>− DANO</button><button class="success" data-act="heal" ${e?'':'disabled'}>+ CURA</button></div><div class="extras"><label>Ajuste rápido</label><span><button class="secondary" data-act="minus" ${e?'':'disabled'}>−1</button> <button class="secondary" data-act="plus" ${e?'':'disabled'}>+1</button> <button class="secondary" data-act="temp" ${e?'':'disabled'}>🛡 PV temp.</button></span></div></article>`;
@@ -143,7 +157,7 @@ $('cards').addEventListener('click',e=>{const b=e.target.closest('button[data-ac
 $('turnlist').addEventListener('click',e=>{const b=e.target.closest('[data-act]'),row=b?.closest('.turnitem');if(!b||!row)return;const a=b.dataset.act;if(a==='initiative')return;dispatch({type:a,id:row.dataset.id})});
 $('turnlist').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.dataset.act==='turn'){e.preventDefault();dispatch({type:'turn',id:e.target.closest('.turnitem').dataset.id})}});
 $('turnlist').addEventListener('change',e=>{if(e.target.dataset.act!=='initiative')return;dispatch({type:'initiative',id:e.target.closest('.turnitem').dataset.id,value:e.target.value})});
-$('next').onclick=()=>dispatch({type:'next'});$('prev').onclick=()=>dispatch({type:'prev'});$('sort').onclick=()=>dispatch({type:'sort'});$('reset').onclick=()=>{if(confirm('Restaurar os PV máximos de todos e remover PV temporários?'))dispatch({type:'reset'})};$('tv').onclick=()=>{const tv=document.body.classList.toggle('tv');$('tv').textContent=tv?'✎ Sair da TV':'📺 Modo TV'};
+$('next').onclick=()=>dispatch({type:'next'});$('prev').onclick=()=>dispatch({type:'prev'});$('sort').onclick=()=>dispatch({type:'sort'});$('reset').onclick=()=>{if(confirm('Restaurar os PV máximos de todos e remover PV temporários?'))dispatch({type:'reset'})};$('tv').onclick=()=>{const tv=document.body.classList.toggle('tv');$('tv').textContent=tv?'✎ Sair da TV':'📺 Modo TV';render()};
 function openForm(id,kind='player'){
   editId=id;const c=state.chars.find(c=>c.id===id);editKind=c?.enemy?'enemy':kind;
   if(editKind==='enemy'&&!isMaster())return alert('Apenas o mestre pode gerenciar inimigos. Crie uma nova sala como mestre.');
